@@ -2,6 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Shield, Zap, TrendingUp, CheckCircle } from "lucide-react"
+import Chatbot from "./chatbot"
 
 export const metadata = {
     title: "Segmento | Secure Data. Smarter Insights.",
@@ -100,21 +101,21 @@ export default function HomePage() {
                                         Segmento Sense
                                     </h3>
                                     <p className="text-lg text-muted-foreground mb-6">
-                                        Enterprise PII Detection & Data Classification Platform. Automatically discover,
-                                        classify, and protect sensitive data across your entire organization.
+                                        Our flagship enterprise solution. Built for organizations that demand
+                                        the highest levels of intelligence and security for their most sensitive assets.
                                     </p>
                                     <ul className="space-y-3 mb-6">
                                         <li className="flex items-start gap-2">
                                             <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                                            <span>AI-powered data discovery and classification</span>
+                                            <span>Advanced AI-powered technology</span>
                                         </li>
                                         <li className="flex items-start gap-2">
                                             <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                                            <span>Real-time PII detection with 95%+ accuracy</span>
+                                            <span>Enterprise-grade security</span>
                                         </li>
                                         <li className="flex items-start gap-2">
                                             <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                                            <span>Automated compliance reporting</span>
+                                            <span>Trusted by leading organizations</span>
                                         </li>
                                     </ul>
                                     <Link href="/products/data-classification">
@@ -125,10 +126,10 @@ export default function HomePage() {
                                 </div>
                                 <div className="flex-shrink-0">
                                     <Image
-                                        src="/images/segmento-logo.png"
+                                        src="/images/logo_new.png"
                                         alt="Segmento Sense"
-                                        width={160}
-                                        height={80}
+                                        width={200}
+                                        height={100}
                                         className="rounded-lg"
                                     />
                                 </div>
@@ -185,6 +186,9 @@ export default function HomePage() {
                     </div>
                 </div>
             </section>
+
+            {/* Chatbot */}
+            <Chatbot />
         </div>
     )
 }

@@ -1,6 +1,5 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Linkedin } from "lucide-react"
 
 export const metadata = {
     title: "About Us - Segmento",
@@ -26,7 +25,7 @@ const team = [
     {
         name: "Adam Shafi",
         role: "DATA AND AI TECHNOLOGIES ENGINEER AT SEGMENTO",
-        bio: "Adam Shafi is a Data & AI Technologies Engineer at Segmento, focused on building intelligent, data-driven solutions that solve real-world business problems. He specializes in developing AI-powered systems and machine learning models using modern frameworks and technologies. With a strong focus on precision and innovation, he ensures every solution is scalable, efficient, and aligned with Segmento's privacy-first vision. Adam excels at working on complex data challenges, creating intelligent automation, and delivering products that transform how enterprises handle sensitive information, driving Segmento's commitment to privacy-centric AI innovation.",
+        bio: "Adam Shafi is a Data & AI Technologies Engineer at Segmento, focused on building intelligent, data-driven solutions that solve real-world business problems. He specializes in developing AI-powered systems and machine learning models using modern frameworks and technologies. With a strong focus on precision and innovation, he ensures every solution is scalable, efficient, and aligned with Segmento's privacy-first vision. Shafi excels at working on complex data challenges, creating intelligent automation, and delivering products that transform how enterprises handle sensitive information, driving Segmento's commitment to privacy-centric AI innovation.",
         image: "/images/shafi-profile.jpg",
         linkedin: "http://www.linkedin.com/in/shafisk",
     },
@@ -52,6 +51,20 @@ const missions = [
         ],
     },
 ]
+
+// LinkedIn Official Blue Icon Component
+const LinkedinIcon = () => (
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 448 512"
+        className="w-6 h-6"
+    >
+        <path
+            d="M100.28 448H7.4V148.9h92.88zm-46.44-341.7C24.3 106.3 0 81.85 0 52.63 0 23.38 24.3 0 54.18 0c29.87 0 54.18 23.38 54.18 52.63 0 29.22-24.31 53.67-54.18 53.67zM447.9 448h-92.68V302.4c0-34.7-12.42-58.4-43.48-58.4-23.7 0-37.79 15.94-44 31.34-2.27 5.53-2.84 13.2-2.84 20.9V448h-92.76s1.23-271.7 0-299.1h92.76v42.3c-.18.29-.43.59-.61.88h.61v-.88c12.32-19 34.34-46.2 83.45-46.2 60.88 0 106.54 39.77 106.54 125.3V448z"
+            fill="#0A66C2"
+        />
+    </svg>
+)
 
 export default function AboutPage() {
     return (
@@ -92,18 +105,20 @@ export default function AboutPage() {
                                         className="object-cover"
                                     />
                                 </div>
-                                <Link
-                                    href={director.linkedin}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
-                                >
-                                    <Linkedin className="w-5 h-5" />
-                                    LinkedIn
-                                </Link>
                             </div>
                             <div className="flex-1 text-center md:text-left">
-                                <h3 className="text-2xl md:text-3xl font-bold mb-2">{director.name}</h3>
+                                {/* Name and LinkedIn in same line */}
+                                <div className="flex justify-between items-center mb-2">
+                                    <h3 className="text-2xl md:text-3xl font-bold">{director.name}</h3>
+                                    <Link
+                                        href={director.linkedin}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="hover:opacity-80 transition-opacity"
+                                    >
+                                        <LinkedinIcon />
+                                    </Link>
+                                </div>
                                 <p className="text-primary font-semibold mb-4">{director.role}</p>
                                 <p className="text-muted-foreground mb-6 leading-relaxed text-justify">{director.bio}</p>
                             </div>
@@ -130,18 +145,20 @@ export default function AboutPage() {
                                             className="object-cover"
                                         />
                                     </div>
-                                    <Link
-                                        href={member.linkedin}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors"
-                                    >
-                                        <Linkedin className="w-5 h-5" />
-                                        LinkedIn
-                                    </Link>
                                 </div>
                                 <div className="text-center">
-                                    <h3 className="text-xl font-bold mb-2">{member.name}</h3>
+                                    {/* Name and LinkedIn in same line */}
+                                    <div className="flex justify-center items-center mb-2">
+                                        <h3 className="text-xl font-bold">{member.name}</h3>
+                                        <Link
+                                            href={member.linkedin}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="hover:opacity-80 transition-opacity ml-2"
+                                        >
+                                            <LinkedinIcon />
+                                        </Link>
+                                    </div>
                                     <p className="text-primary text-sm font-semibold mb-3">{member.role}</p>
                                     <p className="text-muted-foreground text-sm text-justify">{member.bio}</p>
                                 </div>

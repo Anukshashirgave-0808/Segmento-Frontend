@@ -11,8 +11,7 @@ const tiers = [
     {
         name: "Starter",
         subtitle: "For small teams getting started",
-        price: "499",
-        period: "/month",
+        price: "Free",
         features: [
             "Up to 100GB data scanned",
             "5 data sources",
@@ -24,7 +23,7 @@ const tiers = [
     {
         name: "Professional",
         subtitle: "For growing organizations",
-        price: "1,999",
+        price: "999",
         period: "/month",
         featured: true,
         features: [
@@ -98,8 +97,8 @@ export default function PricingPage() {
                             <div
                                 key={tier.name}
                                 className={`rounded-2xl border p-8 ${tier.featured
-                                        ? "border-primary shadow-2xl scale-105 bg-gradient-to-br from-primary/5 to-purple-50"
-                                        : "border-border/50 bg-white shadow-lg"
+                                    ? "border-primary shadow-2xl scale-105 bg-gradient-to-br from-primary/5 to-purple-50"
+                                    : "border-border/50 bg-white shadow-lg"
                                     }`}
                             >
                                 {tier.featured && (
@@ -112,8 +111,8 @@ export default function PricingPage() {
                                     <p className="text-muted-foreground text-sm">{tier.subtitle}</p>
                                 </div>
                                 <div className="mb-6">
-                                    {tier.price === "Custom" ? (
-                                        <div className="text-4xl font-bold">Custom</div>
+                                    {tier.price === "Custom" || tier.price === "Free" ? (
+                                        <div className="text-4xl font-bold">{tier.price}</div>
                                     ) : (
                                         <div className="flex items-baseline">
                                             <span className="text-3xl">$</span>
