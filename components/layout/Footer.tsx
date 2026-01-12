@@ -30,7 +30,7 @@ export function Footer() {
             { label: "YouTube", href: "/404", icon: Youtube },
             { label: "Instagram", href: "/404", icon: Instagram },
             { label: "Facebook", href: "/404", icon: Facebook },
-            { label: "GitHub", href: "/404", icon: Github },
+            { label: "GitHub", href: "https://github.com/Segmento-in", icon: Github },
             { label: "TikTok", href: "/404", icon: TikTokIcon },
         ],
         legal: [

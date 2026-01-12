@@ -58,6 +58,10 @@ export default function PulseNavbar() {
         { name: "Data Governance", path: "/pulse/news?category=data-governance" },
         { name: "Data Privacy", path: "/pulse/news?category=data-privacy" },
         { name: "Data Security", path: "/pulse/news?category=data-security" },
+        { name: "Business Intelligence", path: "/pulse/news?category=business-intelligence" },
+        { name: "Business Analytics", path: "/pulse/news?category=business-analytics" },
+        { name: "Customer Data Platform", path: "/pulse/news?category=customer-data-platform" },
+        { name: "Data Centers", path: "/pulse/news?category=data-centers" },
     ];
 
     const navLinks = [
@@ -66,7 +70,6 @@ export default function PulseNavbar() {
         { name: "Data", path: "#", hasDropdown: true },
         { name: "Cloud", path: "/pulse/news?category=cloud-computing" },
         { name: "Magazines", path: "/pulse/magazines" },
-        { name: "Segmento.in", path: "/" }, // Link back to main platform
     ];
 
     return (
@@ -143,6 +146,14 @@ export default function PulseNavbar() {
                             </Link>
                         )
                     ))}
+
+                    {/* Get back to Segmento button */}
+                    <Link
+                        href="/"
+                        className="ml-2 px-4 py-2 text-sm font-medium bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-lg transition-all duration-200 shadow-sm hover:shadow-md"
+                    >
+                        Get back to Segmento
+                    </Link>
                 </nav>
 
                 {/* Desktop Actions */}

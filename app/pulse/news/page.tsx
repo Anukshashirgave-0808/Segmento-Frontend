@@ -14,28 +14,84 @@ export const dynamic = 'force-dynamic';
 const categoryRelationships: Record<string, Array<{ id: string; name: string }>> = {
     // Data categories show all data subcategories
     'data-security': [
-        { id: "data-security", name: "Data Security" },
+        { id: "business-analytics", name: "Business Analytics" },
+        { id: "business-intelligence", name: "Business Intelligence" },
+        { id: "customer-data-platform", name: "Customer Data Platform" },
+        { id: "data-centers", name: "Data Centers" },
+        { id: "data-engineering", name: "Data Engineering" },
         { id: "data-governance", name: "Data Governance" },
         { id: "data-privacy", name: "Data Privacy" },
-        { id: "data-engineering", name: "Data Engineering" },
+        { id: "data-security", name: "Data Security" },
     ],
     'data-governance': [
-        { id: "data-security", name: "Data Security" },
+        { id: "business-analytics", name: "Business Analytics" },
+        { id: "business-intelligence", name: "Business Intelligence" },
+        { id: "customer-data-platform", name: "Customer Data Platform" },
+        { id: "data-centers", name: "Data Centers" },
+        { id: "data-engineering", name: "Data Engineering" },
         { id: "data-governance", name: "Data Governance" },
         { id: "data-privacy", name: "Data Privacy" },
-        { id: "data-engineering", name: "Data Engineering" },
+        { id: "data-security", name: "Data Security" },
     ],
     'data-privacy': [
-        { id: "data-security", name: "Data Security" },
+        { id: "business-analytics", name: "Business Analytics" },
+        { id: "business-intelligence", name: "Business Intelligence" },
+        { id: "customer-data-platform", name: "Customer Data Platform" },
+        { id: "data-centers", name: "Data Centers" },
+        { id: "data-engineering", name: "Data Engineering" },
         { id: "data-governance", name: "Data Governance" },
         { id: "data-privacy", name: "Data Privacy" },
-        { id: "data-engineering", name: "Data Engineering" },
+        { id: "data-security", name: "Data Security" },
     ],
     'data-engineering': [
-        { id: "data-security", name: "Data Security" },
+        { id: "business-analytics", name: "Business Analytics" },
+        { id: "business-intelligence", name: "Business Intelligence" },
+        { id: "customer-data-platform", name: "Customer Data Platform" },
+        { id: "data-centers", name: "Data Centers" },
+        { id: "data-engineering", name: "Data Engineering" },
         { id: "data-governance", name: "Data Governance" },
         { id: "data-privacy", name: "Data Privacy" },
+        { id: "data-security", name: "Data Security" },
+    ],
+    'business-analytics': [
+        { id: "business-analytics", name: "Business Analytics" },
+        { id: "business-intelligence", name: "Business Intelligence" },
+        { id: "customer-data-platform", name: "Customer Data Platform" },
+        { id: "data-centers", name: "Data Centers" },
         { id: "data-engineering", name: "Data Engineering" },
+        { id: "data-governance", name: "Data Governance" },
+        { id: "data-privacy", name: "Data Privacy" },
+        { id: "data-security", name: "Data Security" },
+    ],
+    'business-intelligence': [
+        { id: "business-analytics", name: "Business Analytics" },
+        { id: "business-intelligence", name: "Business Intelligence" },
+        { id: "customer-data-platform", name: "Customer Data Platform" },
+        { id: "data-centers", name: "Data Centers" },
+        { id: "data-engineering", name: "Data Engineering" },
+        { id: "data-governance", name: "Data Governance" },
+        { id: "data-privacy", name: "Data Privacy" },
+        { id: "data-security", name: "Data Security" },
+    ],
+    'customer-data-platform': [
+        { id: "business-analytics", name: "Business Analytics" },
+        { id: "business-intelligence", name: "Business Intelligence" },
+        { id: "customer-data-platform", name: "Customer Data Platform" },
+        { id: "data-centers", name: "Data Centers" },
+        { id: "data-engineering", name: "Data Engineering" },
+        { id: "data-governance", name: "Data Governance" },
+        { id: "data-privacy", name: "Data Privacy" },
+        { id: "data-security", name: "Data Security" },
+    ],
+    'data-centers': [
+        { id: "business-analytics", name: "Business Analytics" },
+        { id: "business-intelligence", name: "Business Intelligence" },
+        { id: "customer-data-platform", name: "Customer Data Platform" },
+        { id: "data-centers", name: "Data Centers" },
+        { id: "data-engineering", name: "Data Engineering" },
+        { id: "data-governance", name: "Data Governance" },
+        { id: "data-privacy", name: "Data Privacy" },
+        { id: "data-security", name: "Data Security" },
     ],
 
     // AI shows only AI
@@ -170,8 +226,8 @@ function NewsContent() {
                             key={cat.id}
                             href={`/pulse/news?category=${cat.id}`}
                             className={`px-6 py-2 rounded-full transition-all flex items-center gap-2 ${activeCategory === cat.id
-                                    ? "bg-blue-600 text-white shadow-lg"
-                                    : "bg-gray-100 hover:bg-gray-200"
+                                ? "bg-blue-600 text-white shadow-lg"
+                                : "bg-gray-100 hover:bg-gray-200"
                                 }`}
                         >
                             {isCloudProvider && (
