@@ -1,4 +1,5 @@
-// News API for Pulse - uses server-side routes to avoid CORS/426 errors
+// News API for Pulse - now uses FastAPI backend
+const API_BASE = process.env.NEXT_PUBLIC_PULSE_API_URL || 'http://localhost:8000';
 
 export interface Article {
     title: string;
@@ -7,27 +8,18 @@ export interface Article {
     image: string;
     publishedAt: string;
     source: string;
-    author: string;
+    author?: string;
 }
 
 export async function fetchNewsByCategory(category: string): Promise<Article[]> {
     try {
-        // Check if it's a cloud category - use existing RSS API route
-        if (category.startsWith('cloud-') || category === 'cloud-computing') {
-            const response = await fetch(`/api/pulse/rss?category=${category}`, {
-                cache: 'no-store',
-            });
-            const data = await response.json();
-            return data.articles || [];
-        }
-
-        // For non-cloud categories, use Google News RSS API route
-        const response = await fetch(`/api/pulse/google-news?category=${category}`, {
+        // Use FastAPI backend endpoint
+        const response = await fetch(`${API_BASE}/api/news/${category}`, {
             cache: 'no-store',
         });
 
         if (!response.ok) {
-            console.error('Failed to fetch Google News:', response.statusText);
+            console.error('Failed to fetch news:', response.statusText);
             return [];
         }
 
@@ -41,7 +33,8 @@ export async function fetchNewsByCategory(category: string): Promise<Article[]> 
 
 export async function searchNews(query: string): Promise<Article[]> {
     try {
-        const response = await fetch(`/api/pulse/search?q=${encodeURIComponent(query)}`, {
+        // Use FastAPI backend search endpoint
+        const response = await fetch(`${API_BASE}/api/search?q=${encodeURIComponent(query)}`, {
             cache: 'no-store',
         });
 
