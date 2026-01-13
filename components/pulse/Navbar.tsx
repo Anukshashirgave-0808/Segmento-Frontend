@@ -1,21 +1,44 @@
 'use client';
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import Link from "next/link";
-import { Search, Menu, X, User, ChevronDown } from "lucide-react";
+import { Search, Menu, X, User, ChevronDown, LogOut, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
+import { pulseAuth } from "@/lib/pulse/firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import '@/app/pulse/heartbeat.css';
 
-export default function PulseNavbar() {
+export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: () => void }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
     const [isDataDropdownOpen, setIsDataDropdownOpen] = useState(false);
+    const [user, setUser] = useState<any>(null);
+    const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
     const router = useRouter();
 
     const timeoutRef = useRef<number | undefined>(undefined);
+
+    // Listen to auth state changes
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(pulseAuth, (currentUser) => {
+            setUser(currentUser);
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    const handleLogout = async () => {
+        try {
+            await signOut(pulseAuth);
+            setIsUserMenuOpen(false);
+            router.push('/pulse');
+        } catch (error) {
+            console.error('Logout error:', error);
+        }
+    };
 
     const handleSearchInput = useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -193,15 +216,56 @@ export default function PulseNavbar() {
                         )}
                     </div>
 
-                    <Button variant="outline" size="sm" asChild>
-                        <Link href="/pulse/login">Login</Link>
-                    </Button>
+                    {/* Conditional rendering based on auth state */}
+                    {user ? (
+                        // Logged-in state
+                        <div className="relative">
+                            <Button
+                                variant="outline"
+                                size="sm"
+                                onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                                className="flex items-center gap-2"
+                            >
+                                <User className="h-4 w-4" />
+                                {user.email?.split('@')[0] || 'Profile'}
+                                <ChevronDown className="h-3 w-3" />
+                            </Button>
 
-                    <Button size="sm" asChild>
-                        <Link href="/pulse/register">Register</Link>
-                    </Button>
+                            {isUserMenuOpen && (
+                                <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50">
+                                    <div className="px-4 py-2 border-b">
+                                        <p className="text-sm font-medium truncate">{user.email}</p>
+                                    </div>
+                                    <button
+                                        onClick={handleLogout}
+                                        className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                                    >
+                                        <LogOut className="h-4 w-4" />
+                                        Logout
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    ) : (
+                        // Logged-out state
+                        <>
+                            <Button variant="outline" size="sm" asChild>
+                                <Link href="/pulse/login">Login</Link>
+                            </Button>
 
-                    <Button className="bg-blue-600 hover:bg-blue-700" size="sm">
+                            <Button size="sm" asChild>
+                                <Link href="/pulse/register">Register</Link>
+                            </Button>
+                        </>
+                    )}
+
+                    {/* Subscribe Button with Handler */}
+                    <Button
+                        className="bg-blue-600 hover:bg-blue-700"
+                        size="sm"
+                        onClick={onSubscribeClick}
+                    >
+                        <Mail className="h-4 w-4 mr-2" />
                         Subscribe
                     </Button>
                 </div>
@@ -278,16 +342,36 @@ export default function PulseNavbar() {
                         ))}
 
                         <div className="mt-4 pt-4 border-t flex flex-col gap-2">
-                            <Button variant="outline" asChild>
-                                <Link href="/pulse/login">
-                                    <User className="h-4 w-4 mr-2" />
-                                    Login
-                                </Link>
+                            {user ? (
+                                <>
+                                    <div className="px-4 py-2 text-sm text-gray-600">
+                                        {user.email}
+                                    </div>
+                                    <Button variant="outline" onClick={handleLogout}>
+                                        <LogOut className="h-4 w-4 mr-2" />
+                                        Logout
+                                    </Button>
+                                </>
+                            ) : (
+                                <>
+                                    <Button variant="outline" asChild>
+                                        <Link href="/pulse/login">
+                                            <User className="h-4 w-4 mr-2" />
+                                            Login
+                                        </Link>
+                                    </Button>
+                                    <Button asChild>
+                                        <Link href="/pulse/register">Register</Link>
+                                    </Button>
+                                </>
+                            )}
+                            <Button
+                                className="bg-blue-600 hover:bg-blue-700"
+                                onClick={onSubscribeClick}
+                            >
+                                <Mail className="h-4 w-4 mr-2" />
+                                Subscribe
                             </Button>
-                            <Button asChild>
-                                <Link href="/pulse/register">Register</Link>
-                            </Button>
-                            <Button className="bg-blue-600 hover:bg-blue-700">Subscribe</Button>
                         </div>
                     </nav>
                 </div>
@@ -295,4 +379,3 @@ export default function PulseNavbar() {
         </header>
     );
 }
-
