@@ -40,6 +40,25 @@ export default function HomePage() {
                 </div>
             </section>
 
+            {/* Comparison CTA - Immediately Below Hero */}
+            <section className="py-12 md:py-16 bg-gradient-to-r from-blue-600 via-purple-600 to-primary">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                            See How Segmento Sense Compares
+                        </h2>
+                        <p className="text-lg text-white/90 mb-6 max-w-2xl mx-auto">
+                            Interactive feature-by-feature comparison with leading data security platforms
+                        </p>
+                        <Link href="/compare">
+                            <Button size="lg" variant="secondary" className="text-lg px-8 shadow-lg hover:shadow-xl transition-shadow">
+                                Compare with Competitors <ArrowRight className="ml-2 h-5 w-5" />
+                            </Button>
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
             {/* Value Proposition */}
             <section className="py-16 md:py-24">
                 <div className="container mx-auto px-4">

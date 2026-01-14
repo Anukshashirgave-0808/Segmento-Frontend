@@ -1,2 +1,2 @@
-export { CompetitorSelector } from "./CompetitorSelector"
-export { ComparisonTable } from "./ComparisonTable"
+export { ComparisonMatrix } from "./ComparisonMatrix"
+export { CompetitiveComparisonTable } from "./CompetitiveComparisonTable"
