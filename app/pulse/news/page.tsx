@@ -97,6 +97,9 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
     // AI shows only AI
     'ai': [{ id: "ai", name: "AI" }],
 
+    // Medium Article shows only Medium Article
+    'medium-article': [{ id: "medium-article", name: "Medium Article" }],
+
     // Cloud Computing shows cloud provider subcategories
     'cloud-computing': [
         { id: "cloud-computing", name: "All Cloud" },
@@ -106,6 +109,11 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
         { id: "cloud-ibm", name: "IBM Cloud" },
         { id: "cloud-oracle", name: "Oracle" },
         { id: "cloud-digitalocean", name: "DigitalOcean" },
+        { id: "cloud-salesforce", name: "Salesforce" },
+        { id: "cloud-alibaba", name: "Alibaba Cloud" },
+        { id: "cloud-tencent", name: "Tencent Cloud" },
+        { id: "cloud-huawei", name: "Huawei Cloud" },
+        { id: "cloud-cloudflare", name: "Cloudflare" },
     ],
     'cloud-aws': [
         { id: "cloud-computing", name: "All Cloud" },
@@ -115,6 +123,11 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
         { id: "cloud-ibm", name: "IBM Cloud" },
         { id: "cloud-oracle", name: "Oracle" },
         { id: "cloud-digitalocean", name: "DigitalOcean" },
+        { id: "cloud-salesforce", name: "Salesforce" },
+        { id: "cloud-alibaba", name: "Alibaba Cloud" },
+        { id: "cloud-tencent", name: "Tencent Cloud" },
+        { id: "cloud-huawei", name: "Huawei Cloud" },
+        { id: "cloud-cloudflare", name: "Cloudflare" },
     ],
     'cloud-gcp': [
         { id: "cloud-computing", name: "All Cloud" },
@@ -124,6 +137,11 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
         { id: "cloud-ibm", name: "IBM Cloud" },
         { id: "cloud-oracle", name: "Oracle" },
         { id: "cloud-digitalocean", name: "DigitalOcean" },
+        { id: "cloud-salesforce", name: "Salesforce" },
+        { id: "cloud-alibaba", name: "Alibaba Cloud" },
+        { id: "cloud-tencent", name: "Tencent Cloud" },
+        { id: "cloud-huawei", name: "Huawei Cloud" },
+        { id: "cloud-cloudflare", name: "Cloudflare" },
     ],
     'cloud-azure': [
         { id: "cloud-computing", name: "All Cloud" },
@@ -133,6 +151,11 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
         { id: "cloud-ibm", name: "IBM Cloud" },
         { id: "cloud-oracle", name: "Oracle" },
         { id: "cloud-digitalocean", name: "DigitalOcean" },
+        { id: "cloud-salesforce", name: "Salesforce" },
+        { id: "cloud-alibaba", name: "Alibaba Cloud" },
+        { id: "cloud-tencent", name: "Tencent Cloud" },
+        { id: "cloud-huawei", name: "Huawei Cloud" },
+        { id: "cloud-cloudflare", name: "Cloudflare" },
     ],
     'cloud-ibm': [
         { id: "cloud-computing", name: "All Cloud" },
@@ -142,6 +165,11 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
         { id: "cloud-ibm", name: "IBM Cloud" },
         { id: "cloud-oracle", name: "Oracle" },
         { id: "cloud-digitalocean", name: "DigitalOcean" },
+        { id: "cloud-salesforce", name: "Salesforce" },
+        { id: "cloud-alibaba", name: "Alibaba Cloud" },
+        { id: "cloud-tencent", name: "Tencent Cloud" },
+        { id: "cloud-huawei", name: "Huawei Cloud" },
+        { id: "cloud-cloudflare", name: "Cloudflare" },
     ],
     'cloud-oracle': [
         { id: "cloud-computing", name: "All Cloud" },
@@ -151,6 +179,11 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
         { id: "cloud-ibm", name: "IBM Cloud" },
         { id: "cloud-oracle", name: "Oracle" },
         { id: "cloud-digitalocean", name: "DigitalOcean" },
+        { id: "cloud-salesforce", name: "Salesforce" },
+        { id: "cloud-alibaba", name: "Alibaba Cloud" },
+        { id: "cloud-tencent", name: "Tencent Cloud" },
+        { id: "cloud-huawei", name: "Huawei Cloud" },
+        { id: "cloud-cloudflare", name: "Cloudflare" },
     ],
     'cloud-digitalocean': [
         { id: "cloud-computing", name: "All Cloud" },
@@ -160,6 +193,81 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
         { id: "cloud-ibm", name: "IBM Cloud" },
         { id: "cloud-oracle", name: "Oracle" },
         { id: "cloud-digitalocean", name: "DigitalOcean" },
+        { id: "cloud-salesforce", name: "Salesforce" },
+        { id: "cloud-alibaba", name: "Alibaba Cloud" },
+        { id: "cloud-tencent", name: "Tencent Cloud" },
+        { id: "cloud-huawei", name: "Huawei Cloud" },
+        { id: "cloud-cloudflare", name: "Cloudflare" },
+    ],
+    'cloud-salesforce': [
+        { id: "cloud-computing", name: "All Cloud" },
+        { id: "cloud-aws", name: "AWS" },
+        { id: "cloud-gcp", name: "GCP" },
+        { id: "cloud-azure", name: "Azure" },
+        { id: "cloud-ibm", name: "IBM Cloud" },
+        { id: "cloud-oracle", name: "Oracle" },
+        { id: "cloud-digitalocean", name: "DigitalOcean" },
+        { id: "cloud-salesforce", name: "Salesforce" },
+        { id: "cloud-alibaba", name: "Alibaba Cloud" },
+        { id: "cloud-tencent", name: "Tencent Cloud" },
+        { id: "cloud-huawei", name: "Huawei Cloud" },
+        { id: "cloud-cloudflare", name: "Cloudflare" },
+    ],
+    'cloud-alibaba': [
+        { id: "cloud-computing", name: "All Cloud" },
+        { id: "cloud-aws", name: "AWS" },
+        { id: "cloud-gcp", name: "GCP" },
+        { id: "cloud-azure", name: "Azure" },
+        { id: "cloud-ibm", name: "IBM Cloud" },
+        { id: "cloud-oracle", name: "Oracle" },
+        { id: "cloud-digitalocean", name: "DigitalOcean" },
+        { id: "cloud-salesforce", name: "Salesforce" },
+        { id: "cloud-alibaba", name: "Alibaba Cloud" },
+        { id: "cloud-tencent", name: "Tencent Cloud" },
+        { id: "cloud-huawei", name: "Huawei Cloud" },
+        { id: "cloud-cloudflare", name: "Cloudflare" },
+    ],
+    'cloud-tencent': [
+        { id: "cloud-computing", name: "All Cloud" },
+        { id: "cloud-aws", name: "AWS" },
+        { id: "cloud-gcp", name: "GCP" },
+        { id: "cloud-azure", name: "Azure" },
+        { id: "cloud-ibm", name: "IBM Cloud" },
+        { id: "cloud-oracle", name: "Oracle" },
+        { id: "cloud-digitalocean", name: "DigitalOcean" },
+        { id: "cloud-salesforce", name: "Salesforce" },
+        { id: "cloud-alibaba", name: "Alibaba Cloud" },
+        { id: "cloud-tencent", name: "Tencent Cloud" },
+        { id: "cloud-huawei", name: "Huawei Cloud" },
+        { id: "cloud-cloudflare", name: "Cloudflare" },
+    ],
+    'cloud-huawei': [
+        { id: "cloud-computing", name: "All Cloud" },
+        { id: "cloud-aws", name: "AWS" },
+        { id: "cloud-gcp", name: "GCP" },
+        { id: "cloud-azure", name: "Azure" },
+        { id: "cloud-ibm", name: "IBM Cloud" },
+        { id: "cloud-oracle", name: "Oracle" },
+        { id: "cloud-digitalocean", name: "DigitalOcean" },
+        { id: "cloud-salesforce", name: "Salesforce" },
+        { id: "cloud-alibaba", name: "Alibaba Cloud" },
+        { id: "cloud-tencent", name: "Tencent Cloud" },
+        { id: "cloud-huawei", name: "Huawei Cloud" },
+        { id: "cloud-cloudflare", name: "Cloudflare" },
+    ],
+    'cloud-cloudflare': [
+        { id: "cloud-computing", name: "All Cloud" },
+        { id: "cloud-aws", name: "AWS" },
+        { id: "cloud-gcp", name: "GCP" },
+        { id: "cloud-azure", name: "Azure" },
+        { id: "cloud-ibm", name: "IBM Cloud" },
+        { id: "cloud-oracle", name: "Oracle" },
+        { id: "cloud-digitalocean", name: "DigitalOcean" },
+        { id: "cloud-salesforce", name: "Salesforce" },
+        { id: "cloud-alibaba", name: "Alibaba Cloud" },
+        { id: "cloud-tencent", name: "Tencent Cloud" },
+        { id: "cloud-huawei", name: "Huawei Cloud" },
+        { id: "cloud-cloudflare", name: "Cloudflare" },
     ],
 
     // Magazines shows only magazines
@@ -232,9 +340,9 @@ function NewsContent() {
                         >
                             {isCloudProvider && (
                                 <img
-                                    src={`/cloud-logos/${providerName}.svg`}
+                                    src={`/cloud-logos/${providerName}.${['salesforce', 'alibaba', 'tencent', 'huawei'].includes(providerName) ? 'png' : 'svg'}`}
                                     alt={`${cat.name} logo`}
-                                    className="w-5 h-5"
+                                    className="w-5 h-5 object-contain"
                                 />
                             )}
                             <span>{cat.name}</span>

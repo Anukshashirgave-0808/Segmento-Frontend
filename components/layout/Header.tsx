@@ -34,8 +34,9 @@ export function Header() {
             label: "Products",
             isDropdown: true,
             items: [
-                { href: "/products/data-classification", label: "Data Classification (Segmento Sense)" },
                 { href: "/products/segmento-pulse", label: "Segmento Pulse" },
+                { href: "/products/data-classification", label: "Data Classification" },
+                { href: "/products/data-classification", label: "   └─ Segmento Sense" },
             ],
         },
         {
@@ -76,11 +77,11 @@ export function Header() {
                     {/* Logo */}
                     <Link href="/" className="flex items-center">
                         <Image
-                            src="/images/logo_new.png"
+                            src="/images/segmento_logo.png"
                             alt="Segmento"
-                            width={320}
-                            height={120}
-                            className="h-15 md:h-18 lg:h-22 w-auto"
+                            width={240}
+                            height={80}
+                            className="h-12 md:h-14 lg:h-16 w-auto"
                             priority
                         />
                     </Link>

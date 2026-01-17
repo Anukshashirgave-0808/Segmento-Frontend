@@ -94,7 +94,7 @@ const ALL_PLATFORMS: Platform[] = [
         type: "commercial",
         tagline: "AI-Powered PII Detection Platform",
         domain: "segmento.in",
-        logoUrl: "/images/segmento-logo.png",
+        logoUrl: "/images/segmento_logo.png",
         isHero: true,
         isPinned: true,
         features: {

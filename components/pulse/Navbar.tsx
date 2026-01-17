@@ -92,6 +92,7 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
         { name: "AI", path: "/pulse/news?category=ai" },
         { name: "Data", path: "#", hasDropdown: true },
         { name: "Cloud", path: "/pulse/news?category=cloud-computing" },
+        { name: "Medium Articles", path: "/pulse/news?category=medium-article" },
         { name: "Magazines", path: "/pulse/magazines" },
     ];
 

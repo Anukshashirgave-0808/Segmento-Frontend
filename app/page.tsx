@@ -94,46 +94,68 @@ export default function HomePage() {
                         </p>
                     </div>
 
-                    <div className="max-w-4xl mx-auto">
-                        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-border/50">
-                            <div className="flex flex-col md:flex-row gap-8 items-center">
-                                <div className="flex-1">
-                                    <h3 className="text-2xl md:text-3xl font-bold mb-4">
-                                        Segmento Sense
-                                    </h3>
-                                    <p className="text-lg text-muted-foreground mb-6">
-                                        Our flagship enterprise solution. Built for organizations that demand
-                                        the highest levels of intelligence and security for their most sensitive assets.
-                                    </p>
-                                    <ul className="space-y-3 mb-6">
-                                        <li className="flex items-start gap-2">
-                                            <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                                            <span>Advanced AI-powered technology</span>
-                                        </li>
-                                        <li className="flex items-start gap-2">
-                                            <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                                            <span>Enterprise-grade security</span>
-                                        </li>
-                                        <li className="flex items-start gap-2">
-                                            <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
-                                            <span>Trusted by leading organizations</span>
-                                        </li>
-                                    </ul>
-                                    <Link href="/products/data-classification">
-                                        <Button size="lg">
-                                            Learn More <ArrowRight className="ml-2 h-5 w-5" />
-                                        </Button>
-                                    </Link>
-                                </div>
-                                <div className="flex-shrink-0">
-                                    <Image
-                                        src="/images/segmento_logo.png"
-                                        alt="Segmento Sense"
-                                        width={240}
-                                        height={80}
-                                        className="rounded-lg"
-                                    />
-                                </div>
+                    <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+                        {/* Segmento Pulse - First Product */}
+                        <div className="bg-white rounded-2xl shadow-xl p-8 border border-border/50 hover:shadow-2xl transition-shadow">
+                            <div className="flex flex-col h-full">
+                                <h3 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                                    Segmento Pulse
+                                </h3>
+                                <p className="text-lg text-muted-foreground mb-6">
+                                    Stay ahead with real-time data intelligence. Get the latest news, insights,
+                                    and trends curated for your data and tech needs.
+                                </p>
+                                <ul className="space-y-3 mb-6 flex-grow">
+                                    <li className="flex items-start gap-2">
+                                        <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                                        <span>Curated tech & data news</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                                        <span>Real-time insights & trends</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <CheckCircle className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                                        <span>Multi-category coverage</span>
+                                    </li>
+                                </ul>
+                                <Link href="/pulse">
+                                    <Button size="lg" className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                                        Explore Pulse <ArrowRight className="ml-2 h-5 w-5" />
+                                    </Button>
+                                </Link>
+                            </div>
+                        </div>
+
+                        {/* Data Classification (Segmento Sense) - Second Product */}
+                        <div className="bg-white rounded-2xl shadow-xl p-8 border border-border/50 hover:shadow-2xl transition-shadow">
+                            <div className="flex flex-col h-full">
+                                <h3 className="text-2xl md:text-3xl font-bold mb-4">
+                                    Segmento Sense
+                                </h3>
+                                <p className="text-lg text-muted-foreground mb-6">
+                                    Our flagship enterprise solution. Built for organizations that demand
+                                    the highest levels of intelligence and security for their most sensitive assets.
+                                </p>
+                                <ul className="space-y-3 mb-6 flex-grow">
+                                    <li className="flex items-start gap-2">
+                                        <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                                        <span>Advanced AI-powered technology</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                                        <span>Enterprise-grade security</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <CheckCircle className="w-5 h-5 text-primary mt-0.5 flex-shrink-0" />
+                                        <span>Trusted by leading organizations</span>
+                                    </li>
+                                </ul>
+                                <Link href="/products/data-classification">
+                                    <Button size="lg" className="w-full">
+                                        Learn More <ArrowRight className="ml-2 h-5 w-5" />
+                                    </Button>
+                                </Link>
                             </div>
                         </div>
                     </div>
