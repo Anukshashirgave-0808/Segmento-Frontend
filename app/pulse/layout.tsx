@@ -18,9 +18,9 @@ export default function PulseLayout({
     const [isNewsletterOpen, setIsNewsletterOpen] = useState(false);
 
     return (
-        <div className="min-h-screen flex flex-col bg-background">
+        <div className="min-h-screen flex flex-col bg-white">
             <PulseNavbar onSubscribeClick={() => setIsNewsletterOpen(true)} />
-            <main className="flex-1">
+            <main className="flex-1 bg-gray-50">
                 {children}
             </main>
             <footer className="border-t mt-auto">

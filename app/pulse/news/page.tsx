@@ -358,42 +358,51 @@ function NewsContent() {
                     <p className="mt-4 text-muted-foreground">Loading news...</p>
                 </div>
             ) : articles.length === 0 ? (
-                <div className="text-center py-20">
-                    <p className="text-gray-500">No news available for this category</p>
+                <div className="pulse-news-empty">
+                    <p>No news available for this category</p>
                 </div>
             ) : (
-                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <div className="pulse-news-grid container-fluid">
                     {articles.map((article, i) => (
                         <a
                             key={i}
                             href={article.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group block bg-white rounded-xl shadow-md hover:shadow-xl transition-all overflow-hidden"
+                            className="pulse-news-card"
                         >
-                            <div className="relative h-32">
+                            {/* Image with enforced 16:9 aspect ratio */}
+                            <div className="pulse-news-card__image-wrapper">
                                 <img
                                     src={article.image}
                                     alt={article.title}
-                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                    className="pulse-news-card__image"
                                 />
-                                <div className="absolute top-2 right-2 bg-white/90 rounded-full p-2">
+                                <div className="pulse-news-card__badge">
                                     <ExternalLink className="w-4 h-4 text-blue-600" />
                                 </div>
                             </div>
-                            <div className="p-3">
-                                <h3 className="font-bold text-base mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
+
+                            {/* Content with proper typography */}
+                            <div className="pulse-news-card__content">
+                                <h3 className="pulse-news-card__title">
                                     {article.title}
                                 </h3>
-                                <p className="text-sm text-gray-600 mb-2 line-clamp-2">
+                                <p className="pulse-news-card__description">
                                     {article.description}
                                 </p>
-                                <div className="flex items-center gap-2 text-xs text-gray-500 flex-wrap">
-                                    <div className="flex items-center gap-1">
+                                <div className="pulse-news-card__meta">
+                                    <div className="pulse-news-card__meta-item">
                                         <Clock className="w-3 h-3" />
                                         <span>{new Date(article.publishedAt).toLocaleDateString()}</span>
                                     </div>
-                                    {article.source && <span>• {article.source}</span>}
+                                    {article.source && (
+                                        <>
+                                            <span className="pulse-news-card__meta-separator" />
+                                            <span>{article.source}</span>
+                                        </>
+                                    )}
+                                    <span className="pulse-news-card__meta-separator" />
                                     <ViewCounter articleUrl={article.url} />
                                 </div>
                             </div>

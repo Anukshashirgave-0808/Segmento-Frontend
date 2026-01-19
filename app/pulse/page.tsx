@@ -135,7 +135,7 @@ export default function PulsePage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-blue-50/30">
+        <div className="min-h-screen bg-gray-50">
             <div className="container mx-auto px-4 py-8 max-w-7xl">
                 {/* Hero Text */}
                 <div className="mb-8 text-center">
@@ -149,78 +149,92 @@ export default function PulsePage() {
 
                 {/* Bento Grid */}
                 <div className="grid grid-cols-12 gap-3">
-                    {/* Large Box - AI */}
+                    {/* Large Box - AI (Left Column - 5 cols) */}
                     <CategoryBox
                         category="ai"
                         title="Artificial Intelligence"
                         icon={Brain}
                         colSpan="col-span-12 md:col-span-5"
-                        rowSpan={2}
-                        height="h-[480px] md:h-[560px]"
+                        height="h-[480px] md:h-[710px]"
                         fallbackGradient="from-purple-500 to-blue-600"
                     />
 
-                    {/* Data Engineering - Foundation */}
-                    <CategoryBox
-                        category="data-engineering"
-                        title="Data Engineering"
-                        icon={Workflow}
-                        colSpan="col-span-6 md:col-span-3"
-                        height="h-[230px]"
-                        fallbackGradient="from-indigo-500 to-purple-600"
-                    />
+                    {/* Right Column - All Data Fields in a nested grid (7 cols) */}
+                    <div className="col-span-12 md:col-span-7 grid grid-cols-7 gap-3">
+                        {/* Row 1 */}
+                        <CategoryBox
+                            category="data-engineering"
+                            title="Data Engineering"
+                            icon={Workflow}
+                            colSpan="col-span-7 md:col-span-3"
+                            height="h-[170px]"
+                            fallbackGradient="from-indigo-500 to-purple-600"
+                        />
+                        <CategoryBox
+                            category="data-governance"
+                            title="Data Governance"
+                            icon={Database}
+                            colSpan="col-span-7 md:col-span-4"
+                            height="h-[170px]"
+                            fallbackGradient="from-emerald-500 to-teal-600"
+                        />
 
-                    {/* Data Governance - Rules */}
-                    <CategoryBox
-                        category="data-governance"
-                        title="Data Governance"
-                        icon={Database}
-                        colSpan="col-span-6 md:col-span-4"
-                        height="h-[230px]"
-                        fallbackGradient="from-emerald-500 to-teal-600"
-                    />
+                        {/* Row 2 */}
+                        <CategoryBox
+                            category="business-intelligence"
+                            title="Business Intelligence"
+                            icon={TrendingUp}
+                            colSpan="col-span-7 md:col-span-3"
+                            height="h-[170px]"
+                            fallbackGradient="from-blue-500 to-cyan-600"
+                        />
+                        <CategoryBox
+                            category="data-privacy"
+                            title="Data Privacy"
+                            icon={Lock}
+                            colSpan="col-span-7 md:col-span-4"
+                            height="h-[170px]"
+                            fallbackGradient="from-amber-500 to-orange-600"
+                        />
 
-                    {/* Business Intelligence - Insights */}
-                    <CategoryBox
-                        category="business-intelligence"
-                        title="Business Intelligence"
-                        icon={TrendingUp}
-                        colSpan="col-span-6 md:col-span-4"
-                        height="h-[230px]"
-                        fallbackGradient="from-blue-500 to-cyan-600"
-                    />
+                        {/* Row 3 */}
+                        <CategoryBox
+                            category="data-security"
+                            title="Data Security"
+                            icon={Shield}
+                            colSpan="col-span-7 md:col-span-3"
+                            height="h-[170px]"
+                            fallbackGradient="from-red-500 to-pink-600"
+                        />
+                        <CategoryBox
+                            category="data-centers"
+                            title="Data Centers"
+                            icon={Database}
+                            colSpan="col-span-7 md:col-span-4"
+                            height="h-[170px]"
+                            fallbackGradient="from-gray-600 to-slate-700"
+                        />
 
-                    {/* Data Privacy - Compliance */}
-                    <CategoryBox
-                        category="data-privacy"
-                        title="Data Privacy"
-                        icon={Lock}
-                        colSpan="col-span-6 md:col-span-3"
-                        height="h-[230px]"
-                        fallbackGradient="from-amber-500 to-orange-600"
-                    />
+                        {/* Row 4 */}
+                        <CategoryBox
+                            category="business-analytics"
+                            title="Business Analytics"
+                            icon={TrendingUp}
+                            colSpan="col-span-7 md:col-span-3"
+                            height="h-[170px]"
+                            fallbackGradient="from-violet-500 to-purple-600"
+                        />
+                        <CategoryBox
+                            category="customer-data-platform"
+                            title="Customer Data Platform"
+                            icon={Database}
+                            colSpan="col-span-7 md:col-span-4"
+                            height="h-[170px]"
+                            fallbackGradient="from-pink-500 to-rose-600"
+                        />
+                    </div>
 
-                    {/* Data Security - Protection */}
-                    <CategoryBox
-                        category="data-security"
-                        title="Data Security"
-                        icon={Shield}
-                        colSpan="col-span-6 md:col-span-4"
-                        height="h-[230px]"
-                        fallbackGradient="from-red-500 to-pink-600"
-                    />
-
-                    {/* Data Centers - Infrastructure */}
-                    <CategoryBox
-                        category="data-centers"
-                        title="Data Centers"
-                        icon={Database}
-                        colSpan="col-span-6 md:col-span-3"
-                        height="h-[230px]"
-                        fallbackGradient="from-gray-600 to-slate-700"
-                    />
-
-                    {/* Cloud Computing */}
+                    {/* Bottom Row: Cloud + Magazines */}
                     <CategoryBox
                         category="cloud-computing"
                         title="Cloud Computing"
@@ -230,7 +244,6 @@ export default function PulsePage() {
                         fallbackGradient="from-cyan-500 to-blue-600"
                     />
 
-                    {/* Magazines */}
                     <CategoryBox
                         category="magazines"
                         title="Tech Magazines"

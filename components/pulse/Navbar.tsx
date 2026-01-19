@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import { pulseAuth } from "@/lib/pulse/firebase";
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import '@/app/pulse/heartbeat.css';
+import './rainbow-shimmer.css';
+import './navbar-compact.css';
 
 export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: () => void }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,6 +19,9 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
     const [isDataDropdownOpen, setIsDataDropdownOpen] = useState(false);
     const [user, setUser] = useState<any>(null);
     const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+    const [isSubscribeDropdownOpen, setIsSubscribeDropdownOpen] = useState(false);
+    const [subscriptionType, setSubscriptionType] = useState<'daily' | 'weekly' | null>(null);
+    const [dailyTime, setDailyTime] = useState<'morning' | 'afternoon' | 'evening' | null>(null);
     const router = useRouter();
 
     const timeoutRef = useRef<number | undefined>(undefined);
@@ -112,7 +117,7 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
     ];
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur">
+        <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white shadow-sm">
             <div className="container flex h-16 items-center justify-between">
                 {/* Logo */}
                 <Link href="/pulse" className="flex items-center gap-2">
@@ -196,7 +201,10 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
                 </nav>
 
                 {/* Desktop Actions */}
-                <div className="hidden lg:flex items-center gap-3">
+                <div className="hidden lg:flex items-center gap-1.5">
+                    {/* Visual Divider */}
+                    <div className="h-4 w-px bg-gray-300 mx-2"></div>
+
                     {/* Search */}
                     <div className="relative">
                         {isSearchOpen ? (
@@ -264,26 +272,71 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
                         </div>
                     ) : (
                         // Logged-out state
-                        <>
-                            <Button variant="outline" size="sm" asChild>
-                                <Link href="/pulse/login">Login</Link>
-                            </Button>
-
-                            <Button size="sm" asChild>
-                                <Link href="/pulse/register">Register</Link>
-                            </Button>
-                        </>
+                        <Button variant="outline" size="sm" asChild>
+                            <Link href="/pulse/login">Sign In</Link>
+                        </Button>
                     )}
 
-                    {/* Subscribe Button with Handler */}
-                    <Button
-                        className="bg-blue-600 hover:bg-blue-700"
-                        size="sm"
-                        onClick={onSubscribeClick}
-                    >
-                        <Mail className="h-4 w-4 mr-2" />
-                        Subscribe
-                    </Button>
+                    {/* Visual Divider */}
+                    <div className="h-4 w-px bg-gray-300 mx-2"></div>
+
+                    {/* Subscribe to Newsletter - White with Rainbow Shimmer + Dropdown */}
+                    <div className="relative">
+                        <button
+                            className="rainbow-shimmer-btn"
+                            onClick={() => setIsSubscribeDropdownOpen(!isSubscribeDropdownOpen)}
+                        >
+                            <Mail className="h-4 w-4 mr-2" />
+                            Subscribe to Newsletter
+                        </button>
+
+                        {isSubscribeDropdownOpen && (
+                            <div className="subscription-dropdown">
+                                {/* Daily Option */}
+                                <div
+                                    className={`subscription-option ${subscriptionType === 'daily' ? 'active' : ''}`}
+                                    onClick={() => setSubscriptionType(subscriptionType === 'daily' ? null : 'daily')}
+                                >
+                                    📅 Daily
+                                </div>
+
+                                {/* Daily Sub-options */}
+                                {subscriptionType === 'daily' && (
+                                    <div className="sub-options">
+                                        <div
+                                            className={`sub-option ${dailyTime === 'morning' ? 'selected' : ''}`}
+                                            onClick={() => setDailyTime('morning')}
+                                        >
+                                            🌅 Morning
+                                        </div>
+                                        <div
+                                            className={`sub-option ${dailyTime === 'afternoon' ? 'selected' : ''}`}
+                                            onClick={() => setDailyTime('afternoon')}
+                                        >
+                                            ☀️ Afternoon
+                                        </div>
+                                        <div
+                                            className={`sub-option ${dailyTime === 'evening' ? 'selected' : ''}`}
+                                            onClick={() => setDailyTime('evening')}
+                                        >
+                                            🌙 Evening
+                                        </div>
+                                    </div>
+                                )}
+
+                                {/* Weekly Option */}
+                                <div
+                                    className={`subscription-option ${subscriptionType === 'weekly' ? 'active' : ''}`}
+                                    onClick={() => {
+                                        setSubscriptionType(subscriptionType === 'weekly' ? null : 'weekly');
+                                        setDailyTime(null); // Clear daily time when switching to weekly
+                                    }}
+                                >
+                                    📆 Weekly
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
 
                 {/* Mobile Buttons */}
@@ -306,92 +359,96 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
             </div>
 
             {/* Mobile Search */}
-            {isSearchOpen && (
-                <div className="lg:hidden border-t p-4">
-                    <form onSubmit={handleSearchSubmit} className="flex gap-2">
-                        <Input
-                            type="search"
-                            placeholder="Search news..."
-                            value={searchQuery}
-                            onChange={handleSearchInput}
-                        />
-                        <Button type="submit" variant="ghost" size="icon">
-                            <Search />
-                        </Button>
-                    </form>
-                </div>
-            )}
+            {
+                isSearchOpen && (
+                    <div className="lg:hidden border-t p-4">
+                        <form onSubmit={handleSearchSubmit} className="flex gap-2">
+                            <Input
+                                type="search"
+                                placeholder="Search news..."
+                                value={searchQuery}
+                                onChange={handleSearchInput}
+                            />
+                            <Button type="submit" variant="ghost" size="icon">
+                                <Search />
+                            </Button>
+                        </form>
+                    </div>
+                )
+            }
 
             {/* Mobile Menu */}
-            {isMenuOpen && (
-                <div className="lg:hidden border-t">
-                    <nav className="container py-4 flex flex-col gap-2">
-                        {navLinks.map((link) => (
-                            link.hasDropdown ? (
-                                <div key={link.name}>
-                                    <div className="px-4 py-2 font-semibold text-gray-900">
+            {
+                isMenuOpen && (
+                    <div className="lg:hidden border-t">
+                        <nav className="container py-4 flex flex-col gap-2">
+                            {navLinks.map((link) => (
+                                link.hasDropdown ? (
+                                    <div key={link.name}>
+                                        <div className="px-4 py-2 font-semibold text-gray-900">
+                                            {link.name}
+                                        </div>
+                                        <div className="pl-4">
+                                            {dataSubcategories.map((subcat) => (
+                                                <Link
+                                                    key={subcat.name}
+                                                    href={subcat.path}
+                                                    className="block px-4 py-2 text-sm rounded-lg hover:bg-secondary"
+                                                    onClick={() => setIsMenuOpen(false)}
+                                                >
+                                                    {subcat.name}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <Link
+                                        key={link.name}
+                                        href={link.path}
+                                        className="px-4 py-3 rounded-lg hover:bg-secondary"
+                                        onClick={() => setIsMenuOpen(false)}
+                                    >
                                         {link.name}
-                                    </div>
-                                    <div className="pl-4">
-                                        {dataSubcategories.map((subcat) => (
-                                            <Link
-                                                key={subcat.name}
-                                                href={subcat.path}
-                                                className="block px-4 py-2 text-sm rounded-lg hover:bg-secondary"
-                                                onClick={() => setIsMenuOpen(false)}
-                                            >
-                                                {subcat.name}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                </div>
-                            ) : (
-                                <Link
-                                    key={link.name}
-                                    href={link.path}
-                                    className="px-4 py-3 rounded-lg hover:bg-secondary"
-                                    onClick={() => setIsMenuOpen(false)}
-                                >
-                                    {link.name}
-                                </Link>
-                            )
-                        ))}
+                                    </Link>
+                                )
+                            ))}
 
-                        <div className="mt-4 pt-4 border-t flex flex-col gap-2">
-                            {user ? (
-                                <>
-                                    <div className="px-4 py-2 text-sm text-gray-600">
-                                        {user.email}
-                                    </div>
-                                    <Button variant="outline" onClick={handleLogout}>
-                                        <LogOut className="h-4 w-4 mr-2" />
-                                        Logout
-                                    </Button>
-                                </>
-                            ) : (
-                                <>
-                                    <Button variant="outline" asChild>
-                                        <Link href="/pulse/login">
-                                            <User className="h-4 w-4 mr-2" />
-                                            Login
-                                        </Link>
-                                    </Button>
-                                    <Button asChild>
-                                        <Link href="/pulse/register">Register</Link>
-                                    </Button>
-                                </>
-                            )}
-                            <Button
-                                className="bg-blue-600 hover:bg-blue-700"
-                                onClick={onSubscribeClick}
-                            >
-                                <Mail className="h-4 w-4 mr-2" />
-                                Subscribe
-                            </Button>
-                        </div>
-                    </nav>
-                </div>
-            )}
-        </header>
+                            <div className="mt-4 pt-4 border-t flex flex-col gap-2">
+                                {user ? (
+                                    <>
+                                        <div className="px-4 py-2 text-sm text-gray-600">
+                                            {user.email}
+                                        </div>
+                                        <Button variant="outline" onClick={handleLogout}>
+                                            <LogOut className="h-4 w-4 mr-2" />
+                                            Logout
+                                        </Button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Button variant="outline" asChild>
+                                            <Link href="/pulse/login">
+                                                <User className="h-4 w-4 mr-2" />
+                                                Login
+                                            </Link>
+                                        </Button>
+                                        <Button asChild>
+                                            <Link href="/pulse/register">Register</Link>
+                                        </Button>
+                                    </>
+                                )}
+                                <Button
+                                    className="bg-blue-600 hover:bg-blue-700"
+                                    onClick={onSubscribeClick}
+                                >
+                                    <Mail className="h-4 w-4 mr-2" />
+                                    Subscribe
+                                </Button>
+                            </div>
+                        </nav>
+                    </div>
+                )
+            }
+        </header >
     );
 }
