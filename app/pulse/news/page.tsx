@@ -4,6 +4,7 @@ import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { fetchNewsByCategory, type Article } from "@/lib/pulse/newsApi";
+import { useInfiniteScroll } from "@/hooks/useInfiniteScroll";
 import { Clock, ExternalLink } from "lucide-react";
 import ViewCounter from "@/components/pulse/ViewCounter";
 
@@ -302,6 +303,9 @@ function NewsContent() {
     const [newsData, setNewsData] = useState<Record<string, Article[]>>({});
     const [activeCategory, setActiveCategory] = useState<string>(categoryParam);
     const [loading, setLoading] = useState<boolean>(false);
+    const [loadingMore, setLoadingMore] = useState<boolean>(false);
+    const [currentPage, setCurrentPage] = useState<Record<string, number>>({});
+    const [hasMore, setHasMore] = useState<Record<string, boolean>>({});
 
     // Get categories to show based on current category
     const categoriesToShow = categoryRelationships[activeCategory] || [{ id: activeCategory, name: activeCategory }];
@@ -323,12 +327,15 @@ function NewsContent() {
 
             try {
                 setLoading(true);
-                const articles = await fetchNewsByCategory(activeCategory);
+                const articles = await fetchNewsByCategory(activeCategory, 1, 20);
 
                 setNewsData((prev) => ({
                     ...prev,
                     [activeCategory]: Object.assign(articles, { _timestamp: Date.now() }),
                 }));
+
+                setCurrentPage((prev) => ({ ...prev, [activeCategory]: 1 }));
+                setHasMore((prev) => ({ ...prev, [activeCategory]: articles.length >= 20 }));
             } catch (error) {
                 console.error("News fetch error:", error);
             } finally {
@@ -338,6 +345,31 @@ function NewsContent() {
 
         getNews();
     }, [activeCategory]);
+
+    const loadMoreNews = async () => {
+        const nextPage = (currentPage[activeCategory] || 1) + 1;
+
+        try {
+            setLoadingMore(true);
+            const newArticles = await fetchNewsByCategory(activeCategory, nextPage, 20);
+
+            if (newArticles.length > 0) {
+                setNewsData((prev) => ({
+                    ...prev,
+                    [activeCategory]: Object.assign([...prev[activeCategory], ...newArticles], { _timestamp: Date.now() }),
+                }));
+
+                setCurrentPage((prev) => ({ ...prev, [activeCategory]: nextPage }));
+                setHasMore((prev) => ({ ...prev, [activeCategory]: newArticles.length >= 20 }));
+            } else {
+                setHasMore((prev) => ({ ...prev, [activeCategory]: false }));
+            }
+        } catch (error) {
+            console.error("Load more error:", error);
+        } finally {
+            setLoadingMore(false);
+        }
+    };
 
     const articles = newsData[activeCategory] || [];
 
@@ -420,6 +452,36 @@ function NewsContent() {
                             </div>
                         </a>
                     ))}
+                </div>
+            )}
+
+            {/* Load More Button - shown when there are more articles */}
+            {!loading && articles.length > 0 && hasMore[activeCategory] && (
+                <div className="text-center mt-8">
+                    <button
+                        onClick={loadMoreNews}
+                        disabled={loadingMore}
+                        className="px-8 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed inline-flex items-center gap-2"
+                    >
+                        {loadingMore ? (
+                            <>
+                                <div className="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                                <span>Loading more...</span>
+                            </>
+                        ) : (
+                            <span>Load More Articles</span>
+                        )}
+                    </button>
+                    <p className="text-sm text-gray-500 mt-2">
+                        Showing {articles.length} articles • Page {currentPage[activeCategory] || 1}
+                    </p>
+                </div>
+            )}
+
+            {/* End of articles message */}
+            {!loading && articles.length > 0 && !hasMore[activeCategory] && (
+                <div className="text-center mt-8 py-4">
+                    <p className="text-gray-500">You've reached the end of {activeCategory} news</p>
                 </div>
             )}
         </div>

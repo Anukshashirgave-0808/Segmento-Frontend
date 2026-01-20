@@ -11,12 +11,19 @@ export interface Article {
     author?: string;
 }
 
-export async function fetchNewsByCategory(category: string): Promise<Article[]> {
+export async function fetchNewsByCategory(
+    category: string,
+    page: number = 1,
+    limit: number = 20
+): Promise<Article[]> {
     try {
-        // Use FastAPI backend endpoint
-        const response = await fetch(`${API_BASE}/api/news/${category}`, {
-            cache: 'no-store',
-        });
+        // Use FastAPI backend endpoint with pagination
+        const response = await fetch(
+            `${API_BASE}/api/news/${category}?page=${page}&limit=${limit}`,
+            {
+                cache: 'no-store',
+            }
+        );
 
         if (!response.ok) {
             console.error('Failed to fetch news:', response.statusText);
