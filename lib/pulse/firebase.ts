@@ -1,7 +1,7 @@
 // Pulse Firebase Configuration
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getDatabase } from "firebase/database";
+import { getAuth, Auth } from "firebase/auth";
+import { getDatabase, Database } from "firebase/database";
 
 const pulseFirebaseConfig = {
     apiKey: process.env.NEXT_PUBLIC_PULSE_FIREBASE_API_KEY!,
@@ -13,8 +13,15 @@ const pulseFirebaseConfig = {
     appId: process.env.NEXT_PUBLIC_PULSE_FIREBASE_APP_ID!
 };
 
-// Initialize Pulse Firebase app with a unique name
-const pulseApp = initializeApp(pulseFirebaseConfig, "pulse");
+// Initialize Pulse Firebase app with a unique name - only on client side
+let pulseApp;
+let pulseAuth: Auth | undefined;
+let database: Database | undefined;
 
-export const pulseAuth = getAuth(pulseApp);
-export const database = getDatabase(pulseApp); // Firebase Realtime Database for view counting
+if (typeof window !== 'undefined') {
+    pulseApp = initializeApp(pulseFirebaseConfig, "pulse");
+    pulseAuth = getAuth(pulseApp);
+    database = getDatabase(pulseApp); // Firebase Realtime Database for view counting
+}
+
+export { pulseAuth, database };

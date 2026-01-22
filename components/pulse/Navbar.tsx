@@ -32,6 +32,8 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
 
     // Listen to auth state changes
     useEffect(() => {
+        if (!pulseAuth) return;
+
         const unsubscribe = onAuthStateChanged(pulseAuth, (currentUser) => {
             setUser(currentUser);
         });
@@ -41,7 +43,9 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
 
     const handleLogout = async () => {
         try {
-            await signOut(pulseAuth);
+            if (pulseAuth) {
+                await signOut(pulseAuth);
+            }
             setIsUserMenuOpen(false);
             router.push('/pulse');
         } catch (error) {

@@ -22,6 +22,8 @@ export interface ArticleViewData {
  */
 export async function incrementArticleView(articleUrl: string): Promise<number> {
     try {
+        if (!database) return 0;
+
         // Use article URL as key (sanitized)
         const articleId = btoa(articleUrl).replace(/[^a-zA-Z0-9]/g, '').substring(0, 100);
         const articleRef = ref(database, `${DB_PATH}/${articleId}`);
@@ -59,6 +61,8 @@ export async function incrementArticleView(articleUrl: string): Promise<number> 
  */
 export async function getArticleViewCount(articleUrl: string): Promise<number> {
     try {
+        if (!database) return 0;
+
         const articleId = btoa(articleUrl).replace(/[^a-zA-Z0-9]/g, '').substring(0, 100);
         const articleRef = ref(database, `${DB_PATH}/${articleId}`);
         const snapshot = await get(articleRef);
@@ -81,6 +85,8 @@ export function subscribeToViewCount(
     articleUrl: string,
     callback: (count: number) => void
 ): () => void {
+    if (!database) return () => { };
+
     const articleId = btoa(articleUrl).replace(/[^a-zA-Z0-9]/g, '').substring(0, 100);
     const articleRef = ref(database, `${DB_PATH}/${articleId}`);
 

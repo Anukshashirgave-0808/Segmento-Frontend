@@ -44,6 +44,12 @@ export default function ContactPage() {
         e.preventDefault()
 
         try {
+            // Check if Firebase is initialized (client-side only)
+            if (!db) {
+                alert("Database not initialized. Please try again.")
+                return
+            }
+
             // Step 1: Save to Firebase (existing logic)
             await push(ref(db, "contacts"), {
                 name: formData.name,

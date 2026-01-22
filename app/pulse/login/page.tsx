@@ -22,6 +22,9 @@ export default function LoginPage() {
         setLoading(true);
 
         try {
+            if (!pulseAuth) {
+                throw new Error("Authentication service not available");
+            }
             await signInWithEmailAndPassword(pulseAuth, email, password);
             router.push("/pulse");
         } catch (err: any) {

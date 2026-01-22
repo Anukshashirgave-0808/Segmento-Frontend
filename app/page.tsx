@@ -3,7 +3,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Shield, Zap, TrendingUp, CheckCircle } from "lucide-react"
 import Chatbot from "./chatbot"
-import ProductPopup from "@/components/ProductPopup"
+import PulseSideBanner from "@/components/PulseSideBanner"
 
 export const metadata = {
     title: "Segmento | Secure Data. Smarter Insights.",
@@ -17,12 +17,17 @@ export default function HomePage() {
             <section className="relative bg-gradient-to-br from-primary/5 via-purple-50 to-blue-50 py-20 md:py-32">
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto text-center">
+                        <div className="inline-block mb-4 px-4 py-2 bg-white/80 backdrop-blur rounded-full border border-primary/20">
+                            <p className="text-sm font-semibold text-primary">Segmento Platform</p>
+                        </div>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
-                            Secure Data. Smarter Insights.
+                            AI-Driven Solutions for Modern Enterprises
                         </h1>
-                        <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-                            Privacy-first, AI-driven data products that solve real enterprise challenges.
-                            Transform how you protect and analyze sensitive information.
+                        <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-2xl mx-auto">
+                            Segmento is a robust platform delivering cutting-edge AI products that solve real enterprise challenges. From real-time data intelligence to advanced security solutions.
+                        </p>
+                        <p className="text-base text-muted-foreground mb-8 max-w-2xl mx-auto font-medium">
+                            Explore our suite of products: <span className="text-blue-600 font-bold">Segmento Pulse</span> for intelligent news & insights, and <span className="text-primary font-bold">Segmento Sense</span> for enterprise-grade data security.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link href="/products/data-classification">
@@ -210,8 +215,8 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* Product Popup */}
-            <ProductPopup />
+            {/* Pulse Side Banner - Non-intrusive Welcome */}
+            <PulseSideBanner />
 
             {/* Chatbot */}
             <Chatbot />
