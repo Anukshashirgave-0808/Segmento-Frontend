@@ -151,7 +151,7 @@ export default function NewsletterModal({ isOpen, onClose, theme }: NewsletterMo
                                             {theme.emoji} {theme.title}
                                         </h2>
                                         <p className="text-gray-700 dark:text-gray-300 mb-4">
-                                            {theme.tagline}
+                                            {theme.frequency}
                                         </p>
 
                                         {/* Delivery Info Card */}
@@ -185,8 +185,7 @@ export default function NewsletterModal({ isOpen, onClose, theme }: NewsletterMo
                                                 onChange={handleChange}
                                                 required
                                                 placeholder="John Doe"
-                                                className="w-full px-4 py-3 bg-white/60 dark:bg-gray-800/60 border border-gray-300/50 dark:border-gray-600/50 rounded-xl focus:ring-2 focus:ring-current focus:border-transparent outline-none transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-400 backdrop-blur-sm"
-                                                style={{ '--tw-ring-color': theme.glowColor } as any}
+                                                className="w-full px-4 py-3 bg-white/60 dark:bg-gray-800/60 border border-gray-300/50 dark:border-gray-600/50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-400 backdrop-blur-sm"
                                             />
                                         </div>
 
@@ -203,8 +202,7 @@ export default function NewsletterModal({ isOpen, onClose, theme }: NewsletterMo
                                                 onChange={handleChange}
                                                 required
                                                 placeholder="john@example.com"
-                                                className="w-full px-4 py-3 bg-white/60 dark:bg-gray-800/60 border border-gray-300/50 dark:border-gray-600/50 rounded-xl focus:ring-2 focus:ring-current focus:border-transparent outline-none transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-400 backdrop-blur-sm"
-                                                style={{ '--tw-ring-color': theme.glowColor } as any}
+                                                className="w-full px-4 py-3 bg-white/60 dark:bg-gray-800/60 border border-gray-300/50 dark:border-gray-600/50 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none transition-all duration-200 text-gray-900 dark:text-white placeholder-gray-400 backdrop-blur-sm"
                                             />
                                         </div>
 
