@@ -2,13 +2,8 @@
 
 import { useState } from "react";
 import PulseNavbar from "@/components/pulse/Navbar";
-import NewsletterSubscribe from "@/components/pulse/NewsletterSubscribe";
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-} from "@/components/ui/dialog";
+import NewsletterHub from "@/components/pulse/NewsletterHub";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 export default function PulseLayout({
     children,
@@ -31,11 +26,8 @@ export default function PulseLayout({
 
             {/* Newsletter Subscription Modal */}
             <Dialog open={isNewsletterOpen} onOpenChange={setIsNewsletterOpen}>
-                <DialogContent className="max-w-3xl">
-                    <DialogHeader>
-                        <DialogTitle className="text-center text-2xl">Subscribe to Newsletter</DialogTitle>
-                    </DialogHeader>
-                    <NewsletterSubscribe />
+                <DialogContent className="max-w-5xl max-h-[90vh] overflow-y-auto">
+                    <NewsletterHub />
                 </DialogContent>
             </Dialog>
         </div>

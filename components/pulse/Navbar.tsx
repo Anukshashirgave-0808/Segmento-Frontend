@@ -373,77 +373,18 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
                     {/* Visual Divider */}
                     <div className="h-4 w-px bg-gray-300 mx-2"></div>
 
-                    {/* Subscribe to Newsletter - White with Rainbow Shimmer + Dropdown */}
-                    <div className="relative">
-                        <button
-                            className="rainbow-shimmer-btn"
-                            onClick={() => setIsSubscribeDropdownOpen(!isSubscribeDropdownOpen)}
-                        >
-                            <Mail className="h-4 w-4 mr-2" />
-                            Subscribe to Newsletter
-                        </button>
-
-                        {isSubscribeDropdownOpen && (
-                            <div className="subscription-dropdown">
-                                {/* Daily Option */}
-                                <div
-                                    className={`subscription-option ${subscriptionType === 'daily' ? 'active' : ''}`}
-                                    onClick={() => setSubscriptionType(subscriptionType === 'daily' ? null : 'daily')}
-                                >
-                                    📅 Daily
-                                </div>
-
-                                {/* Daily Sub-options */}
-                                {subscriptionType === 'daily' && (
-                                    <div className="sub-options">
-                                        <div
-                                            className={`sub-option ${dailyTime === 'morning' ? 'selected' : ''}`}
-                                            onClick={() => {
-                                                setDailyTime('morning');
-                                                setIsSubscribeDropdownOpen(false);
-                                                if (onSubscribeClick) onSubscribeClick();
-                                            }}
-                                        >
-                                            🌅 Morning
-                                        </div>
-                                        <div
-                                            className={`sub-option ${dailyTime === 'afternoon' ? 'selected' : ''}`}
-                                            onClick={() => {
-                                                setDailyTime('afternoon');
-                                                setIsSubscribeDropdownOpen(false);
-                                                if (onSubscribeClick) onSubscribeClick();
-                                            }}
-                                        >
-                                            ☀️ Afternoon
-                                        </div>
-                                        <div
-                                            className={`sub-option ${dailyTime === 'evening' ? 'selected' : ''}`}
-                                            onClick={() => {
-                                                setDailyTime('evening');
-                                                setIsSubscribeDropdownOpen(false);
-                                                if (onSubscribeClick) onSubscribeClick();
-                                            }}
-                                        >
-                                            🌙 Evening
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* Weekly Option */}
-                                <div
-                                    className={`subscription-option ${subscriptionType === 'weekly' ? 'active' : ''}`}
-                                    onClick={() => {
-                                        setSubscriptionType('weekly');
-                                        setDailyTime(null);
-                                        setIsSubscribeDropdownOpen(false);
-                                        if (onSubscribeClick) onSubscribeClick();
-                                    }}
-                                >
-                                    📆 Weekly
-                                </div>
-                            </div>
-                        )}
-                    </div>
+                    {/* Subscribe to Newsletter - Opens Modal Directly */}
+                    <button
+                        className="rainbow-shimmer-btn"
+                        onClick={() => {
+                            if (onSubscribeClick) {
+                                onSubscribeClick();
+                            }
+                        }}
+                    >
+                        <Mail className="h-4 w-4 mr-2" />
+                        Subscribe to Newsletter
+                    </button>
                 </div>
 
                 {/* Mobile Buttons */}
