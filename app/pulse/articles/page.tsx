@@ -38,8 +38,8 @@ function ArticlesContent() {
                     <button
                         onClick={() => setActiveTab('medium')}
                         className={`px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${activeTab === 'medium'
-                                ? 'bg-white text-blue-600 shadow-sm'
-                                : 'text-gray-500 hover:text-gray-700'
+                            ? 'bg-white text-blue-600 shadow-sm'
+                            : 'text-gray-500 hover:text-gray-700'
                             }`}
                     >
                         Medium Articles
@@ -47,8 +47,8 @@ function ArticlesContent() {
                     <button
                         onClick={() => setActiveTab('linkedin')}
                         className={`px-6 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 ${activeTab === 'linkedin'
-                                ? 'bg-white text-blue-600 shadow-sm'
-                                : 'text-gray-500 hover:text-gray-700'
+                            ? 'bg-white text-blue-600 shadow-sm'
+                            : 'text-gray-500 hover:text-gray-700'
                             }`}
                     >
                         LinkedIn Articles
@@ -57,7 +57,17 @@ function ArticlesContent() {
             </div>
 
             {/* Content Grid */}
-            {loading ? (
+            {activeTab === 'linkedin' ? (
+                <div className="flex flex-col items-center justify-center py-20 bg-gray-50 rounded-2xl border-2 border-dashed border-gray-200">
+                    <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4 text-2xl">
+                        💼
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-2">LinkedIn Integration Coming Soon</h3>
+                    <p className="text-gray-500 text-center max-w-md">
+                        We are working on bringing you the best professional insights directly from top LinkedIn creators. Stay tuned!
+                    </p>
+                </div>
+            ) : loading ? (
                 <div className="text-center py-20">
                     <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
                     <p className="mt-4 text-muted-foreground">Loading expert insights...</p>
