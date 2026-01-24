@@ -14,14 +14,18 @@ const pulseFirebaseConfig = {
 };
 
 // Initialize Pulse Firebase app with a unique name - only on client side
+import { getFirestore, Firestore } from "firebase/firestore";
+
 let pulseApp;
 let pulseAuth: Auth | undefined;
 let database: Database | undefined;
+let db: Firestore | undefined;
 
 if (typeof window !== 'undefined') {
     pulseApp = initializeApp(pulseFirebaseConfig, "pulse");
     pulseAuth = getAuth(pulseApp);
-    database = getDatabase(pulseApp); // Firebase Realtime Database for view counting
+    database = getDatabase(pulseApp); // Firebase Realtime Database
+    db = getFirestore(pulseApp); // Firestore for engagement data
 }
 
-export { pulseAuth, database };
+export { pulseAuth, database, db };

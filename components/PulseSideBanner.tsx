@@ -8,10 +8,10 @@ export default function PulseSideBanner() {
     const [isVisible, setIsVisible] = useState(true);
 
     useEffect(() => {
-        // Auto-close after 60 seconds
+        // Auto-close after 10 seconds
         const timer = setTimeout(() => {
             setIsVisible(false);
-        }, 60000);
+        }, 10000);
 
         // Cleanup timer on unmount
         return () => clearTimeout(timer);
@@ -145,13 +145,13 @@ export default function PulseSideBanner() {
                                     initial={{ width: "100%" }}
                                     animate={{ width: "0%" }}
                                     transition={{
-                                        duration: 60,
+                                        duration: 10,
                                         ease: "linear"
                                     }}
                                 />
                             </motion.div>
                             <p className="text-[10px] text-gray-500 text-center mt-1">
-                                Auto-closes in 60s
+                                Auto-closes in 10s
                             </p>
                         </div>
                     </div>

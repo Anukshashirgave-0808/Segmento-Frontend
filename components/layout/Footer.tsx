@@ -16,7 +16,8 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 export function Footer() {
     const footerLinks = {
         product: [
-            { label: "Data Classification", href: "/products/data-classification" },
+            { label: "Segmento Pulse", href: "/pulse" },
+            { label: "Segmento Sense", href: "/products/data-classification" },
         ],
         company: [
             { label: "About", href: "/about" },
