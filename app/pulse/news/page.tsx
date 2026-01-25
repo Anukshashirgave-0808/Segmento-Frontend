@@ -18,6 +18,7 @@ export const dynamic = 'force-dynamic';
 const categoryRelationships: Record<string, Array<{ id: string; name: string }>> = {
     // Data categories show all data subcategories
     'data-security': [
+        { id: "data-laws", name: "Data Laws" },
         { id: "business-analytics", name: "Business Analytics" },
         { id: "business-intelligence", name: "Business Intelligence" },
         { id: "customer-data-platform", name: "Customer Data Platform" },
@@ -29,6 +30,7 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
         { id: "data-security", name: "Data Security" },
     ],
     'data-governance': [
+        { id: "data-laws", name: "Data Laws" },
         { id: "business-analytics", name: "Business Analytics" },
         { id: "business-intelligence", name: "Business Intelligence" },
         { id: "customer-data-platform", name: "Customer Data Platform" },
@@ -40,6 +42,7 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
         { id: "data-security", name: "Data Security" },
     ],
     'data-privacy': [
+        { id: "data-laws", name: "Data Laws" },
         { id: "business-analytics", name: "Business Analytics" },
         { id: "business-intelligence", name: "Business Intelligence" },
         { id: "customer-data-platform", name: "Customer Data Platform" },
@@ -51,6 +54,7 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
         { id: "data-security", name: "Data Security" },
     ],
     'data-engineering': [
+        { id: "data-laws", name: "Data Laws" },
         { id: "business-analytics", name: "Business Analytics" },
         { id: "business-intelligence", name: "Business Intelligence" },
         { id: "customer-data-platform", name: "Customer Data Platform" },
@@ -62,6 +66,7 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
         { id: "data-security", name: "Data Security" },
     ],
     'business-analytics': [
+        { id: "data-laws", name: "Data Laws" },
         { id: "business-analytics", name: "Business Analytics" },
         { id: "business-intelligence", name: "Business Intelligence" },
         { id: "customer-data-platform", name: "Customer Data Platform" },
@@ -73,6 +78,7 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
         { id: "data-security", name: "Data Security" },
     ],
     'business-intelligence': [
+        { id: "data-laws", name: "Data Laws" },
         { id: "business-analytics", name: "Business Analytics" },
         { id: "business-intelligence", name: "Business Intelligence" },
         { id: "customer-data-platform", name: "Customer Data Platform" },
@@ -84,6 +90,7 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
         { id: "data-security", name: "Data Security" },
     ],
     'customer-data-platform': [
+        { id: "data-laws", name: "Data Laws" },
         { id: "business-analytics", name: "Business Analytics" },
         { id: "business-intelligence", name: "Business Intelligence" },
         { id: "customer-data-platform", name: "Customer Data Platform" },
@@ -95,6 +102,7 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
         { id: "data-security", name: "Data Security" },
     ],
     'data-centers': [
+        { id: "data-laws", name: "Data Laws" },
         { id: "business-analytics", name: "Business Analytics" },
         { id: "business-intelligence", name: "Business Intelligence" },
         { id: "customer-data-platform", name: "Customer Data Platform" },
@@ -108,6 +116,21 @@ const categoryRelationships: Record<string, Array<{ id: string; name: string }>>
 
     // Add data-management itself
     'data-management': [
+        { id: "data-laws", name: "Data Laws" },
+        { id: "business-analytics", name: "Business Analytics" },
+        { id: "business-intelligence", name: "Business Intelligence" },
+        { id: "customer-data-platform", name: "Customer Data Platform" },
+        { id: "data-centers", name: "Data Centers" },
+        { id: "data-engineering", name: "Data Engineering" },
+        { id: "data-governance", name: "Data Governance" },
+        { id: "data-management", name: "Data Management" },
+        { id: "data-privacy", name: "Data Privacy" },
+        { id: "data-security", name: "Data Security" },
+    ],
+
+    // Add data-laws itself
+    'data-laws': [
+        { id: "data-laws", name: "Data Laws" },
         { id: "business-analytics", name: "Business Analytics" },
         { id: "business-intelligence", name: "Business Intelligence" },
         { id: "customer-data-platform", name: "Customer Data Platform" },

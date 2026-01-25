@@ -353,6 +353,14 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
                                     <div className="px-4 py-2 border-b">
                                         <p className="text-sm font-medium truncate">{user.email}</p>
                                     </div>
+                                    <Link
+                                        href="/pulse/dashboard"
+                                        onClick={() => setIsUserMenuOpen(false)}
+                                        className="w-full flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                                    >
+                                        <User className="h-4 w-4" />
+                                        Dashboard
+                                    </Link>
                                     <button
                                         onClick={handleLogout}
                                         className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50"
