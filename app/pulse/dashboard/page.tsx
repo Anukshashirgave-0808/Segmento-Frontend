@@ -78,12 +78,6 @@ export default function DashboardPage() {
                                     {user.email}
                                 </div>
                             </div>
-                            <div>
-                                <label className="text-xs font-semibold text-gray-400 uppercase">Account ID</label>
-                                <div className="text-sm text-gray-500 mt-1 font-mono bg-gray-50 p-2 rounded">
-                                    {user.uid}
-                                </div>
-                            </div>
                         </div>
                     </div>
 
