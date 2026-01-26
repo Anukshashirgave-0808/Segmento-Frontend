@@ -133,7 +133,6 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
         { name: "AI", path: "/pulse/news?category=ai" },
         { name: "Data", path: "#", hasDropdown: true, dropdownType: "data" },
         { name: "Cloud", path: "#", hasDropdown: true, dropdownType: "cloud" },
-        { name: "Medium Articles", path: "/pulse/news?category=medium-article" }, // Added dedicated tab
         { name: "Articles", path: "/pulse/articles" },
         { name: "Magazines", path: "/pulse/magazines" },
     ];
@@ -434,35 +433,59 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
                 )
             }
 
-            {/* Mobile Menu */}
+            {/* Mobile Menu Overlay - Fixed Responsiveness */}
             {
                 isMenuOpen && (
-                    <div className="lg:hidden border-t">
-                        <nav className="container py-4 flex flex-col gap-2">
+                    <div className="lg:hidden fixed inset-0 top-16 z-50 overflow-y-auto bg-white pb-32 border-t animate-in slide-in-from-top-5 duration-200">
+                        <nav className="container py-4 flex flex-col gap-1">
                             {navLinks.map((link) => (
                                 link.hasDropdown ? (
-                                    <div key={link.name}>
-                                        <div className="px-4 py-2 font-semibold text-gray-900">
+                                    <div key={link.name} className="border-b last:border-0 border-gray-100">
+                                        <button
+                                            onClick={() => {
+                                                if (link.dropdownType === 'data') setIsDataDropdownOpen(!isDataDropdownOpen);
+                                                if (link.dropdownType === 'cloud') setIsCloudDropdownOpen(!isCloudDropdownOpen);
+                                            }}
+                                            className="flex items-center justify-between w-full px-4 py-3 font-semibold text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+                                        >
                                             {link.name}
-                                        </div>
-                                        <div className="pl-4">
-                                            {dataSubcategories.map((subcat) => (
-                                                <Link
-                                                    key={subcat.name}
-                                                    href={subcat.path}
-                                                    className="block px-4 py-2 text-sm rounded-lg hover:bg-secondary"
-                                                    onClick={() => setIsMenuOpen(false)}
-                                                >
-                                                    {subcat.name}
-                                                </Link>
-                                            ))}
-                                        </div>
+                                            <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${(link.dropdownType === 'data' && isDataDropdownOpen) || (link.dropdownType === 'cloud' && isCloudDropdownOpen) ? 'rotate-180' : ''}`} />
+                                        </button>
+
+                                        {/* Dropdown Content */}
+                                        {((link.dropdownType === 'data' && isDataDropdownOpen) || (link.dropdownType === 'cloud' && isCloudDropdownOpen)) && (
+                                            <div className="pl-4 pb-2 space-y-1 bg-gray-50/50 rounded-b-lg">
+                                                {(link.dropdownType === 'data' ? dataSubcategories : cloudSubcategories).map((subcat) => (
+                                                    <Link
+                                                        key={subcat.name}
+                                                        href={subcat.path}
+                                                        className="flex items-center gap-3 px-4 py-3 text-sm rounded-lg hover:bg-white hover:shadow-sm transition-all"
+                                                        onClick={() => setIsMenuOpen(false)}
+                                                    >
+                                                        {/* Icon Logic: Handle both Emojis and Next.js Images */}
+                                                        {(subcat as any).isEmoji !== false ? (
+                                                            <span className="text-xl shrink-0">{subcat.icon}</span>
+                                                        ) : (
+                                                            <div className="relative w-6 h-6 shrink-0">
+                                                                <Image
+                                                                    src={subcat.icon}
+                                                                    alt={subcat.name}
+                                                                    fill
+                                                                    className="object-contain"
+                                                                />
+                                                            </div>
+                                                        )}
+                                                        <span className="text-gray-700 font-medium">{subcat.name}</span>
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
                                 ) : (
                                     <Link
                                         key={link.name}
                                         href={link.path}
-                                        className="px-4 py-3 rounded-lg hover:bg-secondary"
+                                        className="block px-4 py-3 rounded-lg hover:bg-secondary font-medium text-gray-700"
                                         onClick={() => setIsMenuOpen(false)}
                                     >
                                         {link.name}
@@ -470,33 +493,36 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
                                 )
                             ))}
 
-                            <div className="mt-4 pt-4 border-t flex flex-col gap-2">
+                            <div className="mt-6 pt-6 border-t flex flex-col gap-3 px-2">
                                 {user ? (
                                     <>
-                                        <div className="px-4 py-2 text-sm text-gray-600">
-                                            {user.email}
+                                        <div className="px-4 py-2 text-sm font-medium text-gray-500">
+                                            Signed in as <span className="text-gray-900">{user.email}</span>
                                         </div>
-                                        <Button variant="outline" onClick={handleLogout}>
+                                        <Button variant="outline" onClick={handleLogout} className="justify-start">
                                             <LogOut className="h-4 w-4 mr-2" />
                                             Logout
                                         </Button>
                                     </>
                                 ) : (
                                     <>
-                                        <Button variant="outline" asChild>
+                                        <Button variant="outline" asChild className="justify-start">
                                             <Link href="/pulse/login">
                                                 <User className="h-4 w-4 mr-2" />
                                                 Login
                                             </Link>
                                         </Button>
-                                        <Button asChild>
+                                        <Button asChild className="justify-start">
                                             <Link href="/pulse/register">Register</Link>
                                         </Button>
                                     </>
                                 )}
                                 <Button
-                                    className="bg-blue-600 hover:bg-blue-700"
-                                    onClick={onSubscribeClick}
+                                    className="bg-blue-600 hover:bg-blue-700 justify-start"
+                                    onClick={() => {
+                                        setIsMenuOpen(false);
+                                        if (onSubscribeClick) onSubscribeClick();
+                                    }}
                                 >
                                     <Mail className="h-4 w-4 mr-2" />
                                     Subscribe
