@@ -96,7 +96,6 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
         }
         setIsDataDropdownOpen(true);
     };
-
     const handleDropdownMouseLeave = () => {
         closeTimeoutRef.current = window.setTimeout(() => {
             setIsDataDropdownOpen(false);
@@ -135,6 +134,7 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
         { name: "Cloud", path: "#", hasDropdown: true, dropdownType: "cloud" },
         { name: "Articles", path: "/pulse/articles" },
         { name: "Magazines", path: "/pulse/magazines" },
+        { name: "Upcoming", path: "/pulse/upcoming" },
     ];
 
     return (
@@ -185,7 +185,6 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
                                     }}
                                     onMouseEnter={() => {
                                         if (link.dropdownType === 'data') {
-                                            clearTimeout(closeTimeoutRef.current);
                                             setIsDataDropdownOpen(true);
                                             setIsCloudDropdownOpen(false);
                                         } else if (link.dropdownType === 'cloud') {
