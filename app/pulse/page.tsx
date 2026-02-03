@@ -132,18 +132,19 @@ export default function PulsePage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            <div className="container mx-auto px-4 py-8 max-w-7xl">
-                {/* Hero Text */}
-                <div className="mb-8 text-center">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-3  bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-    Segmento Pulse
-</h1>
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+  <div className="container mx-auto px-4 py-8 max-w-7xl text-center">
+    {/* Hero Text */}
+    <div className="mb-8">
+      <h1 className="text-5xl md:text-6xl font-extrabold mb-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight">
+        Segmento Pulse
+      </h1>
+      <p className="text-lg md:text-xl text-gray-600">
+        Real-time technology insights
+      </p>
+    </div>
+  
 
-                    <p className="text-base text-gray-600">
-                        Real-time technology insights
-                    </p>
-                </div>
 
                 {/* Bento Grid */}
                 <div className="grid grid-cols-12 gap-3">
