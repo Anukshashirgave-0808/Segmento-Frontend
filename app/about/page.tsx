@@ -40,7 +40,7 @@ const team = [
     {
         name: "Maddila Vijayalakshmi",
         role: "Full Stack Developer",
-        bio: "Maddila Vijayalakshmi is a Full Stack Developer at Segmento, specializing in building robust, scalable, and high-performance web applications. She works across both frontend and backend technologies to transform complex requirements into seamless, end-to-end solutions. With strong expertise in modern frameworks, APIs, and database systems, she ensures applications are secure, efficient, and maintainable. Vijayalakshmi has a problem-solving mindset and a deep understanding of system architecture, enabling her to deliver reliable products that align with Segmento’s data-driven vision. Her ability to balance functionality, performance, and user experience plays a key role in creating powerful platforms that make data intelligence accessible and impactful.",
+        bio: "Maddila Vijayalakshmi is a Full Stack Developer at Segmento, focused on building scalable, secure, and high-performance web applications. She specializes in transforming complex requirements into seamless, end-to-end solutions using modern frontend and backend technologies. With a strong eye for system design and performance, she ensures every application is reliable, efficient, and aligned with Segmento’s data-driven vision. Vijayalakshmi excels at developing scalable components, optimizing application performance, and delivering solutions that balance functionality with user experience, contributing to Segmento’s mission of making data intelligence accessible through powerful and impactful digital platforms.",
         image: "/images/vijayalakshmi.png",
         linkedin: "http://www.linkedin.com/in/maddila-vijayalakshmi-3320ba29a",
     },
@@ -207,11 +207,12 @@ export default function AboutPage() {
                         We're building the future of data intelligence. Explore our products or join our team.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Link href="#products">
-                            <button className="px-8 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors">
-                                Explore Products
-                            </button>
-                        </Link>
+                        <Link href="/#products">
+  <button className="px-8 py-3 bg-primary text-white rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+    Explore Products
+  </button>
+</Link>
+
                         <Link href="/careers">
                             <button className="px-8 py-3 border-2 border-primary text-primary rounded-lg font-semibold hover:bg-primary/5 transition-colors">
                                 View Careers
