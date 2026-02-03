@@ -136,9 +136,7 @@ export default function PulsePage() {
             <div className="container mx-auto px-4 py-8 max-w-7xl">
                 {/* Hero Text */}
                 <div className="mb-8 text-center">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-3 
-               bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 
-               bg-clip-text text-transparent">
+                    <h1 className="text-4xl md:text-5xl font-bold mb-3  bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
     Segmento Pulse
 </h1>
 
