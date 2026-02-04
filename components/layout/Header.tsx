@@ -25,12 +25,11 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6">
-        {/* GRID HEADER */}
-        <div className="grid grid-cols-3 h-20 items-center">
-          
-          {/* LEFT: LOGO */}
-          <Link href="/" className="flex items-center pr-10">
-            {/* ↑ ADDED pr-10 for space after logo */}
+        {/* HEADER ROW */}
+        <div className="flex items-center h-20">
+
+          {/* LEFT: LOGO (UNCHANGED) */}
+          <Link href="/" className="flex items-center shrink-0">
             <Image
               src="/images/logo-final.png"
               alt="Segmento"
@@ -40,99 +39,101 @@ export function Header() {
             />
           </Link>
 
-          {/* CENTER: NAV TABS */}
-          <nav className="hidden md:flex items-center justify-center gap-2">
-            <Link href="/" className={tabStyle}>Home</Link>
-            <Link href="/about" className={tabStyle}>About</Link>
+          {/* CENTER: NAV TABS (PERFECTLY CENTERED) */}
+          <div className="flex-1 hidden md:flex justify-center">
+            <nav className="flex items-center gap-2">
+              <Link href="/" className={tabStyle}>Home</Link>
+              <Link href="/about" className={tabStyle}>About</Link>
 
-            {/* PRODUCTS */}
-            <div
-              className="relative"
-              onMouseEnter={() => setOpenDropdown("products")}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <button className={`${tabStyle} flex items-center gap-1`}>
-                Products <ChevronDown size={14} />
-              </button>
+              {/* PRODUCTS */}
+              <div
+                className="relative"
+                onMouseEnter={() => setOpenDropdown("products")}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                <button className={`${tabStyle} flex items-center gap-1`}>
+                  Products <ChevronDown size={14} />
+                </button>
 
-              {openDropdown === "products" && (
-                <div className={dropdownWrapper}>
-                  <div className={dropdownBox}>
-                    <Link href="/pulse" className={dropdownItem}>
-                      Segmento Pulse
-                    </Link>
-                    <Link
-                      href="/products/data-classification"
-                      className={dropdownItem}
-                    >
-                      Segmento Sense
-                    </Link>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* SOLUTIONS */}
-            <div
-              className="relative"
-              onMouseEnter={() => setOpenDropdown("solutions")}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <button className={`${tabStyle} flex items-center gap-1`}>
-                Solutions <ChevronDown size={14} />
-              </button>
-
-              {openDropdown === "solutions" && (
-                <div className={dropdownWrapper}>
-                  <div className={dropdownBox}>
-                    {[
-                      ["ecommerce", "eCommerce"],
-                      ["finance", "Finance"],
-                      ["healthcare", "Healthcare"],
-                      ["higher-education", "Higher Education"],
-                      ["manufacturing", "Manufacturing"],
-                      ["telecommunication", "Telecommunication"],
-                      ["media", "Media"],
-                      ["banking", "Banking"],
-                    ].map(([id, label]) => (
+                {openDropdown === "products" && (
+                  <div className={dropdownWrapper}>
+                    <div className={dropdownBox}>
+                      <Link href="/pulse" className={dropdownItem}>
+                        Segmento Pulse
+                      </Link>
                       <Link
-                        key={id}
-                        href={`/solutions#${id}`}
+                        href="/products/data-classification"
                         className={dropdownItem}
                       >
-                        {label}
+                        Segmento Sense
                       </Link>
-                    ))}
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
 
-            {/* RESOURCES */}
-            <div
-              className="relative"
-              onMouseEnter={() => setOpenDropdown("resources")}
-              onMouseLeave={() => setOpenDropdown(null)}
-            >
-              <button className={`${tabStyle} flex items-center gap-1`}>
-                Resources <ChevronDown size={14} />
-              </button>
+              {/* SOLUTIONS */}
+              <div
+                className="relative"
+                onMouseEnter={() => setOpenDropdown("solutions")}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                <button className={`${tabStyle} flex items-center gap-1`}>
+                  Solutions <ChevronDown size={14} />
+                </button>
 
-              {openDropdown === "resources" && (
-                <div className={dropdownWrapper}>
-                  <div className={dropdownBox}>
-                    <Link href="/blog" className={dropdownItem}>
-                      Blog
-                    </Link>
+                {openDropdown === "solutions" && (
+                  <div className={dropdownWrapper}>
+                    <div className={dropdownBox}>
+                      {[
+                        ["ecommerce", "eCommerce"],
+                        ["finance", "Finance"],
+                        ["healthcare", "Healthcare"],
+                        ["higher-education", "Higher Education"],
+                        ["manufacturing", "Manufacturing"],
+                        ["telecommunication", "Telecommunication"],
+                        ["media", "Media"],
+                        ["banking", "Banking"],
+                      ].map(([id, label]) => (
+                        <Link
+                          key={id}
+                          href={`/solutions#${id}`}
+                          className={dropdownItem}
+                        >
+                          {label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
 
-            <Link href="/pricing" className={tabStyle}>Pricing</Link>
-            <Link href="/careers" className={tabStyle}>Careers</Link>
-            <Link href="/contact" className={tabStyle}>Contact</Link>
-          </nav>
+              {/* RESOURCES */}
+              <div
+                className="relative"
+                onMouseEnter={() => setOpenDropdown("resources")}
+                onMouseLeave={() => setOpenDropdown(null)}
+              >
+                <button className={`${tabStyle} flex items-center gap-1`}>
+                  Resources <ChevronDown size={14} />
+                </button>
+
+                {openDropdown === "resources" && (
+                  <div className={dropdownWrapper}>
+                    <div className={dropdownBox}>
+                      <Link href="/blog" className={dropdownItem}>
+                        Blog
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <Link href="/pricing" className={tabStyle}>Pricing</Link>
+              <Link href="/careers" className={tabStyle}>Careers</Link>
+              <Link href="/contact" className={tabStyle}>Contact</Link>
+            </nav>
+          </div>
 
           {/* RIGHT: MOBILE BUTTON */}
           <div className="flex justify-end md:hidden">
