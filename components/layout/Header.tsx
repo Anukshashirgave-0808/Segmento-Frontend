@@ -11,23 +11,24 @@ export function Header() {
   const [openDropdown, setOpenDropdown] = useState<DropdownKey>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
 
-  const tabBase =
-    "px-4 py-2 text-sm font-medium rounded-lg border border-transparent transition-all duration-300"
-
+  /* TAB STYLE */
   const tabStyle =
-    `${tabBase} text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-500 hover:shadow-md`
+    "px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-500 hover:shadow-md"
 
+  /* DROPDOWN */
+  const dropdownWrapper = "absolute left-1/2 -translate-x-1/2 pt-4"
   const dropdownBox =
-    "absolute left-1/2 -translate-x-1/2 mt-3 w-64 rounded-xl bg-gray-900 border border-white/10 shadow-2xl overflow-hidden"
-
+    "w-64 rounded-xl bg-gradient-to-br from-purple-700 via-fuchsia-600 to-pink-600 shadow-2xl border border-white/20 overflow-hidden"
   const dropdownItem =
-    "block px-5 py-3 text-sm text-gray-300 hover:text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-500 transition-all"
+    "block px-5 py-3 text-sm text-white/90 hover:bg-white/10 transition-all"
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="flex h-20 items-center justify-between">
-          {/* LOGO */}
+        {/* GRID HEADER */}
+        <div className="grid grid-cols-3 h-20 items-center">
+          
+          {/* LEFT: LOGO */}
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logo-final.png"
@@ -38,8 +39,8 @@ export function Header() {
             />
           </Link>
 
-          {/* DESKTOP NAV */}
-          <nav className="hidden md:flex items-center gap-2">
+          {/* CENTER: NAV TABS */}
+          <nav className="hidden md:flex items-center justify-center gap-2">
             <Link href="/" className={tabStyle}>Home</Link>
             <Link href="/about" className={tabStyle}>About</Link>
 
@@ -54,16 +55,18 @@ export function Header() {
               </button>
 
               {openDropdown === "products" && (
-                <div className={dropdownBox}>
-                  <Link href="/pulse" className={dropdownItem}>
-                    Segmento Pulse
-                  </Link>
-                  <Link
-                    href="/products/data-classification"
-                    className={dropdownItem}
-                  >
-                    Segmento Sense
-                  </Link>
+                <div className={dropdownWrapper}>
+                  <div className={dropdownBox}>
+                    <Link href="/pulse" className={dropdownItem}>
+                      Segmento Pulse
+                    </Link>
+                    <Link
+                      href="/products/data-classification"
+                      className={dropdownItem}
+                    >
+                      Segmento Sense
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
@@ -79,25 +82,27 @@ export function Header() {
               </button>
 
               {openDropdown === "solutions" && (
-                <div className={dropdownBox}>
-                  {[
-                    ["ecommerce", "eCommerce"],
-                    ["finance", "Finance"],
-                    ["healthcare", "Healthcare"],
-                    ["higher-education", "Higher Education"],
-                    ["manufacturing", "Manufacturing"],
-                    ["telecommunication", "Telecommunication"],
-                    ["media", "Media"],
-                    ["banking", "Banking"],
-                  ].map(([id, label]) => (
-                    <Link
-                      key={id}
-                      href={`/solutions#${id}`}
-                      className={dropdownItem}
-                    >
-                      {label}
-                    </Link>
-                  ))}
+                <div className={dropdownWrapper}>
+                  <div className={dropdownBox}>
+                    {[
+                      ["ecommerce", "eCommerce"],
+                      ["finance", "Finance"],
+                      ["healthcare", "Healthcare"],
+                      ["higher-education", "Higher Education"],
+                      ["manufacturing", "Manufacturing"],
+                      ["telecommunication", "Telecommunication"],
+                      ["media", "Media"],
+                      ["banking", "Banking"],
+                    ].map(([id, label]) => (
+                      <Link
+                        key={id}
+                        href={`/solutions#${id}`}
+                        className={dropdownItem}
+                      >
+                        {label}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -113,10 +118,12 @@ export function Header() {
               </button>
 
               {openDropdown === "resources" && (
-                <div className={dropdownBox}>
-                  <Link href="/blog" className={dropdownItem}>
-                    Blog
-                  </Link>
+                <div className={dropdownWrapper}>
+                  <div className={dropdownBox}>
+                    <Link href="/blog" className={dropdownItem}>
+                      Blog
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>
@@ -126,13 +133,12 @@ export function Header() {
             <Link href="/contact" className={tabStyle}>Contact</Link>
           </nav>
 
-          {/* MOBILE BUTTON */}
-          <button
-            className="md:hidden"
-            onClick={() => setMobileOpen(!mobileOpen)}
-          >
-            {mobileOpen ? <X /> : <Menu />}
-          </button>
+          {/* RIGHT: MOBILE BUTTON */}
+          <div className="flex justify-end md:hidden">
+            <button onClick={() => setMobileOpen(!mobileOpen)}>
+              {mobileOpen ? <X /> : <Menu />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -149,7 +155,7 @@ export function Header() {
             <Link
               key={label}
               href={href}
-              className="block w-full text-center py-3 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white"
+              className="block text-center py-3 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white"
               onClick={() => setMobileOpen(false)}
             >
               {label}

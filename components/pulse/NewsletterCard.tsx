@@ -2,67 +2,71 @@
 
 import { motion } from 'framer-motion';
 import { Clock } from 'lucide-react';
-import { NewsletterTheme, PreferenceKey } from './NewsletterConfig';
+import { PreferenceKey, NewsletterTheme } from './NewsletterConfig';
 
 interface NewsletterCardProps {
   theme: NewsletterTheme;
-  index: number;
   onSelect: (preference: PreferenceKey) => void;
+  index: number;
 }
 
 export default function NewsletterCard({
   theme,
-  index,
-  onSelect
+  onSelect,
+  index
 }: NewsletterCardProps) {
-  const Icon = theme.icon;
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.1 }}
-      whileHover={{ y: -8 }}
+      initial={{ opacity: 0, scale: 0.92 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      whileHover={{ y: -10, scale: 1.03 }}
+      whileTap={{ scale: 0.98 }}
       onClick={() => onSelect(theme.id)}
-      className="cursor-pointer"
+      className="cursor-pointer group"
     >
       <div
         className={`
-          relative h-full rounded-3xl p-6
+          relative h-full rounded-[28px] p-6
           bg-gradient-to-br ${theme.cardGradient}
-          text-white
-          shadow-xl hover:shadow-2xl
+          shadow-[0_30px_60px_rgba(0,0,0,0.25)]
           transition-all duration-300
           overflow-hidden
         `}
       >
-        {/* Soft glass overlay */}
-        <div className="absolute inset-0 bg-white/10 backdrop-blur-md rounded-3xl" />
+        {/* Glass overlay */}
+        <div className="absolute inset-0 bg-white/10 backdrop-blur-xl rounded-[28px]" />
 
+        {/* Content */}
         <div className="relative z-10 flex flex-col h-full">
-          {/* Icon */}
-          <div className="mb-4 flex justify-center">
-            <div className="w-14 h-14 flex items-center justify-center rounded-xl bg-white/20">
-              <Icon className="w-8 h-8 text-white" strokeWidth={1.5} />
-            </div>
+          {/* Emoji Icon */}
+          <div className="text-5xl mb-4 drop-shadow-xl">
+            {theme.emoji}
           </div>
 
           {/* Title */}
-          <h3 className="text-lg font-semibold text-center">
+          <h3 className="text-xl font-semibold text-white mb-1">
             {theme.title}
           </h3>
 
           {/* Frequency */}
-          <p className="text-sm text-white/80 text-center mt-1">
+          <p className="text-sm text-white/80 mb-auto">
             {theme.frequency}
           </p>
 
-          {/* Bottom Time Row */}
-          <div className="mt-auto pt-4 flex items-center justify-center gap-2 text-sm text-white/90">
-            <Clock className="w-4 h-4" />
-            <span>{theme.deliveryTime}</span>
+          {/* Time */}
+          <div className="mt-6 pt-4 border-t border-white/20">
+            <div className="flex items-center gap-2 text-white/90">
+              <Clock className="w-4 h-4" />
+              <span className="text-sm font-medium">
+                {theme.deliveryTime}
+              </span>
+            </div>
           </div>
         </div>
+
+        {/* Hover glow */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/10 rounded-[28px]" />
       </div>
     </motion.div>
   );
