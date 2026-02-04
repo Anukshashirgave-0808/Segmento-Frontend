@@ -29,7 +29,8 @@ export function Header() {
         <div className="grid grid-cols-3 h-20 items-center">
           
           {/* LEFT: LOGO */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center pr-10">
+            {/* ↑ ADDED pr-10 for space after logo */}
             <Image
               src="/images/logo-final.png"
               alt="Segmento"
