@@ -39,7 +39,7 @@ export default function PulseSideBanner() {
                     {/* Light Theme Card - Matching Segmento.in */}
                     <div className="relative bg-white border-2 border-primary/20 rounded-2xl shadow-2xl overflow-hidden">
                         {/* Subtle gradient background */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-purple-50 to-blue-50 opacity-60" />
+                        <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-purple-50 to-blue-50 opacity-60" />
 
                         {/* Content Container - Extended with scrolling */}
                         <div className="relative p-6 max-h-[85vh] overflow-y-auto custom-scrollbar">
@@ -54,10 +54,10 @@ export default function PulseSideBanner() {
 
                             {/* Main Title */}
                             <div className="flex items-center gap-2 mb-4">
-                                <div className="p-2 bg-gradient-to-br from-primary to-purple-600 rounded-lg">
+                                <div className="p-2 bg-linear-to-br from-primary to-purple-600 rounded-lg">
                                     <Sparkles className="w-5 h-5 text-white" />
                                 </div>
-                                <h3 className="text-xl font-bold bg-gradient-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
+                                <h3 className="text-xl font-bold bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
                                     Welcome to Segmento! 🚀
                                 </h3>
                             </div>
@@ -68,9 +68,9 @@ export default function PulseSideBanner() {
                             </p>
 
                             {/* Segmento Pulse Section */}
-                            <div className="mb-5 p-4 bg-gradient-to-br from-blue-50 to-purple-50 rounded-xl border border-blue-200/50 hover:border-blue-300/70 transition-colors">
+                            <div className="mb-5 p-4 bg-linear-to-br from-blue-50 to-purple-50 rounded-xl border border-blue-200/50 hover:border-blue-300/70 transition-colors">
                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="p-1.5 bg-gradient-to-br from-blue-600 to-purple-600 rounded-md">
+                                    <div className="p-1.5 bg-linear-to-br from-blue-600 to-purple-600 rounded-md">
                                         <Brain className="w-4 h-4 text-white" />
                                     </div>
                                     <h4 className="text-lg font-bold text-gray-900">Segmento Pulse</h4>
@@ -101,9 +101,9 @@ export default function PulseSideBanner() {
                             </div>
 
                             {/* Segmento Sense Section */}
-                            <div className="mb-4 p-4 bg-gradient-to-br from-primary/5 to-purple-50 rounded-xl border border-primary/30 hover:border-primary/50 transition-colors">
+                            <div className="mb-4 p-4 bg-linear-to-br from-primary/5 to-purple-50 rounded-xl border border-primary/30 hover:border-primary/50 transition-colors">
                                 <div className="flex items-center gap-2 mb-2">
-                                    <div className="p-1.5 bg-gradient-to-br from-primary to-purple-600 rounded-md">
+                                    <div className="p-1.5 bg-linear-to-br from-primary to-purple-600 rounded-md">
                                         <Shield className="w-4 h-4 text-white" />
                                     </div>
                                     <h4 className="text-lg font-bold text-gray-900">Segmento Sense</h4>
@@ -141,7 +141,7 @@ export default function PulseSideBanner() {
                                 transition={{ delay: 0.5 }}
                             >
                                 <motion.div
-                                    className="h-full bg-gradient-to-r from-primary via-purple-600 to-blue-600"
+                                    className="h-full bg-linear-to-r from-primary via-purple-600 to-blue-600"
                                     initial={{ width: "100%" }}
                                     animate={{ width: "0%" }}
                                     transition={{

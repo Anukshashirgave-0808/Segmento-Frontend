@@ -79,10 +79,10 @@ export default function PulsePage() {
                             style={{ backgroundImage: `url(${imageUrl})` }}
                         ></div>
                         {/* Subtle dark overlay for text readability only */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-black/70 transition-all duration-500"></div>
+                        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-black/20 group-hover:from-black/70 transition-all duration-500"></div>
                     </>
                 ) : (
-                    <div className={`absolute inset-0 bg-gradient-to-br ${fallbackGradient}`}></div>
+                    <div className={`absolute inset-0 bg-linear-to-br ${fallbackGradient}`}></div>
                 )}
 
                 {/* Grid Pattern Overlay */}
@@ -136,7 +136,7 @@ export default function PulsePage() {
   <div className="container mx-auto px-4 py-8 max-w-7xl text-center">
     {/* Hero Text */}
     <div className="mb-8">
-      <h1 className="text-5xl md:text-6xl font-extrabold mb-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight">
+      <h1 className="text-5xl md:text-6xl font-extrabold mb-3 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight">
         Segmento Pulse
       </h1>
       <p className="text-lg md:text-xl text-gray-600">

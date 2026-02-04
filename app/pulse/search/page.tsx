@@ -84,7 +84,7 @@ function SearchContent() {
                                         <img
                                             src={article.image}
                                             alt={article.title}
-                                            className="w-32 h-24 object-cover rounded flex-shrink-0"
+                                            className="w-32 h-24 object-cover rounded shrink-0"
                                         />
                                         <div className="flex-1 min-w-0">
                                             <h3 className="font-bold text-lg mb-1 group-hover:text-blue-600 transition-colors line-clamp-2">

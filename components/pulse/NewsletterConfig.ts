@@ -19,11 +19,12 @@ export interface NewsletterTheme {
   title: string
   frequency: string
   deliveryTime: string
+  scope: string              // ✅ FIX ADDED
   icon: LucideIcon
   emoji: string
   cardGradient: string
   textColor: string
-  successMessage: string   // ✅ FIX ADDED
+  successMessage: string
 }
 
 export const NEWSLETTER_THEMES: Record<PreferenceKey, NewsletterTheme> = {
@@ -32,6 +33,7 @@ export const NEWSLETTER_THEMES: Record<PreferenceKey, NewsletterTheme> = {
     title: "Morning Brief",
     frequency: "Daily, Mon–Fri",
     deliveryTime: "7:00 AM IST",
+    scope: "Top stories from the last 12 hours",
     icon: Coffee,
     emoji: "☕",
     cardGradient: "from-orange-400 via-orange-500 to-orange-600",
@@ -45,6 +47,7 @@ export const NEWSLETTER_THEMES: Record<PreferenceKey, NewsletterTheme> = {
     title: "Midday Update",
     frequency: "Daily, Mon–Fri",
     deliveryTime: "2:00 PM IST",
+    scope: "Breaking updates from the last 6 hours",
     icon: Briefcase,
     emoji: "💼",
     cardGradient: "from-sky-400 via-blue-500 to-blue-600",
@@ -58,6 +61,7 @@ export const NEWSLETTER_THEMES: Record<PreferenceKey, NewsletterTheme> = {
     title: "Evening Digest",
     frequency: "Daily, Mon–Fri",
     deliveryTime: "7:00 PM IST",
+    scope: "Complete daily roundup of key stories",
     icon: Moon,
     emoji: "🌙",
     cardGradient: "from-purple-600 via-indigo-700 to-purple-800",
@@ -71,6 +75,7 @@ export const NEWSLETTER_THEMES: Record<PreferenceKey, NewsletterTheme> = {
     title: "Weekend Digest",
     frequency: "Weekly",
     deliveryTime: "Sunday, 7:00 AM IST",
+    scope: "Best stories from the past 7 days",
     icon: Calendar,
     emoji: "📅",
     cardGradient: "from-teal-500 via-emerald-600 to-teal-700",
@@ -84,6 +89,7 @@ export const NEWSLETTER_THEMES: Record<PreferenceKey, NewsletterTheme> = {
     title: "Monthly Intelligence",
     frequency: "Monthly",
     deliveryTime: "1st of every month, 9:00 AM IST",
+    scope: "Top insights and trends from the past 30 days",
     icon: FileText,
     emoji: "📊",
     cardGradient: "from-rose-500 via-red-600 to-rose-700",

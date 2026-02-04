@@ -74,7 +74,7 @@ export default function Chatbot() {
             {/* INTRO DIALOGUE */}
             {showIntro && !open && (
                 <div className="fixed bottom-28 right-6 z-40 animate-popup">
-                    <div className="relative bg-gradient-to-br from-purple-600 to-pink-500 text-white rounded-2xl shadow-2xl px-4 py-3 w-64">
+                    <div className="relative bg-linear-to-br from-purple-600 to-pink-500 text-white rounded-2xl shadow-2xl px-4 py-3 w-64">
                         
                         {/* CLOSE ICON */}
                         <button
@@ -93,7 +93,7 @@ export default function Chatbot() {
                         </p>
                         <p className="text-xs opacity-90 mt-1">Ask me anything ✨</p>
 
-                        <div className="absolute bottom-[-6px] right-6 w-4 h-4 bg-gradient-to-br from-purple-600 to-pink-500 rotate-45"></div>
+                        <div className="absolute bottom-1.5 right-6 w-4 h-4 bg-linear-to-br from-purple-600 to-pink-500 rotate-45"></div>
                     </div>
                 </div>
             )}
@@ -102,7 +102,7 @@ export default function Chatbot() {
             {!open && (
                 <button
                     onClick={() => setOpen(true)}
-                    className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-gradient-to-br from-purple-600 to-pink-500 text-3xl shadow-xl hover:scale-110 transition"
+                    className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-linear-to-br from-purple-600 to-pink-500 text-3xl shadow-xl hover:scale-110 transition"
                 >
                     🤖
                 </button>
@@ -110,10 +110,10 @@ export default function Chatbot() {
 
             {/* CHAT WINDOW */}
             {open && (
-                <div className="fixed bottom-6 right-6 z-50 w-80 md:w-96 h-[460px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 animate-slide-up">
+                <div className="fixed bottom-6 right-6 z-50 w-80 md:w-96 h-115 bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 animate-slide-up">
                     
                     {/* Header */}
-                    <div className="flex justify-between items-center p-4 bg-gradient-to-r from-purple-600 to-pink-500 text-white">
+                    <div className="flex justify-between items-center p-4 bg-linear-to-r from-purple-600 to-pink-500 text-white">
                         <div className="flex items-center gap-2 font-bold">🤖 Segmento Bot</div>
                         <button onClick={() => setOpen(false)} className="text-xl hover:opacity-80">
                             ✕
@@ -127,7 +127,7 @@ export default function Chatbot() {
                                 <div
                                     className={`px-4 py-2 rounded-2xl max-w-[75%] whitespace-pre-line shadow ${
                                         msg.from === "user"
-                                            ? "bg-gradient-to-br from-purple-600 to-pink-500 text-white"
+                                            ? "bg-linear-to-br from-purple-600 to-pink-500 text-white"
                                             : "bg-white text-gray-800"
                                     }`}
                                 >

@@ -28,7 +28,7 @@ export default function NewsletterCard({
       <div
         className={`
           relative h-full rounded-[28px] p-6
-          bg-gradient-to-br ${theme.cardGradient}
+          bg-linear-to-br ${theme.cardGradient}
           shadow-[0_30px_60px_rgba(0,0,0,0.25)]
           transition-all duration-300
           overflow-hidden

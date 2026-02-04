@@ -49,7 +49,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="bg-gradient-to-b from-slate-900 to-black text-white">
+    <footer className="bg-linear-to-b from-slate-900 to-black text-white">
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
           <div className="lg:col-span-2">
