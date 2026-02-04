@@ -1,175 +1,165 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { ChevronDown, Menu, X } from "lucide-react"
 
-type NavLink =
-  | { href: string; label: string; external?: boolean }
-  | { label: string; isDropdown: true; items: Array<{ href: string; label: string }> }
-
-function isDropdown(
-  link: NavLink
-): link is { label: string; isDropdown: true; items: Array<{ href: string; label: string }> } {
-  return "isDropdown" in link
-}
+type DropdownKey = "products" | "solutions" | "resources" | null
 
 export function Header() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [openDropdown, setOpenDropdown] = useState<DropdownKey>(null)
+  const [mobileOpen, setMobileOpen] = useState(false)
 
-  useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 10)
-    window.addEventListener("scroll", onScroll)
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
+  const tabStyle =
+    "px-5 py-2 rounded-full text-sm font-medium text-white bg-gradient-to-r from-purple-600 via-pink-500 to-fuchsia-500 shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
 
-  const navLinks: NavLink[] = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    {
-      label: "Products",
-      isDropdown: true,
-      items: [
-        { href: "/pulse", label: "Segmento Pulse" },
-        { href: "/products/data-classification", label: "Segmento Sense" },
-      ],
-    },
-    {
-      label: "Solutions",
-      isDropdown: true,
-      items: [
-        { href: "/solutions#ecommerce", label: "eCommerce" },
-        { href: "/solutions#finance", label: "Finance" },
-        { href: "/solutions#healthcare", label: "Healthcare" },
-        { href: "/solutions#higher-education", label: "Higher Education" },
-        { href: "/solutions#manufacturing", label: "Manufacturing" },
-        { href: "/solutions#telecommunication", label: "Telecommunication" },
-        { href: "/solutions#media", label: "Media" },
-        { href: "/solutions#banking", label: "Banking" },
-      ],
-    },
-    {
-      label: "Resources",
-      isDropdown: true,
-      items: [{ href: "/blog", label: "Blog" }],
-    },
-    { href: "/pricing", label: "Pricing" },
-    { href: "/careers", label: "Careers" },
-    { href: "/contact", label: "Contact" },
-  ]
+  const dropdownBox =
+    "absolute left-0 mt-3 w-60 rounded-2xl bg-gray-900/95 backdrop-blur-xl border border-white/10 shadow-2xl overflow-hidden"
+
+  const dropdownItem =
+    "block px-5 py-3 text-sm text-gray-200 hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-500 transition-all"
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white/70 backdrop-blur-xl border-b border-black/5 shadow-sm"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex h-20 items-center">
-          {/* Logo */}
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex h-20 items-center justify-between">
+          {/* LOGO */}
           <Link href="/" className="flex items-center">
             <Image
               src="/images/logo-final.png"
               alt="Segmento"
-              width={400}
-              height={140}
-              className="h-20 md:h-24 w-auto"
+              width={220}
+              height={70}
               priority
             />
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6 mx-auto">
-            {navLinks.map((link) => {
-              if (isDropdown(link)) {
-                return (
-                  <div key={link.label} className="relative group">
-                    <button className="relative text-sm font-medium text-slate-600 hover:text-slate-900 transition">
-                      {link.label}
-                      <span className="absolute left-0 -bottom-1 h-[2px] w-full scale-x-0 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 transition-transform duration-300 group-hover:scale-x-100" />
-                    </button>
+          {/* DESKTOP NAV */}
+          <nav className="hidden md:flex items-center gap-4">
+            <Link href="/" className={tabStyle}>Home</Link>
+            <Link href="/about" className={tabStyle}>About</Link>
 
-                    <div className="absolute left-0 mt-4 w-64 rounded-xl bg-white shadow-xl border border-black/5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
-                      {link.items.map((item) => (
-                        <Link
-                          key={item.href}
-                          href={item.href}
-                          className="block px-4 py-3 text-sm text-slate-600 hover:bg-slate-50 hover:text-slate-900"
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )
-              }
+            {/* PRODUCTS */}
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenDropdown("products")}
+              onMouseLeave={() => setOpenDropdown(null)}
+            >
+              <button className={`${tabStyle} flex items-center gap-1`}>
+                Products <ChevronDown size={16} />
+              </button>
 
-              return (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="relative text-sm font-medium text-slate-600 hover:text-slate-900 transition"
-                >
-                  {link.label}
-                  <span className="absolute left-0 -bottom-1 h-[2px] w-full scale-x-0 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 transition-transform duration-300 hover:scale-x-100" />
-                </Link>
-              )
-            })}
+              {openDropdown === "products" && (
+                <div className={dropdownBox}>
+                  <Link href="/pulse" className={dropdownItem}>
+                    Segmento Pulse
+                  </Link>
+                  <Link
+                    href="/products/data-classification"
+                    className={dropdownItem}
+                  >
+                    Segmento Sense
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* SOLUTIONS */}
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenDropdown("solutions")}
+              onMouseLeave={() => setOpenDropdown(null)}
+            >
+              <button className={`${tabStyle} flex items-center gap-1`}>
+                Solutions <ChevronDown size={16} />
+              </button>
+
+              {openDropdown === "solutions" && (
+                <div className={dropdownBox}>
+                  {[
+                    ["ecommerce", "eCommerce"],
+                    ["finance", "Finance"],
+                    ["healthcare", "Healthcare"],
+                    ["higher-education", "Higher Education"],
+                    ["manufacturing", "Manufacturing"],
+                    ["telecommunication", "Telecommunication"],
+                    ["media", "Media"],
+                    ["banking", "Banking"],
+                  ].map(([id, label]) => (
+                    <Link
+                      key={id}
+                      href={`/solutions#${id}`}
+                      className={dropdownItem}
+                    >
+                      {label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* RESOURCES */}
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenDropdown("resources")}
+              onMouseLeave={() => setOpenDropdown(null)}
+            >
+              <button className={`${tabStyle} flex items-center gap-1`}>
+                Resources <ChevronDown size={16} />
+              </button>
+
+              {openDropdown === "resources" && (
+                <div className={dropdownBox}>
+                  <Link href="/blog" className={dropdownItem}>
+                    Blog
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            <Link href="/pricing" className={tabStyle}>Pricing</Link>
+            <Link href="/careers" className={tabStyle}>Careers</Link>
+            <Link href="/contact" className={tabStyle}>Contact</Link>
           </nav>
 
           {/* CTA */}
-          <div className="hidden md:block">
-            <Button className="rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg hover:opacity-90">
-              Get a Demo
-            </Button>
-          </div>
-
-          {/* Mobile Menu */}
-          <button
-            className="md:hidden ml-auto"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          <Link
+            href="/contact"
+            className="hidden md:block px-7 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 shadow-xl hover:scale-105 transition"
           >
-            {isMobileMenuOpen ? <X /> : <Menu />}
+            Get a Demo
+          </Link>
+
+          {/* MOBILE BUTTON */}
+          <button
+            className="md:hidden"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            {mobileOpen ? <X /> : <Menu />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t">
-          <nav className="px-6 py-6 space-y-4">
-            {navLinks.map((link) =>
-              isDropdown(link) ? (
-                <div key={link.label}>
-                  <p className="font-semibold mb-2">{link.label}</p>
-                  {link.items.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      className="block py-2 text-sm text-slate-600"
-                      onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              ) : (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="block py-2 text-sm font-medium text-slate-700"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
-          </nav>
+      {/* MOBILE MENU */}
+      {mobileOpen && (
+        <div className="md:hidden bg-gray-950 px-6 py-6 space-y-4">
+          {[
+            ["Home", "/"],
+            ["About", "/about"],
+            ["Pricing", "/pricing"],
+            ["Careers", "/careers"],
+            ["Contact", "/contact"],
+          ].map(([label, href]) => (
+            <Link
+              key={label}
+              href={href}
+              className="block w-full text-center py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white"
+              onClick={() => setMobileOpen(false)}
+            >
+              {label}
+            </Link>
+          ))}
         </div>
       )}
     </header>
