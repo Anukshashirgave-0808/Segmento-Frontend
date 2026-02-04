@@ -14,14 +14,13 @@ export default function PulsePage() {
             const categories = ['ai', 'data-security', 'data-governance', 'data-privacy', 'data-engineering', 'business-intelligence', 'data-management', 'cloud-computing', 'magazines', 'business-analytics', 'customer-data-platform', 'data-centers'];
 
             try {
-                // Fetch all categories in parallel but only take first article
                 const newsPromises = categories.map(async (cat) => {
                     try {
                         const articles = await fetchNewsByCategory(cat);
-                        return { category: cat, articles: articles.slice(0, 1) }; // Only first article
+                        return { category: cat, articles: articles.slice(0, 1) };
                     } catch (error) {
                         console.error(`Failed to fetch ${cat}:`, error);
-                        return { category: cat, articles: [] }; // Return empty on error
+                        return { category: cat, articles: [] };
                     }
                 });
 
@@ -71,22 +70,19 @@ export default function PulsePage() {
                 href={`/pulse/news?category=${category}`}
                 className={`${colSpan} ${rowSpan > 1 ? 'row-span-2' : ''} group relative overflow-hidden rounded-2xl ${height} transition-all duration-500 hover:shadow-2xl hover:scale-[1.01]`}
             >
-                {/* Background Image with Dark Overlay for Text Readability */}
                 {imageUrl && !loading ? (
                     <>
                         <div
                             className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                             style={{ backgroundImage: `url(${imageUrl})` }}
                         ></div>
-                        {/* Subtle dark overlay for text readability only */}
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 group-hover:from-black/70 transition-all duration-500"></div>
+                        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-black/20 group-hover:from-black/70 transition-all duration-500"></div>
                     </>
                 ) : (
-                    <div className={`absolute inset-0 bg-gradient-to-br ${fallbackGradient}`}></div>
+                    <div className={`absolute inset-0 bg-linear-to-br ${fallbackGradient}`}></div>
                 )}
 
-                {/* Grid Pattern Overlay */}
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20"></div>
+                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0ZXJuPjw8L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20"></div>
 
                 <div className="relative h-full flex flex-col justify-between p-6">
                     <div>
@@ -97,7 +93,6 @@ export default function PulsePage() {
                             {title}
                         </h3>
 
-                        {/* News Headline */}
                         {loading ? (
                             <div className="animate-pulse space-y-2">
                                 <div className="h-3 bg-white/20 rounded w-full"></div>
@@ -132,40 +127,39 @@ export default function PulsePage() {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50">
-            <div className="container mx-auto px-4 py-8 max-w-7xl">
+        <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            <div className="container mx-auto px-4 py-8 max-w-7xl text-center">
                 {/* Hero Text */}
-                <div className="mb-8 text-center">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-3 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                <div className="mb-8">
+                    <h1 className="text-5xl md:text-6xl font-extrabold mb-3 bg-linear-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent leading-tight">
                         Segmento Pulse
                     </h1>
-                    <p className="text-base text-gray-600">
+                    <p className="text-lg md:text-xl text-gray-600">
                         Real-time technology insights
                     </p>
                 </div>
 
                 {/* Bento Grid */}
                 <div className="grid grid-cols-12 gap-3">
-                    {/* Large Box - AI (Left Column - 5 cols) */}
+                    {/* Large Box - AI */}
                     <CategoryBox
                         category="ai"
                         title="Artificial Intelligence"
                         icon={Brain}
                         colSpan="col-span-12 md:col-span-5"
                         height="h-[480px] md:h-[710px]"
-                        fallbackGradient="from-purple-500 to-blue-600"
+                        fallbackGradient="from-purple-400 via-pink-500 to-indigo-600"
                     />
 
-                    {/* Right Column - All Data Fields in a nested grid (7 cols) */}
+                    {/* Right Column */}
                     <div className="col-span-12 md:col-span-7 grid grid-cols-7 gap-3">
-                        {/* Row 1 */}
                         <CategoryBox
                             category="data-engineering"
                             title="Data Engineering"
                             icon={Workflow}
                             colSpan="col-span-7 md:col-span-3"
                             height="h-[170px]"
-                            fallbackGradient="from-indigo-500 to-purple-600"
+                            fallbackGradient="from-indigo-400 to-purple-500"
                         />
                         <CategoryBox
                             category="data-governance"
@@ -173,17 +167,15 @@ export default function PulsePage() {
                             icon={Database}
                             colSpan="col-span-7 md:col-span-4"
                             height="h-[170px]"
-                            fallbackGradient="from-emerald-500 to-teal-600"
+                            fallbackGradient="from-green-400 to-teal-500"
                         />
-
-                        {/* Row 2 */}
                         <CategoryBox
                             category="business-intelligence"
                             title="Business Intelligence"
                             icon={TrendingUp}
                             colSpan="col-span-7 md:col-span-3"
                             height="h-[170px]"
-                            fallbackGradient="from-blue-500 to-cyan-600"
+                            fallbackGradient="from-blue-400 to-cyan-500"
                         />
                         <CategoryBox
                             category="data-privacy"
@@ -191,17 +183,15 @@ export default function PulsePage() {
                             icon={Lock}
                             colSpan="col-span-7 md:col-span-4"
                             height="h-[170px]"
-                            fallbackGradient="from-amber-500 to-orange-600"
+                            fallbackGradient="from-amber-400 to-orange-500"
                         />
-
-                        {/* Row 3 */}
                         <CategoryBox
                             category="data-security"
                             title="Data Security"
                             icon={Shield}
                             colSpan="col-span-7 md:col-span-3"
                             height="h-[170px]"
-                            fallbackGradient="from-red-500 to-pink-600"
+                            fallbackGradient="from-red-400 to-pink-500"
                         />
                         <CategoryBox
                             category="data-centers"
@@ -211,15 +201,13 @@ export default function PulsePage() {
                             height="h-[170px]"
                             fallbackGradient="from-gray-600 to-slate-700"
                         />
-
-                        {/* Row 4 */}
                         <CategoryBox
                             category="business-analytics"
                             title="Business Analytics"
                             icon={TrendingUp}
                             colSpan="col-span-7 md:col-span-3"
                             height="h-[170px]"
-                            fallbackGradient="from-violet-500 to-purple-600"
+                            fallbackGradient="from-violet-400 to-purple-600"
                         />
                         <CategoryBox
                             category="customer-data-platform"
@@ -227,29 +215,27 @@ export default function PulsePage() {
                             icon={Database}
                             colSpan="col-span-7 md:col-span-4"
                             height="h-[170px]"
-                            fallbackGradient="from-pink-500 to-rose-600"
+                            fallbackGradient="from-pink-400 to-rose-500"
                         />
                     </div>
 
-                    {/* Bottom Row: Data Management + Cloud + Magazines */}
+                    {/* Bottom Row */}
                     <CategoryBox
                         category="data-management"
                         title="Data Management"
                         icon={Database}
                         colSpan="col-span-12 md:col-span-4"
                         height="h-[180px]"
-                        fallbackGradient="from-green-500 to-emerald-600"
+                        fallbackGradient="from-green-400 to-emerald-500"
                     />
-
                     <CategoryBox
                         category="cloud-computing"
                         title="Cloud Computing"
                         icon={Cloud}
                         colSpan="col-span-12 md:col-span-4"
                         height="h-[180px]"
-                        fallbackGradient="from-cyan-500 to-blue-600"
+                        fallbackGradient="from-cyan-400 to-blue-500"
                     />
-
                     <CategoryBox
                         category="magazines"
                         title="Tech Magazines"
@@ -269,20 +255,20 @@ export default function PulsePage() {
             </div>
 
             <style jsx>{`
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.5s ease-out;
-        }
-      `}</style>
+                @keyframes fade-in {
+                    from {
+                        opacity: 0;
+                        transform: translateY(10px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                .animate-fade-in {
+                    animation: fade-in 0.5s ease-out;
+                }
+            `}</style>
         </div>
     );
 }
