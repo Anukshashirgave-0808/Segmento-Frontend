@@ -100,24 +100,28 @@ export default function AboutPage() {
             <section className="py-16 bg-linear-to-br from-purple-50 to-indigo-50">
                 <div className="container mx-auto px-4">
                     <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">Meet Our Executive Director</h2>
-                    <div className="max-w-4xl mx-auto bg-white rounded-2xl border-4 border-[#1A1B2E] shadow-lg hover:shadow-xl p-8 md:p-12 transition-all duration-500">
-                        <div className="flex flex-col md:flex-row gap-8 items-start">
-                            <div className="shrink-0 flex flex-col items-center gap-4">
-                                <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-[#1A1B2E]">
-                                    <Image src={director.image} alt={director.name} fill className="object-cover" />
+                    <div className="relative max-w-4xl mx-auto rounded-2xl p-1">
+                        {/* Colorful gradient border */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-purple-400 via-pink-500 to-indigo-500 rounded-2xl blur opacity-60"></div>
+                        <div className="relative bg-white rounded-2xl shadow-lg p-8 md:p-12">
+                            <div className="flex flex-col md:flex-row gap-8 items-start">
+                                <div className="shrink-0 flex flex-col items-center gap-4">
+                                    <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-transparent">
+                                        <Image src={director.image} alt={director.name} fill className="object-cover" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="flex-1 text-center md:text-left">
-                                <div className="flex justify-between items-center mb-2">
-                                    <h3 className="text-2xl md:text-3xl font-bold">{director.name}</h3>
-                                    <Link href={director.linkedin} target="_blank" rel="noopener noreferrer">
-                                        <LinkedinIcon />
-                                    </Link>
+                                <div className="flex-1 text-center md:text-left">
+                                    <div className="flex justify-between items-center mb-2">
+                                        <h3 className="text-2xl md:text-3xl font-bold">{director.name}</h3>
+                                        <Link href={director.linkedin} target="_blank" rel="noopener noreferrer">
+                                            <LinkedinIcon />
+                                        </Link>
+                                    </div>
+                                    <p className="text-purple-700 font-semibold mb-4">{director.role}</p>
+                                    <p className="text-muted-foreground mb-6 leading-relaxed text-justify">
+                                        {director.bio}
+                                    </p>
                                 </div>
-                                <p className="text-[#5B2C6F] font-semibold mb-4">{director.role}</p>
-                                <p className="text-muted-foreground mb-6 leading-relaxed text-justify">
-                                    {director.bio}
-                                </p>
                             </div>
                         </div>
                     </div>
