@@ -26,7 +26,7 @@ export default function NewsletterCard({ theme, onSelect, index }: NewsletterCar
             {/* Glassmorphism Card with Gradient Background */}
             <div className={`
                 relative h-full rounded-3xl p-6 flex flex-col
-                bg-gradient-to-br ${theme.cardGradient}
+                ${theme.cardGradient}
                 backdrop-blur-md bg-opacity-90
                 shadow-xl hover:shadow-2xl
                 border border-white/30
@@ -40,10 +40,10 @@ export default function NewsletterCard({ theme, onSelect, index }: NewsletterCar
                 <div className="relative z-10 flex flex-col h-full">
                     {/* Icon - Large 3D-style with drop shadow */}
                     <div className="mb-4">
-                        <div className="w-16 h-16 flex items-center justify-center">
+                        <div className="w-16 h-16 flex items-center justify-center bg-white/20 rounded-full backdrop-blur-sm shadow-inner">
                             <Icon
-                                className={`w-14 h-14 ${theme.textColor} drop-shadow-lg`}
-                                strokeWidth={1.5}
+                                className={`w-8 h-8 ${theme.textColor} drop-shadow-md`}
+                                strokeWidth={2}
                             />
                         </div>
                     </div>
