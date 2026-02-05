@@ -76,18 +76,7 @@ export default function PricingPage() {
     return (
         <div className="min-h-screen py-20">
             {/* Hero */}
-            <section className="mb-16">
-                <div className="container mx-auto px-4">
-                    <div className="max-w-3xl mx-auto text-center">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
-                            Simple, Transparent Pricing
-                        </h1>
-                        <p className="text-lg md:text-xl text-muted-foreground">
-                            Choose the plan that fits your organization's needs
-                        </p>
-                    </div>
-                </div>
-            </section><section className="mb-16">
+          <section className="mb-16">
   <div className="container mx-auto px-4">
     <div className="max-w-4xl mx-auto text-center">
       <h1 className="
