@@ -9,6 +9,7 @@ export interface UserSubscription {
     subscribedAt: string;
     topics: string[];
     preference: string; // 'Daily', 'Weekly', etc.
+    subscriptions?: Record<string, boolean>; // New granular subscriptions
 }
 
 /**
