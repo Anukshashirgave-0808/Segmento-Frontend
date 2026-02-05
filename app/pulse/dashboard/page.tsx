@@ -110,10 +110,7 @@ export default function DashboardPage() {
                         )}
                     </div>
                 </div>
-                        )}
+            </motion.div>
         </div>
-                </div >
-            </motion.div >
-        </div >
     );
 }

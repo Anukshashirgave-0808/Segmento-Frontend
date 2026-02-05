@@ -1,4 +1,4 @@
-'use client';
+
 
 import Image from "next/image";
 import Link from "next/link";
@@ -214,21 +214,7 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            <style jsx>{`
-                @keyframes fade-in {
-                    from {
-                        opacity: 0;
-                        transform: translateY(10px);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translateY(0);
-                    }
-                }
-                .animate-fade-in {
-                    animation: fade-in 0.6s ease-out;
-                }
-            `}</style>
+
         </div>
     );
 }
