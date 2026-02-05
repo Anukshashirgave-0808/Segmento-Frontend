@@ -1,15 +1,13 @@
 'use client';
 
-<<<<<<< HEAD
+import Image from "next/image";
+import Link from "next/link";
+
 export const metadata = {
     title: "About Us - Segmento",
     description:
         "Segmento helps businesses unlock the real value of their customer data. Founded in 2025, we turn complex data into actionable insights.",
 }
-=======
-import Image from "next/image";
-import Link from "next/link";
->>>>>>> production/release/prod-update
 
 const director = {
     name: "Geetha Reddy K",
@@ -30,11 +28,7 @@ const team = [
     {
         name: "Adam Shafi",
         role: "Data and Ai Technologies Developer",
-<<<<<<< HEAD
-        bio: "Adam Shafi is a Data & AI Technologies Engineer at Segmento, focused on building intelligent, data-driven solutions that solve real-world business problems. She specializes in developing AI-powered systems and machine learning models using modern frameworks and technologies. With a strong focus on precision and innovation, he ensures every solution is scalable, efficient, and aligned with Segmento's privacy-first vision. Shafi excels at working on complex data challenges, creating intelligent automation, and delivering products that transform how enterprises handle sensitive information, driving Segmento's commitment to privacy-centric AI innovation.",
-=======
         bio: "Adam Shafi is a Data & AI Technologies Engineer at Segmento, focused on building intelligent, data-driven solutions that solve real-world business problems. He specializes in developing AI-powered systems and machine learning models using modern frameworks and technologies. With a strong focus on precision and innovation, he ensures every solution is scalable, efficient, and aligned with Segmento's privacy-first vision. Shafi excels at working on complex data challenges, creating intelligent automation, and delivering products that transform how enterprises handle sensitive information, driving Segmento's commitment to privacy-centric AI innovation.",
->>>>>>> production/release/prod-update
         image: "/images/shafi-profile.jpg",
         linkedin: "http://www.linkedin.com/in/shafisk",
     },
@@ -59,11 +53,7 @@ const team = [
         image: "/images/thejesh.png",
         linkedin: "http://www.linkedin.com/in/thejesh-naidu-4439a0304",
     },
-<<<<<<< HEAD
-]
-=======
 ];
->>>>>>> production/release/prod-update
 
 const missions = [
     {
@@ -103,11 +93,7 @@ export default function AboutPage() {
             <section className="mb-20">
                 <div className="container mx-auto px-4">
                     <div className="max-w-3xl mx-auto text-center">
-<<<<<<< HEAD
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
-=======
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-linear-to-r from-purple-600 via-indigo-600 to-pink-500 bg-clip-text text-transparent">
->>>>>>> production/release/prod-update
                             Who Are We
                         </h1>
                         <p className="text-lg md:text-xl text-muted-foreground">
@@ -117,39 +103,6 @@ export default function AboutPage() {
                 </div>
             </section>
 
-<<<<<<< HEAD
-            {/* Team Title */}
-            <section className="mb-12">
-                <div className="container mx-auto px-4">
-                    <h2 className="text-3xl md:text-4xl font-bold text-center">Our Team</h2>
-                </div>
-            </section>
-
-            {/* Director */}
-            <section className="py-16 bg-linear-to-br from-primary/5 to-purple-50">
-                <div className="container mx-auto px-4">
-                    <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
-                        Meet Our Executive Director
-                    </h2>
-                    <div className="max-w-4xl mx-auto bg-white rounded-2xl border border-border/50 shadow-xl p-8 md:p-12">
-                        <div className="flex flex-col md:flex-row gap-8 items-start">
-                            <div className="shrink-0 flex flex-col items-center gap-4">
-                                <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-primary/20">
-                                    <Image src={director.image} alt={director.name} fill className="object-cover" />
-                                </div>
-                            </div>
-                            <div className="flex-1 text-center md:text-left">
-                                <div className="flex justify-between items-center mb-2">
-                                    <h3 className="text-2xl md:text-3xl font-bold">{director.name}</h3>
-                                    <Link href={director.linkedin} target="_blank" rel="noopener noreferrer">
-                                        <LinkedinIcon />
-                                    </Link>
-                                </div>
-                                <p className="text-primary font-semibold mb-4">{director.role}</p>
-                                <p className="text-muted-foreground mb-6 leading-relaxed text-justify">
-                                    {director.bio}
-                                </p>
-=======
             {/* Director Section */}
             <section className="py-16 bg-linear-to-br from-purple-50 to-indigo-50">
                 <div className="container mx-auto px-4">
@@ -176,7 +129,6 @@ export default function AboutPage() {
                                         {director.bio}
                                     </p>
                                 </div>
->>>>>>> production/release/prod-update
                             </div>
                         </div>
                     </div>
@@ -193,27 +145,14 @@ export default function AboutPage() {
                                 className="bg-white rounded-2xl border border-purple-900 shadow-lg p-6 transition-all duration-300"
                             >
                                 <div className="flex flex-col items-center gap-4 mb-6">
-<<<<<<< HEAD
-                                    <div className="relative w-32 h-32 rounded-full overflow-hidden">
-=======
                                     <div className="relative w-32 h-32 rounded-full overflow-hidden border border-purple-800">
->>>>>>> production/release/prod-update
                                         <Image src={member.image} alt={member.name} fill className="object-cover" />
                                     </div>
                                 </div>
                                 <div className="text-center">
                                     <div className="flex justify-center items-center mb-2">
                                         <h3 className="text-xl font-bold">{member.name}</h3>
-<<<<<<< HEAD
-                                        <Link
-                                            href={member.linkedin}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="ml-2"
-                                        >
-=======
                                         <Link href={member.linkedin} target="_blank" rel="noopener noreferrer" className="ml-2">
->>>>>>> production/release/prod-update
                                             <LinkedinIcon />
                                         </Link>
                                     </div>
@@ -227,11 +166,7 @@ export default function AboutPage() {
             </section>
 
             {/* Mission & Vision */}
-<<<<<<< HEAD
-            <section className="py-16 bg-linear-to-br from-primary/5 to-purple-50">
-=======
             <section className="py-16 bg-linear-to-br from-purple-50 to-indigo-50">
->>>>>>> production/release/prod-update
                 <div className="container mx-auto px-4">
                     <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
                         {missions.map((mission) => (
@@ -240,11 +175,7 @@ export default function AboutPage() {
                                 className="bg-white rounded-2xl border-2 border-purple-400 shadow-lg p-8 transform hover:-translate-y-2 transition-all duration-500 animate-fade-in"
                             >
                                 <div className="text-5xl mb-4">{mission.icon}</div>
-<<<<<<< HEAD
-                                <h3 className="text-2xl font-bold mb-6 bg-linear-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-=======
                                 <h3 className="text-2xl font-bold mb-6 bg-linear-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent">
->>>>>>> production/release/prod-update
                                     {mission.title}
                                 </h3>
                                 <ul className="space-y-3">
