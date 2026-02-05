@@ -33,25 +33,16 @@ body {
   font-feature-settings: "rlig" 1, "calt" 1;
 }
 
-/* ---------------- HERO SOFT LAVENDER BACKGROUND ---------------- */
-/* Apply ONLY by using className="hero-lavender" */
-.hero-lavender {
-  background: radial-gradient(
-    120% 120% at 50% 0%,
-    rgba(168, 85, 247, 0.12) 0%,
-    rgba(236, 233, 255, 0.35) 45%,
-    rgba(255, 255, 255, 1) 100%
-  );
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-}
-/* --------------------------------------------------------------- */
+
 
 /* Animated grid background */
 @keyframes grid-flicker {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.4;
   }
+
   50% {
     opacity: 0.7;
   }
@@ -64,8 +55,7 @@ body {
 
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Smooth button scale on hover */
@@ -104,6 +94,7 @@ body {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -122,7 +113,7 @@ body {
   box-shadow: 0 0 20px rgba(157, 23, 160, 0.3);
 }
 
-/* Logo styles */
+/* Logo styles for optimized SVG */
 .logo-container {
   display: flex;
   align-items: center;
@@ -141,6 +132,7 @@ body {
   .logo-container {
     height: 50px;
   }
+
   .logo-image {
     max-width: 160px;
     max-height: 50px;
@@ -151,6 +143,7 @@ body {
   .logo-container {
     height: 45px;
   }
+
   .logo-image {
     max-width: 140px;
     max-height: 45px;
@@ -163,6 +156,7 @@ body {
     opacity: 0;
     transform: scale(0.8) translateY(10px);
   }
+
   100% {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -170,9 +164,12 @@ body {
 }
 
 @keyframes bot {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.1);
   }
@@ -183,6 +180,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -207,6 +205,7 @@ body {
     opacity: 0;
     transform: scale(0.9);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
