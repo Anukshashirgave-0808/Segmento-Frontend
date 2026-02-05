@@ -12,30 +12,30 @@ export const metadata = {
 
 export default function HomePage() {
     return (
-        <div className="flex flex-col bg-[#F4F0FF]"> {/* Soft Lavender background */}
-
+        <div className="flex flex-col bg-[#F4F0FF]"> {/* Soft Lavender background added */}
             {/* Hero Section */}
             <section className="relative bg-linear-to-br from-primary/5 via-purple-50 to-blue-50 py-20 md:py-32">
                 <div className="container mx-auto px-4">
                     <div className="max-w-4xl mx-auto text-center">
-                        <div className="inline-block mb-4 px-4 py-2 bg-white/80 backdrop-blur rounded-full border border-primary/20 animate-fadeInUp">
+                        <div className="inline-block mb-4 px-4 py-2 bg-white/80 backdrop-blur rounded-full border border-primary/20">
                             <p className="text-sm font-semibold text-primary">Segmento Platform</p>
                         </div>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent animate-fadeInUp delay-100">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
                             AI-Driven Solutions for Modern Enterprises
                         </h1>
-                        <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-2xl mx-auto animate-fadeInUp delay-200">
+                        <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-2xl mx-auto">
                             Segmento is a robust platform delivering cutting-edge AI products that solve real enterprise challenges. From real-time data intelligence to advanced security solutions.
                         </p>
-                        <p className="text-base text-muted-foreground mb-8 max-w-2xl mx-auto font-medium animate-fadeInUp delay-300">
+                        <p className="text-base text-muted-foreground mb-8 max-w-2xl mx-auto font-medium">
                             Explore our suite of products: <span className="text-blue-600 font-bold">Segmento Pulse</span> for intelligent news & insights, and <span className="text-primary font-bold">Segmento Sense</span> for enterprise-grade data security.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fadeInUp delay-400">
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <Link href="/products/data-classification">
                                 <Button size="lg" className="text-lg px-8">
                                     Explore Our Products <ArrowRight className="ml-2 h-5 w-5" />
                                 </Button>
                             </Link>
+                            
                             <Link href="/contact">
                                 <Button size="lg" variant="outline" className="text-lg px-8">
                                     Contact Sales
@@ -49,7 +49,7 @@ export default function HomePage() {
             {/* Value Proposition */}
             <section className="py-16 md:py-24">
                 <div className="container mx-auto px-4">
-                    <div className="text-center mb-16 animate-fadeInUp">
+                    <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Segmento?</h2>
                         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                             Built for enterprises that demand security, intelligence, and scale
@@ -57,7 +57,7 @@ export default function HomePage() {
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                        <div className="text-center p-6 animate-fadeInUp delay-100">
+                        <div className="text-center p-6">
                             <div className="inline-flex p-4 rounded-full bg-primary/10 mb-4">
                                 <Shield className="w-8 h-8 text-primary" />
                             </div>
@@ -67,7 +67,7 @@ export default function HomePage() {
                             </p>
                         </div>
 
-                        <div className="text-center p-6 animate-fadeInUp delay-200">
+                        <div className="text-center p-6">
                             <div className="inline-flex p-4 rounded-full bg-purple-100 mb-4">
                                 <Zap className="w-8 h-8 text-purple-600" />
                             </div>
@@ -77,7 +77,7 @@ export default function HomePage() {
                             </p>
                         </div>
 
-                        <div className="text-center p-6 animate-fadeInUp delay-300">
+                        <div className="text-center p-6">
                             <div className="inline-flex p-4 rounded-full bg-blue-100 mb-4">
                                 <TrendingUp className="w-8 h-8 text-blue-600" />
                             </div>
@@ -91,9 +91,9 @@ export default function HomePage() {
             </section>
 
             {/* Products Section */}
-            <section className="py-16 md:py-24 bg-linear-to-br from-primary/5 to-purple-50">
+            <section  className="py-16 md:py-24 bg-linear-to-br from-primary/5 to-purple-50">
                 <div className="container mx-auto px-4">
-                    <div className="text-center mb-12 animate-fadeInUp">
+                    <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Products</h2>
                         <p className="text-lg text-muted-foreground">
                             Powerful solutions for modern data challenges
@@ -101,8 +101,8 @@ export default function HomePage() {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-                        {/* Segmento Pulse */}
-                        <div className="bg-white rounded-2xl shadow-xl p-8 border border-border/50 hover:shadow-2xl transition-shadow animate-fadeInUp delay-100">
+                        {/* Segmento Pulse - First Product */}
+                        <div className="bg-white rounded-2xl shadow-xl p-8 border border-border/50 hover:shadow-2xl transition-shadow">
                             <div className="flex flex-col h-full">
                                 <h3 className="text-2xl md:text-3xl font-bold mb-4 bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
                                     Segmento Pulse
@@ -133,8 +133,8 @@ export default function HomePage() {
                             </div>
                         </div>
 
-                        {/* Segmento Sense */}
-                        <div className="bg-white rounded-2xl shadow-xl p-8 border border-border/50 hover:shadow-2xl transition-shadow animate-fadeInUp delay-200">
+                        {/* Data Classification (Segmento Sense) - Second Product */}
+                        <div className="bg-white rounded-2xl shadow-xl p-8 border border-border/50 hover:shadow-2xl transition-shadow">
                             <div className="flex flex-col h-full">
                                 <h3 className="text-2xl md:text-3xl font-bold mb-4">
                                     Segmento Sense
@@ -171,7 +171,7 @@ export default function HomePage() {
             {/* Stats Section */}
             <section className="py-16 md:py-24">
                 <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center animate-fadeInUp">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
                         <div>
                             <div className="text-4xl md:text-5xl font-bold text-primary mb-2">99.99%</div>
                             <div className="text-muted-foreground">Uptime SLA</div>
@@ -193,7 +193,7 @@ export default function HomePage() {
             </section>
 
             {/* CTA Section */}
-            <section className="py-16 md:py-24 bg-linear-to-r from-primary to-purple-600 text-white animate-fadeInUp">
+            <section className="py-16 md:py-24 bg-linear-to-r from-primary to-purple-600 text-white">
                 <div className="container mx-auto px-4 text-center">
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
                         Ready to Transform Your Data Security?
@@ -216,7 +216,10 @@ export default function HomePage() {
                 </div>
             </section>
 
+            {/* Pulse Side Banner - Non-intrusive Welcome */}
             <PulseSideBanner />
+
+            {/* Chatbot */}
             <Chatbot />
         </div>
     )
