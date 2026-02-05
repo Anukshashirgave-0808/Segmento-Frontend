@@ -79,7 +79,7 @@ export default function PricingPage() {
             <section className="mb-16">
                 <div className="container mx-auto px-4">
                     <div className="max-w-3xl mx-auto text-center">
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
                             Simple, Transparent Pricing
                         </h1>
                         <p className="text-lg md:text-xl text-muted-foreground">
@@ -87,7 +87,34 @@ export default function PricingPage() {
                         </p>
                     </div>
                 </div>
-            </section>
+            </section><section className="mb-16">
+  <div className="container mx-auto px-4">
+    <div className="max-w-4xl mx-auto text-center">
+      <h1 className="
+        text-4xl 
+        sm:text-5xl 
+        lg:text-6xl 
+        font-bold 
+        leading-tight 
+        mb-6
+        bg-linear-to-r 
+        from-primary 
+        via-purple-600 
+        to-blue-600 
+        bg-clip-text 
+        text-transparent
+      ">
+        Simple, Transparent<br className="hidden sm:block" />
+        Pricing
+      </h1>
+
+      <p className="text-base sm:text-lg md:text-xl text-muted-foreground">
+        Choose the plan that fits your organization&apos;s needs
+      </p>
+    </div>
+  </div>
+</section>
+
 
             {/* Pricing Tiers */}
             <section className="mb-20">
@@ -97,7 +124,7 @@ export default function PricingPage() {
                             <div
                                 key={tier.name}
                                 className={`rounded-2xl border p-8 ${tier.featured
-                                    ? "border-primary shadow-2xl scale-105 bg-gradient-to-br from-primary/5 to-purple-50"
+                                    ? "border-primary shadow-2xl scale-105 bg-linear-to-br from-primary/5 to-purple-50"
                                     : "border-border/50 bg-white shadow-lg"
                                     }`}
                             >
@@ -124,7 +151,7 @@ export default function PricingPage() {
                                 <ul className="space-y-3 mb-8">
                                     {tier.features.map((feature) => (
                                         <li key={feature} className="flex items-start gap-2">
-                                            <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                                            <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                                             <span className="text-sm">{feature}</span>
                                         </li>
                                     ))}
@@ -145,7 +172,7 @@ export default function PricingPage() {
             </section>
 
             {/* FAQ */}
-            <section className="py-16 bg-gradient-to-br from-primary/5 to-purple-50">
+            <section className="py-16 bg-linear-to-br from-primary/5 to-purple-50">
                 <div className="container mx-auto px-4">
                     <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
                         Frequently Asked Questions
