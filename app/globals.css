@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
-/* CSS Variables for theme */
-:root {
-  --color-background: #F5F0FF; /* soft lavender */
+@theme inline {
+  /* CSS Variables for theme */
+  --color-background: #ffffff;
   --color-foreground: #0a0a0a;
-  --color-card: #F5F0FF;
+  --color-card: #ffffff;
   --color-card-foreground: #0a0a0a;
-  --color-popover: #F5F0FF;
+  --color-popover: #ffffff;
   --color-popover-foreground: #0a0a0a;
   --color-primary: #9D17A0;
   --color-primary-foreground: #ffffff;
@@ -33,11 +33,16 @@ body {
   font-feature-settings: "rlig" 1, "calt" 1;
 }
 
+
+
 /* Animated grid background */
 @keyframes grid-flicker {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.4;
   }
+
   50% {
     opacity: 0.7;
   }
@@ -50,8 +55,7 @@ body {
 
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
-              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Smooth button scale on hover */
@@ -90,6 +94,7 @@ body {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -151,6 +156,7 @@ body {
     opacity: 0;
     transform: scale(0.8) translateY(10px);
   }
+
   100% {
     opacity: 1;
     transform: scale(1) translateY(0);
@@ -158,9 +164,12 @@ body {
 }
 
 @keyframes bot {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1);
   }
+
   50% {
     transform: scale(1.1);
   }
@@ -171,6 +180,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -195,6 +205,7 @@ body {
     opacity: 0;
     transform: scale(0.9);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
