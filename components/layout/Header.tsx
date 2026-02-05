@@ -11,9 +11,9 @@ export function Header() {
   const [openDropdown, setOpenDropdown] = useState<DropdownKey>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
 
-  /* TAB STYLE */
+  /* TAB STYLE - hover colors applied permanently */
   const tabStyle =
-    "px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300 text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-500 hover:shadow-md"
+    "px-5 py-2 text-sm font-medium rounded-lg transition-all duration-300 text-white bg-gradient-to-r from-purple-600 to-pink-500 shadow-md"
 
   /* DROPDOWN */
   const dropdownWrapper = "absolute left-1/2 -translate-x-1/2 pt-4"
@@ -28,7 +28,7 @@ export function Header() {
         {/* HEADER ROW */}
         <div className="flex items-center h-20">
 
-          {/* LEFT: LOGO (UNCHANGED) */}
+          {/* LEFT: LOGO */}
           <Link href="/" className="flex items-center shrink-0">
             <Image
               src="/images/logo-final.png"
@@ -39,9 +39,9 @@ export function Header() {
             />
           </Link>
 
-          {/* CENTER: NAV TABS (PERFECTLY CENTERED) */}
+          {/* CENTER: NAV TABS */}
           <div className="flex-1 hidden md:flex justify-center">
-            <nav className="flex items-center gap-2">
+            <nav className="flex items-center gap-4">
               <Link href="/" className={tabStyle}>Home</Link>
               <Link href="/about" className={tabStyle}>About</Link>
 
@@ -66,6 +66,18 @@ export function Header() {
                         className={dropdownItem}
                       >
                         Segmento Sense
+                      </Link>
+                      <Link
+                        href="/products/resolve"
+                        className={dropdownItem}
+                      >
+                        Segmento Resolve [upcoming]
+                      </Link>
+                      <Link
+                        href="/products/collect"
+                        className={dropdownItem}
+                      >
+                        Segmento Collect [upcoming]
                       </Link>
                     </div>
                   </div>
@@ -157,7 +169,7 @@ export function Header() {
             <Link
               key={label}
               href={href}
-              className="block text-center py-3 rounded-lg bg-linear-to-r from-purple-600 to-pink-600 text-white"
+              className="block text-center py-3 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white"
               onClick={() => setMobileOpen(false)}
             >
               {label}
