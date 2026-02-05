@@ -1,182 +1,161 @@
-"use client"
+'use client';
 
-import { useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
-import { ChevronDown, Menu, X } from "lucide-react"
+import { Check } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { motion } from "framer-motion"
 
-type DropdownKey = "products" | "solutions" | "resources" | null
+const tiers = [
+    {
+        name: "Starter",
+        subtitle: "For small teams getting started",
+        price: "Free",
+        features: [
+            "Up to 100GB data scanned",
+            "5 data sources",
+            "Basic PII detection",
+            "Email support",
+            "Monthly reporting",
+        ],
+    },
+    {
+        name: "Professional",
+        subtitle: "For growing organizations",
+        price: "999",
+        period: "/month",
+        featured: true,
+        features: [
+            "Up to 1TB data scanned",
+            "Unlimited data sources",
+            "Advanced AI classification",
+            "Priority support",
+            "Real-time monitoring",
+            "Custom policies",
+            "API access",
+        ],
+    },
+    {
+        name: "Enterprise",
+        subtitle: "For large-scale deployments",
+        price: "Custom",
+        features: [
+            "Unlimited data scanning",
+            "Unlimited data sources",
+            "Advanced AI + custom models",
+            "Dedicated support team",
+            "On-premise deployment",
+            "SLA guarantee",
+            "Custom integrations",
+            "Training & onboarding",
+        ],
+    },
+]
 
-export function Header() {
-  const [openDropdown, setOpenDropdown] = useState<DropdownKey>(null)
-  const [mobileOpen, setMobileOpen] = useState(false)
+const faqs = [
+    {
+        q: "Can I change plans later?",
+        a: "Yes, you can upgrade or downgrade your plan at any time. Changes take effect at the start of your next billing cycle.",
+    },
+    {
+        q: "What payment methods do you accept?",
+        a: "We accept all major credit cards, ACH transfers, and wire transfers for enterprise customers.",
+    },
+    {
+        q: "Is there a free trial?",
+        a: "Yes! We offer a 14-day free trial for all plans. No credit card required to start.",
+    },
+    {
+        q: "What happens if I exceed my data limit?",
+        a: "We'll notify you when you approach your limit. You can upgrade your plan or purchase additional capacity.",
+    },
+]
 
-  /* TAB STYLE - hover colors applied permanently */
-  const tabStyle =
-    "px-5 py-2 text-sm font-medium rounded-lg transition-all duration-300 text-white bg-gradient-to-r from-purple-600 to-pink-500 shadow-md"
-
-  /* DROPDOWN */
-  const dropdownWrapper = "absolute left-1/2 -translate-x-1/2 pt-4"
-  const dropdownBox =
-    "w-64 rounded-xl bg-gradient-to-br from-purple-700 via-fuchsia-600 to-pink-600 shadow-2xl border border-white/20 overflow-hidden"
-  const dropdownItem =
-    "block px-5 py-3 text-sm text-white/90 hover:bg-white/10 transition-all"
-
-  return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* HEADER ROW */}
-        <div className="flex items-center h-20">
-
-          {/* LEFT: LOGO */}
-          <Link href="/" className="flex items-center shrink-0">
-            <Image
-              src="/images/logo-final.png"
-              alt="Segmento"
-              width={220}
-              height={70}
-              priority
-            />
-          </Link>
-
-          {/* CENTER: NAV TABS */}
-          <div className="flex-1 hidden md:flex justify-center">
-            <nav className="flex items-center gap-4">
-              <Link href="/" className={tabStyle}>Home</Link>
-              <Link href="/about" className={tabStyle}>About</Link>
-
-              {/* PRODUCTS */}
-              <div
-                className="relative"
-                onMouseEnter={() => setOpenDropdown("products")}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <button className={`${tabStyle} flex items-center gap-1`}>
-                  Products <ChevronDown size={14} />
-                </button>
-
-                {openDropdown === "products" && (
-                  <div className={dropdownWrapper}>
-                    <div className={dropdownBox}>
-                      <Link href="/pulse" className={dropdownItem}>
-                        Segmento Pulse
-                      </Link>
-                      <Link
-                        href="/products/data-classification"
-                        className={dropdownItem}
-                      >
-                        Segmento Sense
-                      </Link>
-                      <Link
-                        href="/products/resolve"
-                        className={dropdownItem}
-                      >
-                        Segmento Resolve [upcoming]
-                      </Link>
-                      <Link
-                        href="/products/collect"
-                        className={dropdownItem}
-                      >
-                        Segmento Collect [upcoming]
-                      </Link>
+export default function PricingPage() {
+    return (
+        <div className="min-h-screen py-20 bg-gray-50/50">
+            {/* Hero */}
+            <section className="mb-16">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
+                            Simple, Transparent<br className="hidden sm:block" />
+                            Pricing
+                        </h1>
+                        <p className="text-base sm:text-lg md:text-xl text-muted-foreground">
+                            Choose the plan that fits your organization&apos;s needs
+                        </p>
                     </div>
-                  </div>
-                )}
-              </div>
+                </div>
+            </section>
 
-              {/* SOLUTIONS */}
-              <div
-                className="relative"
-                onMouseEnter={() => setOpenDropdown("solutions")}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <button className={`${tabStyle} flex items-center gap-1`}>
-                  Solutions <ChevronDown size={14} />
-                </button>
+            {/* Pricing Tiers */}
+            <section className="mb-20">
+                <div className="container mx-auto px-4">
+                    <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
+                        {tiers.map((tier) => (
+                            <motion.div
+                                key={tier.name}
+                                whileHover={{ scale: 1.05 }}
+                                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                className={`group relative rounded-3xl border p-8 transition-all duration-300 cursor-pointer bg-white flex flex-col h-full
+                                    ${tier.featured 
+                                        ? "border-purple-500 shadow-[0_20px_50px_rgba(147,51,234,0.15)] ring-2 ring-purple-500/20 z-10" 
+                                        : "border-transparent shadow-xl hover:border-purple-500 hover:shadow-[0_20px_50px_rgba(147,51,234,0.15)] hover:ring-2 hover:ring-purple-500/20"
+                                    }`}
+                            >
+                                {tier.featured && (
+                                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-purple-600 text-white text-sm font-bold shadow-lg z-20">
+                                        Most Popular
+                                    </div>
+                                )}
+                                
+                                <div className="mb-6">
+                                    <h3 className="text-2xl font-bold mb-2 group-hover:text-purple-600 transition-colors">{tier.name}</h3>
+                                    <p className="text-muted-foreground text-sm">{tier.subtitle}</p>
+                                </div>
 
-                {openDropdown === "solutions" && (
-                  <div className={dropdownWrapper}>
-                    <div className={dropdownBox}>
-                      {[
-                        ["ecommerce", "eCommerce"],
-                        ["finance", "Finance"],
-                        ["healthcare", "Healthcare"],
-                        ["higher-education", "Higher Education"],
-                        ["manufacturing", "Manufacturing"],
-                        ["telecommunication", "Telecommunication"],
-                        ["media", "Media"],
-                        ["banking", "Banking"],
-                      ].map(([id, label]) => (
-                        <Link
-                          key={id}
-                          href={`/solutions#${id}`}
-                          className={dropdownItem}
-                        >
-                          {label}
-                        </Link>
-                      ))}
+                                <div className="mb-8">
+                                    {tier.price === "Custom" || tier.price === "Free" ? (
+                                        <div className="text-5xl font-extrabold tracking-tight">{tier.price}</div>
+                                    ) : (
+                                        <div className="flex items-baseline">
+                                            <span className="text-3xl font-bold text-gray-400">$</span>
+                                            <span className="text-6xl font-extrabold tracking-tight">{tier.price}</span>
+                                            <span className="text-muted-foreground ml-2 font-medium">{tier.period}</span>
+                                        </div>
+                                    )}
+                                </div>
+
+                                <ul className="space-y-4 mb-10 flex-grow">
+                                    {tier.features.map((feature) => (
+                                        <li key={feature} className="flex items-start gap-3">
+                                            <div className="mt-1 rounded-full bg-purple-100 p-0.5 group-hover:bg-purple-600 transition-colors">
+                                                <Check className="w-4 h-4 text-purple-600 group-hover:text-white transition-colors" />
+                                            </div>
+                                            <span className="text-sm font-medium text-gray-600">{feature}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+
+                                <div className="mt-auto">
+                                    <Link href="/contact">
+                                        <Button
+                                            className={`w-full py-6 text-lg font-bold rounded-xl transition-all duration-300 border-none
+                                                ${tier.featured 
+                                                    ? "bg-purple-600 hover:bg-purple-700 text-white shadow-md shadow-purple-200" 
+                                                    : "bg-gray-100 hover:bg-purple-600 hover:text-white text-gray-900"
+                                                }`}
+                                            variant="default"
+                                        >
+                                            {tier.price === "Custom" ? "Contact Sales" : "Get Started"}
+                                        </Button>
+                                    </Link>
+                                </div>
+                            </motion.div>
+                        ))}
                     </div>
-                  </div>
-                )}
-              </div>
-
-              {/* RESOURCES */}
-              <div
-                className="relative"
-                onMouseEnter={() => setOpenDropdown("resources")}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <button className={`${tabStyle} flex items-center gap-1`}>
-                  Resources <ChevronDown size={14} />
-                </button>
-
-                {openDropdown === "resources" && (
-                  <div className={dropdownWrapper}>
-                    <div className={dropdownBox}>
-                      <Link href="/blog" className={dropdownItem}>
-                        Blog
-                      </Link>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <Link href="/pricing" className={tabStyle}>Pricing</Link>
-              <Link href="/careers" className={tabStyle}>Careers</Link>
-              <Link href="/contact" className={tabStyle}>Contact</Link>
-            </nav>
-          </div>
-
-          {/* RIGHT: MOBILE BUTTON */}
-          <div className="flex justify-end md:hidden">
-            <button onClick={() => setMobileOpen(!mobileOpen)}>
-              {mobileOpen ? <X /> : <Menu />}
-            </button>
-          </div>
+                </div>
+            </section>
         </div>
-      </div>
-
-      {/* MOBILE MENU */}
-      {mobileOpen && (
-        <div className="md:hidden bg-gray-950 px-6 py-6 space-y-3">
-          {[
-            ["Home", "/"],
-            ["About", "/about"],
-            ["Pricing", "/pricing"],
-            ["Careers", "/careers"],
-            ["Contact", "/contact"],
-          ].map(([label, href]) => (
-            <Link
-              key={label}
-              href={href}
-              className="block text-center py-3 rounded-lg bg-gradient-to-r from-purple-600 to-pink-600 text-white"
-              onClick={() => setMobileOpen(false)}
-            >
-              {label}
-            </Link>
-          ))}
-        </div>
-      )}
-    </header>
-  )
+    )
 }
