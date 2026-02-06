@@ -13,7 +13,7 @@ export function Header() {
 
   /* TAB STYLE - hover colors applied permanently */
   const tabStyle =
-    "px-5 py-2 text-sm font-medium rounded-lg transition-all duration-300 text-white bg-gradient-to-r from-purple-600 to-pink-500 shadow-md"
+    "px-5 py-2 text-sm font-medium transition-all duration-300 text-white bg-gradient-to-r from-purple-600 to-pink-500 shadow-md"
 
   /* DROPDOWN STYLES */
   const dropdownWrapper = "absolute left-1/2 -translate-x-1/2 pt-4"
