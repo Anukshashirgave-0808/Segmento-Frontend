@@ -3,7 +3,7 @@
 import Link from "next/link"
 import { Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
+import { motion, easeOut } from "framer-motion"
 
 const tiers = [
     {
@@ -70,6 +70,14 @@ const faqs = [
     },
 ]
 
+// FAQ Animation Variants
+const faqFadeUp = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.6, ease: easeOut }
+}
+
 export default function PricingPage() {
     return (
         <div className="min-h-screen py-20 bg-gray-50/50">
@@ -91,13 +99,13 @@ export default function PricingPage() {
             {/* Pricing Tiers */}
             <section className="mb-20">
                 <div className="container mx-auto px-4">
-                    <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
+                    <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
                         {tiers.map((tier) => (
                             <motion.div
                                 key={tier.name}
                                 whileHover={{ scale: 1.05 }}
                                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                                className={`group relative rounded-3xl border p-8 transition-all duration-300 cursor-pointer bg-white
+                                className={`group relative rounded-3xl border p-8 transition-all duration-300 cursor-pointer bg-white flex flex-col h-full
                                     ${tier.featured 
                                         ? "border-purple-500 shadow-[0_20px_50px_rgba(147,51,234,0.15)] ring-2 ring-purple-500/20" 
                                         : "border-transparent shadow-xl hover:border-purple-500 hover:shadow-[0_20px_50px_rgba(147,51,234,0.15)] hover:ring-2 hover:ring-purple-500/20"
@@ -126,7 +134,7 @@ export default function PricingPage() {
                                     )}
                                 </div>
 
-                                <ul className="space-y-4 mb-10">
+                                <ul className="space-y-4 mb-10 flex-1">
                                     {tier.features.map((feature) => (
                                         <li key={feature} className="flex items-start gap-3">
                                             <div className="mt-1 rounded-full bg-purple-100 p-0.5 group-hover:bg-purple-600 transition-colors">
@@ -137,7 +145,7 @@ export default function PricingPage() {
                                     ))}
                                 </ul>
 
-                                <Link href="/contact">
+                                <Link href="/contact" className="mt-auto">
                                     <Button
                                         className={`w-full py-6 text-lg font-bold rounded-xl transition-all duration-300 border-none
                                             ${tier.featured 
@@ -162,11 +170,21 @@ export default function PricingPage() {
                         Frequently Asked Questions
                     </h2>
                     <div className="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
-                        {faqs.map((faq) => (
-                            <div key={faq.q} className="group p-2">
+                        {faqs.map((faq, index) => (
+                            <motion.div
+                                key={faq.q}
+                                initial="initial"
+                                whileInView="whileInView"
+                                viewport={{ once: true }}
+                                variants={{
+                                    initial: { opacity: 0, y: 20 },
+                                    whileInView: { opacity: 1, y: 0, transition: { duration: 0.6, delay: index * 0.1, ease: easeOut } }
+                                }}
+                                className="group p-2"
+                            >
                                 <h3 className="font-bold text-lg mb-3 group-hover:text-purple-600 transition-colors">{faq.q}</h3>
                                 <p className="text-muted-foreground leading-relaxed">{faq.a}</p>
-                            </div>
+                            </motion.div>
                         ))}
                     </div>
                 </div>

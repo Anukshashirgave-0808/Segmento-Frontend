@@ -5,14 +5,34 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Shield, Zap, TrendingUp, CheckCircle } from "lucide-react"
 import Chatbot from "./chatbot"
 import PulseSideBanner from "@/components/PulseSideBanner"
-import { motion } from "framer-motion"
+import { motion, easeOut, easeInOut } from "framer-motion"
+
+// --- Page Metadata ---
+export const metadata = {
+    title: "Segmento | Secure Data. Smarter Insights.",
+    description: "Segmento provides enterprise-grade AI-driven solutions for data intelligence and security. Explore Segmento Pulse for real-time insights and Segmento Sense for enterprise data protection."
+}
 
 // Animation Variants
 const fadeInUp = {
     initial: { opacity: 0, y: 20 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true },
-    transition: { duration: 0.6 }
+    transition: { duration: 0.6, ease: easeOut }
+}
+
+const fadeInLeft = {
+    initial: { opacity: 0, x: -30 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.6, ease: easeOut }
+}
+
+const fadeInRight = {
+    initial: { opacity: 0, x: 30 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.6, ease: easeOut }
 }
 
 const staggerContainer = {
@@ -31,22 +51,51 @@ export default function HomePage() {
                     <motion.div 
                         initial={{ opacity: 0, y: 30 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        transition={{ duration: 0.8, ease: easeOut }}
                         className="max-w-4xl mx-auto text-center"
                     >
-                        <div className="inline-block mb-4 px-4 py-2 bg-white/80 backdrop-blur rounded-full border border-primary/20">
+                        <motion.div 
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.6, delay: 0.1, ease: easeOut }}
+                            className="inline-block mb-4 px-4 py-2 bg-white/80 backdrop-blur rounded-full border border-primary/20"
+                        >
                             <p className="text-sm font-semibold text-primary">Segmento Platform</p>
-                        </div>
-                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
+                        </motion.div>
+
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.2, ease: easeOut }}
+                            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent"
+                        >
                             AI-Driven Solutions for Modern Enterprises
-                        </h1>
-                        <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-2xl mx-auto">
+                        </motion.h1>
+
+                        <motion.p 
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.3, ease: easeOut }}
+                            className="text-lg md:text-xl text-muted-foreground mb-4 max-w-2xl mx-auto"
+                        >
                             Segmento is a robust platform delivering cutting-edge AI products that solve real enterprise challenges. From real-time data intelligence to advanced security solutions.
-                        </p>
-                        <p className="text-base text-muted-foreground mb-8 max-w-2xl mx-auto font-medium">
+                        </motion.p>
+
+                        <motion.p
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.4, ease: easeOut }}
+                            className="text-base text-muted-foreground mb-8 max-w-2xl mx-auto font-medium"
+                        >
                             Explore our suite of products: <span className="text-blue-600 font-bold">Segmento Pulse</span> for intelligent news & insights, and <span className="text-primary font-bold">Segmento Sense</span> for enterprise-grade data security.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        </motion.p>
+
+                        <motion.div 
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.5, ease: easeOut }}
+                            className="flex flex-col sm:flex-row gap-4 justify-center"
+                        >
                             <Link href="/products/data-classification">
                                 <Button size="lg" className="text-lg px-8">
                                     Explore Our Products <ArrowRight className="ml-2 h-5 w-5" />
@@ -58,7 +107,7 @@ export default function HomePage() {
                                     Contact Sales
                                 </Button>
                             </Link>
-                        </div>
+                        </motion.div>
                     </motion.div>
                 </div>
             </section>
@@ -66,10 +115,7 @@ export default function HomePage() {
             {/* Value Proposition */}
             <section className="py-16 md:py-24">
                 <div className="container mx-auto px-4">
-                    <motion.div 
-                        {...fadeInUp}
-                        className="text-center mb-16"
-                    >
+                    <motion.div {...fadeInUp} className="text-center mb-16">
                         <h2 className="text-3xl md:text-4xl font-bold mb-4">Why Choose Segmento?</h2>
                         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
                             Built for enterprises that demand security, intelligence, and scale
@@ -83,12 +129,12 @@ export default function HomePage() {
                         viewport={{ once: true }}
                         className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto"
                     >
-                        {[
+                        {[ 
                             { icon: Shield, title: "Privacy-First Architecture", desc: "Built with security and compliance at the core. GDPR, HIPAA, SOC2 ready from day one.", color: "bg-primary/10", iconCol: "text-primary" },
                             { icon: Zap, title: "AI-Native Intelligence", desc: "Machine learning models that understand your data context, not just patterns.", color: "bg-purple-100", iconCol: "text-purple-600" },
                             { icon: TrendingUp, title: "Enterprise Scale", desc: "Process millions of data points per second with sub-100ms latency.", color: "bg-blue-100", iconCol: "text-blue-600" }
                         ].map((item, i) => (
-                            <motion.div key={i} variants={fadeInUp} className="text-center p-6">
+                            <motion.div key={i} variants={fadeInUp} whileHover={{ y: -5 }} className="text-center p-6 transition-transform duration-300">
                                 <div className={`inline-flex p-4 rounded-full ${item.color} mb-4`}>
                                     <item.icon className={`w-8 h-8 ${item.iconCol}`} />
                                 </div>
@@ -113,10 +159,8 @@ export default function HomePage() {
                     <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
                         {/* Segmento Pulse */}
                         <motion.div 
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
+                            {...fadeInLeft}
+                            whileHover={{ scale: 1.02 }}
                             className="bg-white rounded-2xl shadow-xl p-8 border border-border/50 hover:shadow-2xl transition-shadow"
                         >
                             <div className="flex flex-col h-full">
@@ -151,10 +195,8 @@ export default function HomePage() {
 
                         {/* Segmento Sense */}
                         <motion.div 
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6 }}
+                            {...fadeInRight}
+                            whileHover={{ scale: 1.02 }}
                             className="bg-white rounded-2xl shadow-xl p-8 border border-border/50 hover:shadow-2xl transition-shadow"
                         >
                             <div className="flex flex-col h-full">
@@ -200,13 +242,13 @@ export default function HomePage() {
                         viewport={{ once: true }}
                         className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center"
                     >
-                        {[
+                        {[ 
                             { val: "99.99%", lab: "Uptime SLA", col: "text-primary" },
                             { val: "1M+", lab: "Records/Second", col: "text-purple-600" },
                             { val: "95%", lab: "AI Accuracy", col: "text-blue-600" },
                             { val: "Zero", lab: "Data Breaches", col: "text-green-600" }
                         ].map((stat, i) => (
-                            <motion.div key={i} variants={fadeInUp}>
+                            <motion.div key={i} variants={fadeInUp} whileHover={{ scale: 1.05 }} className="transition-transform duration-300">
                                 <div className={`text-4xl md:text-5xl font-bold ${stat.col} mb-2`}>{stat.val}</div>
                                 <div className="text-muted-foreground">{stat.lab}</div>
                             </motion.div>
@@ -218,10 +260,9 @@ export default function HomePage() {
             {/* CTA Section */}
             <section className="py-16 md:py-24 bg-linear-to-r from-primary to-purple-600 text-white overflow-hidden">
                 <motion.div 
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.7 }}
+                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ duration: 0.7, ease: easeInOut }}
                     className="container mx-auto px-4 text-center"
                 >
                     <h2 className="text-3xl md:text-4xl font-bold mb-4">
