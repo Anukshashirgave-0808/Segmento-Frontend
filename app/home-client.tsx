@@ -38,42 +38,57 @@ export default function HomePage() {
         <div className="flex flex-col bg-[#F4F0FF]">
             {/* Hero Section */}
            <section
-  className="relative py-20 md:py-32 overflow-hidden
-             bg-[url('/image/hero-bg.png')] bg-cover bg-center"
+  className="relative py-20 md:py-32 overflow-hidden bg-cover bg-center"
+  style={{
+    backgroundImage: "url('/image/hero-bg.png')",
+  }}
 >
-  {/* Overlay for readability */}
-  <div className="absolute inset-0 bg-white/70 backdrop-blur-sm"></div>
+  {/* Gradient overlay for readability */}
+  <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-purple-50/80 to-blue-50/80 backdrop-blur-sm" />
 
   <div className="relative container mx-auto px-4">
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: 0.8 }}   // ✅ FIXED (no ease)
       className="max-w-4xl mx-auto text-center"
     >
-      <div className="inline-block mb-4 px-4 py-2 bg-white/80 rounded-full border border-primary/20">
-        <p className="text-sm font-semibold text-primary">Segmento Platform</p>
+      <div className="inline-block mb-4 px-4 py-2 bg-white/80 backdrop-blur rounded-full border border-primary/20">
+        <p className="text-sm font-semibold text-primary">
+          Segmento Platform
+        </p>
       </div>
 
-      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6
-                     bg-linear-to-r from-primary via-purple-600 to-blue-600
-                     bg-clip-text text-transparent">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
         AI-Driven Solutions for Modern Enterprises
       </h1>
 
       <p className="text-lg md:text-xl text-muted-foreground mb-4 max-w-2xl mx-auto">
-        Segmento is a robust platform delivering cutting-edge AI products that solve real enterprise challenges.
+        Segmento is a robust platform delivering cutting-edge AI products that
+        solve real enterprise challenges. From real-time data intelligence to
+        advanced security solutions.
       </p>
 
       <p className="text-base text-muted-foreground mb-8 max-w-2xl mx-auto font-medium">
-        Explore our suite of products:
-        <span className="text-blue-600 font-bold"> Segmento Pulse</span> &
-        <span className="text-primary font-bold"> Segmento Sense</span>
+        Explore our suite of products:{" "}
+        <span className="text-blue-600 font-bold">
+          Segmento Pulse
+        </span>{" "}
+        for intelligent news & insights, and{" "}
+        <span className="text-primary font-bold">
+          Segmento Sense
+        </span>{" "}
+        for enterprise-grade data security.
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button size="lg" className="text-lg px-8" onClick={scrollToProducts}>
-          Explore Our Products <ArrowRight className="ml-2 h-5 w-5" />
+        <Button
+          size="lg"
+          className="text-lg px-8"
+          onClick={scrollToProducts}
+        >
+          Explore Our Products
+          <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
 
         <Link href="/contact">
