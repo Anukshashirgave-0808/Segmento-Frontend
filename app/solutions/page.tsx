@@ -1,7 +1,7 @@
 'use client'
 
 import Link from "next/link"
-import { ShoppingCart, Building2, Heart, GraduationCap, Factory, Radio } from "lucide-react"
+import { ShoppingCart, Building2, Heart, GraduationCap, Factory, Radio, Tv, CreditCard } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { motion, Variants, easeOut } from "framer-motion"
 
@@ -115,10 +115,47 @@ const industries = [
       { title: "Compliance Automation", desc: "Meet regional telecom regulations automatically" },
     ],
   },
+  // New Industry: Media
+  {
+    id: "media",
+    icon: Tv,
+    title: "Media",
+    intro: "Secure media assets and user data across platforms",
+    challenges: [
+      "Protecting intellectual property and copyrights",
+      "Managing subscriber information and preferences",
+      "Preventing piracy and unauthorized distribution",
+      "Ensuring compliance with media regulations",
+    ],
+    solutions: [
+      { title: "Content Protection", desc: "Encrypt and classify media files to prevent unauthorized access" },
+      { title: "Subscriber Data Security", desc: "Secure PII across subscriptions and platforms" },
+      { title: "Piracy Prevention", desc: "Real-time monitoring and alerts for unauthorized usage" },
+      { title: "Regulatory Compliance", desc: "Ensure adherence to regional media laws and guidelines" },
+    ],
+  },
+  // New Industry: Banking
+  {
+    id: "banking",
+    icon: CreditCard,
+    title: "Banking",
+    intro: "Protect sensitive financial and customer information in banks",
+    challenges: [
+      "Securing account and transaction data",
+      "Preventing fraud and cyber attacks",
+      "Complying with banking regulations",
+      "Ensuring real-time monitoring of financial operations",
+    ],
+    solutions: [
+      { title: "Account Security", desc: "Encrypt and classify all sensitive banking data" },
+      { title: "Fraud Detection", desc: "AI-powered alerts for unusual transactions" },
+      { title: "Regulatory Compliance", desc: "Automated monitoring for banking standards" },
+      { title: "Transaction Monitoring", desc: "Real-time visibility into all banking operations" },
+    ],
+  },
 ]
 
 export default function SolutionsPage() {
-  // Framer Motion animation variants
   const cardVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
