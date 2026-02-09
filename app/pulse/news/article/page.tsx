@@ -9,7 +9,7 @@ import ArticleInteraction from '@/components/pulse/ArticleInteraction';
 import CommentSection from '@/components/pulse/CommentSection';
 import ViewCounter from '@/components/pulse/ViewCounter';
 import { incrementArticleView } from '@/lib/pulse/analytics';
-import AudioPlayer from '@/components/pulse/AudioPlayer';
+import AudioSummaryButton from '@/components/pulse/AudioSummaryButton';
 
 export const dynamic = 'force-dynamic';
 
@@ -106,20 +106,15 @@ function ArticleContent() {
                             <ExternalLink className="w-4 h-4" />
                         </a>
 
-                        {/* Audio Player Integration */}
-                        <div className="w-full max-w-md bg-gray-50 p-4 rounded-xl border border-gray-200">
-                            <div className="text-center mb-2 text-sm font-medium text-gray-500">Listen to Summary</div>
-                            <div className="flex justify-center">
-                                <AudioPlayer
-                                    articleId={id || url}
-                                    articleUrl={url}
-                                    initialAudioUrl={searchParams.get('audio_url') || undefined}
-                                    title={title}
-                                    image={image}
-                                    category={category}
-                                />
-                            </div>
-                        </div>
+                        {/* Audio Summary Button */}
+                        <AudioSummaryButton
+                            articleId={id || url}
+                            articleUrl={url}
+                            initialAudioUrl={searchParams.get('audio_url') || undefined}
+                            title={title}
+                            image={image}
+                            category={category}
+                        />
                     </div>
 
                     <ArticleInteraction
