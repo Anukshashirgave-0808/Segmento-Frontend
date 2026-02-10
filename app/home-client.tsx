@@ -41,8 +41,8 @@ export default function HomePage() {
   <div className="absolute inset-0 bg-linear-to-br from-white/80 via-purple-50/80 to-blue-50/80 backdrop-blur-sm" />
 
   <div className="relative container mx-auto px-6">
-    {/* Reduced gap */}
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+    {/* Reduced gap between sections */}
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 items-center">
 
       {/* LEFT SECTION */}
       <motion.div
@@ -50,9 +50,9 @@ export default function HomePage() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: false, amount: 0.4 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="lg:pl-10"
+        className="pl-6 sm:pl-10 lg:pl-16"
       >
-        {/* Headline – spacing fixed */}
+        {/* Headline */}
         <h1 className="text-4xl md:text-5xl xl:text-6xl font-extrabold leading-tight">
           <span className="block text-black mb-1">
             AI-Driven
@@ -62,7 +62,7 @@ export default function HomePage() {
             Solutions for
           </span>
 
-          <span className="block bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">
+          <span className="block bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent mb-1">
             Modern
           </span>
 
@@ -78,7 +78,7 @@ export default function HomePage() {
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: false, amount: 0.4 }}
         transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
-        className="max-w-xl"
+        className="max-w-xl -ml-2 sm:-ml-4"
       >
         {/* Segmento Platform Badge */}
         <motion.div
