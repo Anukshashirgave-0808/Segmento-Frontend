@@ -41,15 +41,16 @@ export default function HomePage() {
   <div className="absolute inset-0 bg-linear-to-br from-white/80 via-purple-50/80 to-blue-50/80 backdrop-blur-sm" />
 
   <div className="relative container mx-auto px-6">
-    {/* reduced gap from 16 → 10 */}
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+    {/* slightly reduced gap */}
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
 
       {/* LEFT SECTION */}
       <motion.div
-        initial={{ opacity: 0, x: -70 }}
-        animate={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, x: -120 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: false, amount: 0.4 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
-        className="lg:pl-10"   // ✅ added left spacing
+        className="lg:pl-20 xl:pl-28"   // ✅ more left spacing
       >
         <h1 className="text-4xl md:text-5xl xl:text-6xl font-extrabold leading-snug">
           <span className="block text-black">
@@ -63,10 +64,11 @@ export default function HomePage() {
 
       {/* RIGHT SECTION */}
       <motion.div
-        initial={{ opacity: 0, x: 70 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
-        className="max-w-xl lg:pr-10"  // ✅ added right spacing
+        initial={{ opacity: 0, x: 120 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: false, amount: 0.4 }}
+        transition={{ duration: 0.9, ease: "easeOut", delay: 0.1 }}
+        className="max-w-xl lg:pr-20 xl:pr-28" // ✅ more right spacing
       >
         {/* Segmento Platform Badge */}
         <motion.div
@@ -80,6 +82,7 @@ export default function HomePage() {
           </p>
         </motion.div>
 
+        {/* Small Heading */}
         <div className="flex items-center gap-3 mb-4">
           <span className="h-0.5 w-10 bg-primary" />
           <h3 className="text-lg font-semibold text-primary">
@@ -87,6 +90,7 @@ export default function HomePage() {
           </h3>
         </div>
 
+        {/* Description */}
         <p className="text-lg text-muted-foreground mb-4">
           Segmento is a robust platform delivering cutting-edge AI products that
           solve real enterprise challenges. From real-time data intelligence to
@@ -105,6 +109,7 @@ export default function HomePage() {
           for enterprise-grade data security.
         </p>
 
+        {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4">
           <Button
             size="lg"
@@ -132,6 +137,7 @@ export default function HomePage() {
 </section>
 
 
+      
 
 
       {/* Value Proposition */}
