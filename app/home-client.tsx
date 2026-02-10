@@ -50,14 +50,28 @@ export default function HomePage() {
         transition={{ duration: 0.9, ease: "easeOut" }}
       >
         {/* Headline (reduced & adjusted) */}
-        <h1 className="text-4xl md:text-5xl xl:text-6xl font-extrabold leading-snug">
-          <span className="block text-black">
-            AI-Driven
-          </span>
-          <span className="block bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
-            Solutions for Modern Enterprises
-          </span>
-        </h1>
+       <h1 className="text-4xl md:text-5xl xl:text-6xl font-extrabold leading-snug">
+  {/* Line 1 */}
+  <span className="block text-black">
+    AI-Driven
+  </span>
+
+  {/* Space before “Solutions for” */}
+  <span className="block mt-6 bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
+    Solutions for
+  </span>
+
+  {/* Line 3 (no extra gap here) */}
+  <span className="block bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
+    Modern
+  </span>
+
+  {/* Space before “Enterprises” */}
+  <span className="block mt-6 bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
+    Enterprises
+  </span>
+</h1>
+
       </motion.div>
 
       {/* RIGHT SECTION */}
