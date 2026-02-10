@@ -41,31 +41,32 @@ export default function HomePage() {
   <div className="absolute inset-0 bg-linear-to-br from-white/80 via-purple-50/80 to-blue-50/80 backdrop-blur-sm" />
 
   <div className="relative container mx-auto px-6">
-    {/* Reduced gap here */}
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+    {/* Reduced gap */}
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
 
       {/* LEFT SECTION */}
       <motion.div
-        initial={{ opacity: 0, x: -70 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.9, ease: "easeOut" }}
-        className="lg:pl-12"   // 👈 left spacing added
+        initial={{ opacity: 0, x: -80 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: false, amount: 0.4 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="lg:pl-10"
       >
-        {/* Headline */}
-        <h1 className="text-4xl md:text-5xl xl:text-6xl font-extrabold leading-snug">
-          <span className="block text-black">
+        {/* Headline – spacing fixed */}
+        <h1 className="text-4xl md:text-5xl xl:text-6xl font-extrabold leading-tight">
+          <span className="block text-black mb-1">
             AI-Driven
           </span>
 
-          <span className="block bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
+          <span className="block bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent mb-1">
             Solutions for
           </span>
 
-          <span className="block bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
+          <span className="block bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent mb-4">
             Modern
           </span>
 
-          <span className="block mt-6 bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
+          <span className="block bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
             Enterprises
           </span>
         </h1>
@@ -73,16 +74,16 @@ export default function HomePage() {
 
       {/* RIGHT SECTION */}
       <motion.div
-        initial={{ opacity: 0, x: 70 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.9, ease: "easeOut", delay: 0.15 }}
+        initial={{ opacity: 0, x: 80 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: false, amount: 0.4 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
         className="max-w-xl"
       >
-        {/* Badge */}
+        {/* Segmento Platform Badge */}
         <motion.div
-          initial={{ y: 0 }}
           animate={{ y: [0, -6, 0] }}
-          transition={{ duration: 1.2, repeat: Infinity }}
+          transition={{ duration: 1.4, repeat: Infinity }}
           className="inline-block mb-6 px-4 py-2 bg-white/80 backdrop-blur rounded-full border border-primary/20"
         >
           <p className="text-sm font-semibold text-primary">
@@ -90,7 +91,7 @@ export default function HomePage() {
           </p>
         </motion.div>
 
-        {/* Small Heading */}
+        {/* Sub heading */}
         <div className="flex items-center gap-3 mb-4">
           <span className="h-0.5 w-10 bg-primary" />
           <h3 className="text-lg font-semibold text-primary">
@@ -115,13 +116,8 @@ export default function HomePage() {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4">
-          <Button
-            size="lg"
-            className="text-lg px-8"
-            onClick={scrollToProducts}
-          >
+          <Button size="lg" className="text-lg px-8">
             Explore Our Products
-            <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
 
           <Link href="/contact">
