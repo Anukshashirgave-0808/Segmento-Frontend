@@ -284,12 +284,29 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
                     ))}
 
                     {/* Get back to Segmento button - Enhanced */}
-                    <Link
-                        href="/"
-                        className="ml-2 px-4 py-2 text-sm font-medium bg-linear-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-lg transition-all duration-300 shadow-sm hover:shadow-lg hover:shadow-purple-500/30 hover:scale-105 active:scale-95"
-                    >
-                        Get back to Segmento
-                    </Link>
+                  <Link
+    href="/"
+    className="
+        ml-0 lg:ml-2
+        w-full lg:w-auto
+        px-3 lg:px-4
+        py-2
+        text-xs sm:text-sm
+        font-medium
+        text-center
+        bg-linear-to-r from-indigo-600 to-purple-600
+        hover:from-indigo-700 hover:to-purple-700
+        text-white
+        rounded-lg
+        transition-all duration-300
+        shadow-sm
+        hover:shadow-lg hover:shadow-purple-500/30
+        hover:scale-105 active:scale-95
+    "
+>
+    Get back to Segmento
+</Link>
+
                 </nav>
 
                 {/* Desktop Actions */}
