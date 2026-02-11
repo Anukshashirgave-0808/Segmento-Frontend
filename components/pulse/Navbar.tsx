@@ -534,6 +534,28 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
                                         </Button>
                                     </>
                                 )}
+                                <Link
+        href="/"
+        className="
+            w-full
+            px-4
+            py-3
+            text-sm
+            font-medium
+            text-center
+            bg-linear-to-r from-indigo-600 to-purple-600
+            hover:from-indigo-700 hover:to-purple-700
+            text-white
+            rounded-lg
+            transition-all duration-300
+            shadow-sm
+            hover:shadow-lg hover:shadow-purple-500/30
+            active:scale-95
+        "
+        onClick={() => setIsMenuOpen(false)}
+    >
+        Get back to Segmento
+    </Link>
                                 <Button
                                     className="bg-blue-600 hover:bg-blue-700 justify-start"
                                     onClick={() => {
@@ -541,6 +563,7 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
                                         if (onSubscribeClick) onSubscribeClick();
                                     }}
                                 >
+                                    
                                     <Mail className="h-4 w-4 mr-2" />
                                     Subscribe
                                 </Button>
