@@ -1,9 +1,9 @@
 'use client'
 
 import Link from "next/link"
-import { ShoppingCart, Building2, Heart, GraduationCap, Factory, Radio } from "lucide-react"
+import { ShoppingCart, Building2, Heart, GraduationCap, Factory, Radio, Tv, CreditCard } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { motion, Variants } from "framer-motion"
+import { motion, Variants, easeOut } from "framer-motion"
 
 // Industries data
 const industries = [
@@ -115,17 +115,59 @@ const industries = [
       { title: "Compliance Automation", desc: "Meet regional telecom regulations automatically" },
     ],
   },
+  // New Industry: Media
+  {
+    id: "media",
+    icon: Tv,
+    title: "Media",
+    intro: "Secure media assets and user data across platforms",
+    challenges: [
+      "Protecting intellectual property and copyrights",
+      "Managing subscriber information and preferences",
+      "Preventing piracy and unauthorized distribution",
+      "Ensuring compliance with media regulations",
+    ],
+    solutions: [
+      { title: "Content Protection", desc: "Encrypt and classify media files to prevent unauthorized access" },
+      { title: "Subscriber Data Security", desc: "Secure PII across subscriptions and platforms" },
+      { title: "Piracy Prevention", desc: "Real-time monitoring and alerts for unauthorized usage" },
+      { title: "Regulatory Compliance", desc: "Ensure adherence to regional media laws and guidelines" },
+    ],
+  },
+  // New Industry: Banking
+  {
+    id: "banking",
+    icon: CreditCard,
+    title: "Banking",
+    intro: "Protect sensitive financial and customer information in banks",
+    challenges: [
+      "Securing account and transaction data",
+      "Preventing fraud and cyber attacks",
+      "Complying with banking regulations",
+      "Ensuring real-time monitoring of financial operations",
+    ],
+    solutions: [
+      { title: "Account Security", desc: "Encrypt and classify all sensitive banking data" },
+      { title: "Fraud Detection", desc: "AI-powered alerts for unusual transactions" },
+      { title: "Regulatory Compliance", desc: "Automated monitoring for banking standards" },
+      { title: "Transaction Monitoring", desc: "Real-time visibility into all banking operations" },
+    ],
+  },
 ]
 
 export default function SolutionsPage() {
-  // Framer Motion animation variants
   const cardVariants: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: i * 0.15, duration: 0.5, ease: [0.33, 1, 0.68, 1] },
+      transition: { delay: i * 0.15, duration: 0.5, ease: easeOut },
     }),
+  }
+
+  const headlineVariants: Variants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: easeOut } },
   }
 
   return (
@@ -134,12 +176,23 @@ export default function SolutionsPage() {
       <section className="mb-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent">
+            <motion.h1
+              variants={headlineVariants}
+              initial="hidden"
+              animate="visible"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-linear-to-r from-primary via-purple-600 to-blue-600 bg-clip-text text-transparent"
+            >
               Industry Solutions
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground">
+            </motion.h1>
+            <motion.p
+              variants={headlineVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.2 }}
+              className="text-lg md:text-xl text-muted-foreground"
+            >
               Tailored data security and intelligence solutions for your industry
-            </p>
+            </motion.p>
           </div>
         </div>
       </section>
@@ -159,13 +212,34 @@ export default function SolutionsPage() {
                   <div className="p-4 rounded-xl bg-linear-to-br from-primary/10 to-purple-100">
                     <Icon className="w-10 h-10 text-primary" />
                   </div>
-                  <h2 className="text-3xl md:text-4xl font-bold">{industry.title}</h2>
+                  <motion.h2
+                    variants={headlineVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    className="text-3xl md:text-4xl font-bold"
+                  >
+                    {industry.title}
+                  </motion.h2>
                 </div>
-                <p className="text-lg text-muted-foreground mb-8">{industry.intro}</p>
+                <motion.p
+                  variants={headlineVariants}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  className="text-lg text-muted-foreground mb-8"
+                >
+                  {industry.intro}
+                </motion.p>
 
                 <div className="grid md:grid-cols-2 gap-8">
                   {/* Challenges */}
-                  <div>
+                  <motion.div
+                    variants={headlineVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                  >
                     <h3 className="text-xl font-bold mb-4">Key Challenges</h3>
                     <ul className="space-y-3">
                       {industry.challenges.map((challenge, i) => (
@@ -175,11 +249,19 @@ export default function SolutionsPage() {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </motion.div>
 
                   {/* Solutions */}
                   <div>
-                    <h3 className="text-xl font-bold mb-4">Our Solutions</h3>
+                    <motion.h3
+                      variants={headlineVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      className="text-xl font-bold mb-4"
+                    >
+                      Our Solutions
+                    </motion.h3>
                     <div className="space-y-4">
                       {industry.solutions.map((solution, i) => (
                         <motion.div
@@ -207,17 +289,37 @@ export default function SolutionsPage() {
       {/* CTA */}
       <section className="py-16 bg-linear-to-r from-primary to-purple-600 text-white mt-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <motion.h2
+            variants={headlineVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-bold mb-4"
+          >
             Ready to secure your industry's data?
-          </h2>
-          <p className="text-lg mb-8 max-w-2xl mx-auto opacity-90">
+          </motion.h2>
+          <motion.p
+            variants={headlineVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-lg mb-8 max-w-2xl mx-auto opacity-90"
+          >
             Contact us to learn how Segmento can protect your organization
-          </p>
-          <Link href="/contact">
-            <Button size="lg" variant="secondary" className="text-lg px-8">
-              Get Started
-            </Button>
-          </Link>
+          </motion.p>
+          <motion.div
+            variants={headlineVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            <Link href="/contact">
+              <Button size="lg" variant="secondary" className="text-lg px-8">
+                Get Started
+              </Button>
+            </Link>
+          </motion.div>
         </div>
       </section>
     </div>
