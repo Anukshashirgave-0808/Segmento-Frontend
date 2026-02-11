@@ -21,16 +21,38 @@
   --color-border: #e5e5e5;
   --color-input: #e5e5e5;
   --color-ring: #9D17A0;
+
+  /* Responsive Typography (Fluid Scaling) */
+  --font-size-h1: clamp(1.75rem, 5vw, 3rem);
+  --font-size-h2: clamp(1.5rem, 4vw, 2.25rem);
+  --font-size-h3: clamp(1.25rem, 3vw, 1.875rem);
+  --font-size-body: clamp(0.875rem, 2vw, 1rem);
+  --font-size-small: clamp(0.75rem, 1.5vw, 0.875rem);
+
+  /* Responsive Spacing */
+  --spacing-section: clamp(2rem, 5vw, 4rem);
+  --spacing-component: clamp(1rem, 3vw, 2rem);
+  --spacing-element: clamp(0.5rem, 2vw, 1rem);
 }
 
 html {
   scroll-behavior: smooth;
+  /* Prevent text size adjustment on mobile */
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   background: var(--color-background);
   color: var(--color-foreground);
   font-feature-settings: "rlig" 1, "calt" 1;
+  /* Improve font rendering on mobile */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Safe area for notched devices */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 
@@ -71,9 +93,16 @@ body {
   transform: scale(0.98);
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - Responsive */
 ::-webkit-scrollbar {
   width: 10px;
+}
+
+/* Thinner scrollbar on mobile */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
 }
 
 ::-webkit-scrollbar-track {
@@ -379,4 +408,94 @@ body {
 
 .animate-button-breathe {
   animation: button-breathe 4s ease-in-out infinite;
+}
+
+/* ====================================
+   RESPONSIVE UTILITIES
+   ==================================== */
+
+/* Touch-friendly button targets (WCAG AA: minimum 44x44px) */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.touch-target-sm {
+  min-width: 36px;
+  min-height: 36px;
+}
+
+/* Responsive visibility utilities */
+.mobile-only {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .mobile-only {
+    display: none;
+  }
+}
+
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .desktop-only {
+    display: block;
+  }
+}
+
+/* Prevent iOS input zoom (minimum 16px font size) */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+textarea {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  textarea {
+    font-size: 14px;
+  }
+}
+
+/* Responsive grid for cards */
+.grid-responsive-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 430px) {
+  .grid-responsive-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .grid-responsive-cards {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
 }

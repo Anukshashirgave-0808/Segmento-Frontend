@@ -52,7 +52,7 @@ function ArticleContent() {
     }
 
     return (
-        <div className="container mx-auto px-4 py-8 max-w-4xl">
+        <div className="container mx-auto px-3 xs:px-4 sm:px-4 lg:px-6 py-4 sm:py-6 lg:py-8 max-w-4xl">
             {/* Back Button */}
             <Link
                 href="/pulse/news"
@@ -64,7 +64,7 @@ function ArticleContent() {
 
             {/* Article Header */}
             <article className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-                <div className="relative h-[400px] w-full">
+                <div className="relative h-[250px] xs:h-[280px] sm:h-[320px] md:h-[360px] lg:h-[400px] w-full">
                     <img
                         src={image}
                         alt={title}
@@ -85,25 +85,26 @@ function ArticleContent() {
                                 />
                             </div>
                         </div>
-                        <h1 className="text-3xl md:text-4xl font-bold text-white mb-2 leading-tight">
+                        <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-white mb-2 leading-tight">
                             {title}
                         </h1>
                     </div>
                 </div>
 
                 <div className="p-8">
-                    <p className="text-xl text-gray-700 leading-relaxed mb-8">
+                    <p className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed mb-6 sm:mb-8">
                         {description}
                     </p>
 
-                    <div className="flex justify-center mb-8 flex-col items-center gap-4">
+                    <div className="flex flex-col xs:flex-row justify-center mb-6 sm:mb-8 items-center gap-3 sm:gap-4">
                         <a
                             href={url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl font-semibold transition-all shadow-lg hover:shadow-blue-500/20 inline-flex items-center gap-2 transform hover:-translate-y-1"
+                            className="w-full xs:w-auto bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl font-semibold transition-all shadow-lg hover:shadow-blue-500/20 inline-flex items-center justify-center gap-2 transform hover:-translate-y-1 min-h-touch"
                         >
-                            <span>Read Full Article at Source</span>
+                            <span className="hidden sm:inline">Read Full Article at Source</span>
+                            <span className="inline sm:hidden">Read Article</span>
                             <ExternalLink className="w-4 h-4" />
                         </a>
 

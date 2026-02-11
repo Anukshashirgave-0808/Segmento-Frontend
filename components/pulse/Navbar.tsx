@@ -14,7 +14,7 @@ import './rainbow-shimmer.css';
 import './navbar-compact.css';
 import './navbar-animations.css';
 
-export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: () => void }) {  
+export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: () => void }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
@@ -143,13 +143,13 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
 
     return (
         <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white shadow-sm">
-            <div className="container flex h-16 items-center justify-between">
-                {/* Logo */}
-                <Link href="/pulse" className="flex items-center gap-2">
-                    {/* Animated Heartbeat Logo */}
+            <div className="container flex h-14 xs:h-14 sm:h-15 lg:h-16 items-center justify-between">
+                {/* Logo - Responsive Sizing */}
+                <Link href="/pulse" className="flex items-center gap-1.5 xs:gap-2">
+                    {/* Animated Heartbeat Logo - Scales with screen size */}
                     <div className="relative">
                         <div className="absolute inset-0 bg-linear-to-r from-blue-500 to-purple-600 rounded-lg heartbeat-glow"></div>
-                        <div className="relative w-9 h-9 flex items-center justify-center">
+                        <div className="relative w-7 h-7 xs:w-8 xs:h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 flex items-center justify-center">
                             <svg
                                 viewBox="0 0 100 50"
                                 className="w-full h-full text-blue-600"
@@ -167,13 +167,14 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
                             </svg>
                         </div>
                     </div>
-                    <span className="font-display text-xl font-bold">
+                    <span className="font-display text-base xs:text-lg sm:text-xl lg:text-xl font-bold">
                         Segmento<span className="text-blue-600">Pulse</span>
                     </span>
                 </Link>
 
                 {/* Desktop Navigation - Enhanced with Premium Animations */}
-                <nav className="hidden lg:flex items-center gap-0.5">
+                {/* Show full nav on xl+ (1024px+) for better tablet experience */}
+                <nav className="hidden xl:flex items-center gap-0.5">
                     {navLinks.map((link) => (
                         link.hasDropdown ? (
                             <div key={link.name} className="relative group">
@@ -296,7 +297,7 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
                 </nav>
 
                 {/* Desktop Actions */}
-                <div className="hidden lg:flex items-center gap-1.5">
+                <div className="hidden xl:flex items-center gap-1.5">
                     {/* Visual Divider */}
                     <div className="h-4 w-px bg-gray-300 mx-2"></div>
 
@@ -384,22 +385,23 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
                     {/* Visual Divider */}
                     <div className="h-4 w-px bg-gray-300 mx-2"></div>
 
-                    {/* Subscribe to Newsletter - Opens Modal Directly */}
+                    {/* Subscribe to Newsletter - Responsive Text */}
                     <button
-                        className="rainbow-shimmer-btn"
+                        className="rainbow-shimmer-btn min-h-touch flex items-center justify-center"
                         onClick={() => {
                             if (onSubscribeClick) {
                                 onSubscribeClick();
                             }
                         }}
                     >
-                        <Mail className="h-4 w-4 mr-2" />
-                        Subscribe to Newsletter
+                        <Mail className="h-4 w-4 mr-0 xl:mr-2" />
+                        <span className="hidden 2xl:inline">Subscribe to Newsletter</span>
+                        <span className="hidden xl:inline 2xl:hidden">Subscribe</span>
                     </button>
                 </div>
 
-                {/* Mobile Buttons */}
-                <div className="flex lg:hidden gap-2">
+                {/* Mobile Buttons - Show on screens < 1024px */}
+                <div className="flex xl:hidden gap-2">
                     <Button
                         variant="ghost"
                         size="icon"
@@ -420,7 +422,7 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
             {/* Mobile Search */}
             {
                 isSearchOpen && (
-                    <div className="lg:hidden border-t p-4">
+                    <div className="xl:hidden border-t p-3 sm:p-4">
                         <form onSubmit={handleSearchSubmit} className="flex gap-2">
                             <Input
                                 type="search"
@@ -439,7 +441,7 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
             {/* Mobile Menu Overlay - Fixed Responsiveness */}
             {
                 isMenuOpen && (
-                    <div className="lg:hidden fixed inset-0 top-16 z-50 overflow-y-auto bg-white pb-32 border-t animate-in slide-in-from-top-5 duration-200">
+                    <div className="xl:hidden fixed inset-0 top-14 xs:top-14 sm:top-15 lg:top-16 z-50 overflow-y-auto bg-white pb-32 border-t animate-in slide-in-from-top-5 duration-200">
                         <nav className="container py-4 flex flex-col gap-1">
                             {navLinks.map((link) => (
                                 link.hasDropdown ? (
@@ -455,32 +457,34 @@ export default function PulseNavbar({ onSubscribeClick }: { onSubscribeClick?: (
                                             <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${(link.dropdownType === 'data' && isDataDropdownOpen) || (link.dropdownType === 'cloud' && isCloudDropdownOpen) ? 'rotate-180' : ''}`} />
                                         </button>
 
-                                        {/* Dropdown Content */}
+                                        {/* Dropdown Content - Single column on xs, 2 columns on sm+ */}
                                         {((link.dropdownType === 'data' && isDataDropdownOpen) || (link.dropdownType === 'cloud' && isCloudDropdownOpen)) && (
-                                            <div className="pl-4 pb-2 space-y-1 bg-gray-50/50 rounded-b-lg">
-                                                {(link.dropdownType === 'data' ? dataSubcategories : cloudSubcategories).map((subcat) => (
-                                                    <Link
-                                                        key={subcat.name}
-                                                        href={subcat.path}
-                                                        className="flex items-center gap-3 px-4 py-3 text-sm rounded-lg hover:bg-white hover:shadow-sm transition-all"
-                                                        onClick={() => setIsMenuOpen(false)}
-                                                    >
-                                                        {/* Icon Logic: Handle both Emojis and Next.js Images */}
-                                                        {(subcat as any).isEmoji !== false ? (
-                                                            <span className="text-xl shrink-0">{subcat.icon}</span>
-                                                        ) : (
-                                                            <div className="relative w-6 h-6 shrink-0">
-                                                                <Image
-                                                                    src={subcat.icon}
-                                                                    alt={subcat.name}
-                                                                    fill
-                                                                    className="object-contain"
-                                                                />
-                                                            </div>
-                                                        )}
-                                                        <span className="text-gray-700 font-medium">{subcat.name}</span>
-                                                    </Link>
-                                                ))}
+                                            <div className="pl-2 sm:pl-4 pb-2 space-y-1 bg-gray-50/50 rounded-b-lg">
+                                                <div className="grid grid-cols-1 xs:grid-cols-2 gap-1">
+                                                    {(link.dropdownType === 'data' ? dataSubcategories : cloudSubcategories).map((subcat) => (
+                                                        <Link
+                                                            key={subcat.name}
+                                                            href={subcat.path}
+                                                            className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-3 sm:py-3 text-sm rounded-lg hover:bg-white hover:shadow-sm transition-all min-h-touch-sm"
+                                                            onClick={() => setIsMenuOpen(false)}
+                                                        >
+                                                            {/* Icon Logic: Handle both Emojis and Next.js Images */}
+                                                            {(subcat as any).isEmoji !== false ? (
+                                                                <span className="text-lg sm:text-xl shrink-0">{subcat.icon}</span>
+                                                            ) : (
+                                                                <div className="relative w-5 h-5 sm:w-6 sm:h-6 shrink-0">
+                                                                    <Image
+                                                                        src={subcat.icon}
+                                                                        alt={subcat.name}
+                                                                        fill
+                                                                        className="object-contain"
+                                                                    />
+                                                                </div>
+                                                            )}
+                                                            <span className="text-gray-700 font-medium text-xs sm:text-sm">{subcat.name}</span>
+                                                        </Link>
+                                                    ))}
+                                                </div>
                                             </div>
                                         )}
                                     </div>
