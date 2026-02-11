@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import { useState } from "react"
 import Link from "next/link"
@@ -10,12 +10,16 @@ type DropdownKey = "products" | "solutions" | "resources" | null
 export function Header() {
   const [openDropdown, setOpenDropdown] = useState<DropdownKey>(null)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [mobileDropdown, setMobileDropdown] = useState<DropdownKey>(null)
 
-  /* TAB STYLE - hover colors applied permanently */
-  const tabStyle =
-    "px-5 py-2 text-sm font-medium transition-all duration-300 text-white bg-gradient-to-r from-purple-600 to-pink-500 shadow-md"
+  /* ---------------- STYLES ---------------- */
 
-  /* DROPDOWN STYLES */
+  const navItem =
+    "relative px-5 py-2 text-sm font-semibold text-gray-800 transition-all duration-300 rounded-md"
+
+  const hoverEffect =
+    "hover:text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-500 hover:shadow-lg"
+
   const dropdownWrapper = "absolute left-1/2 -translate-x-1/2 pt-4"
   const dropdownBox =
     "w-64 rounded-xl bg-gradient-to-br from-purple-700 via-fuchsia-600 to-pink-600 shadow-2xl border border-white/20 overflow-hidden"
@@ -23,12 +27,11 @@ export function Header() {
     "block px-5 py-3 text-sm text-white/90 hover:bg-white/10 transition-all"
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
+    <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-6">
-        {/* HEADER ROW */}
-        <div className="flex items-center h-20">
+        <div className="flex items-center justify-between h-20">
 
-          {/* LEFT: LOGO */}
+          {/* LOGO */}
           <Link href="/" className="flex items-center shrink-0">
             <Image
               src="/images/logo-final.png"
@@ -39,142 +42,180 @@ export function Header() {
             />
           </Link>
 
-          {/* CENTER: NAV TABS */}
-          <div className="flex-1 hidden md:flex justify-center">
-            <nav className="flex items-center gap-4">
-              <Link href="/" className={tabStyle}>Home</Link>
-              <Link href="/about" className={tabStyle}>About</Link>
+          {/* ================= DESKTOP NAV ================= */}
+          <nav className="hidden md:flex items-center gap-3">
+            <Link href="/" className={`${navItem} ${hoverEffect}`}>Home</Link>
+            <Link href="/about" className={`${navItem} ${hoverEffect}`}>About</Link>
 
-              {/* PRODUCTS */}
-              <div
-                className="relative"
-                onMouseEnter={() => setOpenDropdown("products")}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <button className={`${tabStyle} flex items-center gap-1`}>
-                  Products <ChevronDown size={14} />
-                </button>
+            {/* PRODUCTS */}
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenDropdown("products")}
+              onMouseLeave={() => setOpenDropdown(null)}
+            >
+              <button className={`${navItem} ${hoverEffect} flex items-center gap-1`}>
+                Products <ChevronDown size={14} />
+              </button>
 
-                {openDropdown === "products" && (
-                  <div className={dropdownWrapper}>
-                    <div className={dropdownBox}>
-                      <Link href="/pulse" className={dropdownItem}>
-                        Segmento Pulse
-                      </Link>
-                      <Link
-                        href="/products/data-classification"
-                        className={dropdownItem}
-                      >
-                        Segmento Sense
-                      </Link>
-                      <Link
-                        href="/products/resolve"
-                        className={dropdownItem}
-                      >
-                        Segmento Resolve [upcoming]
-                      </Link>
-                      <Link
-                        href="/products/collect"
-                        className={dropdownItem}
-                      >
-                        Segmento Collect [upcoming]
-                      </Link>
-                    </div>
+              {openDropdown === "products" && (
+                <div className={dropdownWrapper}>
+                  <div className={dropdownBox}>
+                    <Link href="/pulse" className={dropdownItem}>Segmento Pulse</Link>
+                    <Link href="/products/data-classification" className={dropdownItem}>Segmento Sense</Link>
+                    <span className={dropdownItem}>Segmento Resolve (Upcoming)</span>
+                    <span className={dropdownItem}>Segmento Collect (Upcoming)</span>
                   </div>
-                )}
-              </div>
+                </div>
+              )}
+            </div>
 
-              {/* SOLUTIONS */}
-              <div
-                className="relative"
-                onMouseEnter={() => setOpenDropdown("solutions")}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <button className={`${tabStyle} flex items-center gap-1`}>
-                  Solutions <ChevronDown size={14} />
-                </button>
+            {/* SOLUTIONS */}
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenDropdown("solutions")}
+              onMouseLeave={() => setOpenDropdown(null)}
+            >
+              <button className={`${navItem} ${hoverEffect} flex items-center gap-1`}>
+                Solutions <ChevronDown size={14} />
+              </button>
 
-                {openDropdown === "solutions" && (
-                  <div className={dropdownWrapper}>
-                    <div className={dropdownBox}>
-                      {[
-                        ["ecommerce", "eCommerce"],
-                        ["finance", "Finance"],
-                        ["healthcare", "Healthcare"],
-                        ["higher-education", "Higher Education"],
-                        ["manufacturing", "Manufacturing"],
-                        ["telecommunication", "Telecommunication"],
-                        ["media", "Media"],
-                        ["banking", "Banking"],
-                      ].map(([id, label]) => (
-                        <Link
-                          key={id}
-                          href={`/solutions#${id}`}
-                          className={dropdownItem}
-                        >
-                          {label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* RESOURCES */}
-              <div
-                className="relative"
-                onMouseEnter={() => setOpenDropdown("resources")}
-                onMouseLeave={() => setOpenDropdown(null)}
-              >
-                <button className={`${tabStyle} flex items-center gap-1`}>
-                  Resources <ChevronDown size={14} />
-                </button>
-
-                {openDropdown === "resources" && (
-                  <div className={dropdownWrapper}>
-                    <div className={dropdownBox}>
-                      <Link href="/blog" className={dropdownItem}>
-                        Blog
+              {openDropdown === "solutions" && (
+                <div className={dropdownWrapper}>
+                  <div className={dropdownBox}>
+                    {[
+                      ["ecommerce", "eCommerce"],
+                      ["finance", "Finance"],
+                      ["healthcare", "Healthcare"],
+                      ["higher-education", "Higher Education"],
+                      ["manufacturing", "Manufacturing"],
+                      ["telecommunication", "Telecommunication"],
+                      ["media", "Media"],
+                      ["banking", "Banking"],
+                    ].map(([id, label]) => (
+                      <Link key={id} href={`/solutions#${id}`} className={dropdownItem}>
+                        {label}
                       </Link>
-                    </div>
+                    ))}
                   </div>
-                )}
-              </div>
+                </div>
+              )}
+            </div>
 
-              <Link href="/pricing" className={tabStyle}>Pricing</Link>
-              <Link href="/careers" className={tabStyle}>Careers</Link>
-              <Link href="/contact" className={tabStyle}>Contact</Link>
-            </nav>
-          </div>
+            {/* RESOURCES */}
+            <div
+              className="relative"
+              onMouseEnter={() => setOpenDropdown("resources")}
+              onMouseLeave={() => setOpenDropdown(null)}
+            >
+              <button className={`${navItem} ${hoverEffect} flex items-center gap-1`}>
+                Resources <ChevronDown size={14} />
+              </button>
 
-          {/* RIGHT: MOBILE BUTTON */}
-          <div className="flex justify-end md:hidden">
-            <button onClick={() => setMobileOpen(!mobileOpen)}>
-              {mobileOpen ? <X /> : <Menu />}
-            </button>
-          </div>
+              {openDropdown === "resources" && (
+                <div className={dropdownWrapper}>
+                  <div className={dropdownBox}>
+                    <Link href="/blog" className={dropdownItem}>Blog</Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <Link href="/pricing" className={`${navItem} ${hoverEffect}`}>Pricing</Link>
+            <Link href="/careers" className={`${navItem} ${hoverEffect}`}>Careers</Link>
+            <Link href="/contact" className={`${navItem} ${hoverEffect}`}>Contact</Link>
+          </nav>
+
+          {/* ================= MOBILE TOGGLE ================= */}
+          <button
+            className="md:hidden text-gray-800"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            {mobileOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* ================= MOBILE MENU ================= */}
       {mobileOpen && (
-        <div className="md:hidden bg-gray-950 px-6 py-6 space-y-3">
-          {[
-            ["Home", "/"],
-            ["About", "/about"],
-            ["Pricing", "/pricing"],
-            ["Careers", "/careers"],
-            ["Contact", "/contact"],
-          ].map(([label, href]) => (
-            <Link
-              key={label}
-              href={href}
-              className="block text-center py-3 rounded-lg bg-linear-to-r from-purple-600 to-pink-600 text-white"
-              onClick={() => setMobileOpen(false)}
-            >
-              {label}
-            </Link>
-          ))}
+        <div className="md:hidden bg-gray-950 text-white px-6 py-6 space-y-4">
+
+          <Link href="/" onClick={() => setMobileOpen(false)} className="block">Home</Link>
+          <Link href="/about" onClick={() => setMobileOpen(false)} className="block">About</Link>
+
+          {/* PRODUCTS */}
+          <button
+            className="flex w-full justify-between items-center"
+            onClick={() =>
+              setMobileDropdown(mobileDropdown === "products" ? null : "products")
+            }
+          >
+            Products <ChevronDown size={16} />
+          </button>
+
+          {mobileDropdown === "products" && (
+            <div className="bg-gray-900 rounded-lg p-4 space-y-2 text-sm">
+              <Link href="/pulse" onClick={() => setMobileOpen(false)} className="block">Segmento Pulse</Link>
+              <Link href="/products/data-classification" onClick={() => setMobileOpen(false)} className="block">Segmento Sense</Link>
+              <p className="opacity-70">Resolve (Upcoming)</p>
+              <p className="opacity-70">Collect (Upcoming)</p>
+            </div>
+          )}
+
+          {/* SOLUTIONS */}
+          <button
+            className="flex w-full justify-between items-center"
+            onClick={() =>
+              setMobileDropdown(mobileDropdown === "solutions" ? null : "solutions")
+            }
+          >
+            Solutions <ChevronDown size={16} />
+          </button>
+
+          {mobileDropdown === "solutions" && (
+            <div className="bg-gray-900 rounded-lg p-4 space-y-2 text-sm">
+              {[
+                ["ecommerce", "eCommerce"],
+                ["finance", "Finance"],
+                ["healthcare", "Healthcare"],
+                ["higher-education", "Higher Education"],
+                ["manufacturing", "Manufacturing"],
+                ["telecommunication", "Telecommunication"],
+                ["media", "Media"],
+                ["banking", "Banking"],
+              ].map(([id, label]) => (
+                <Link
+                  key={id}
+                  href={`/solutions#${id}`}
+                  onClick={() => setMobileOpen(false)}
+                  className="block"
+                >
+                  {label}
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {/* ✅ RESOURCES (FIXED) */}
+          <button
+            className="flex w-full justify-between items-center"
+            onClick={() =>
+              setMobileDropdown(mobileDropdown === "resources" ? null : "resources")
+            }
+          >
+            Resources <ChevronDown size={16} />
+          </button>
+
+          {mobileDropdown === "resources" && (
+            <div className="bg-gray-900 rounded-lg p-4 text-sm">
+              <Link href="/blog" onClick={() => setMobileOpen(false)} className="block">
+                Blog
+              </Link>
+            </div>
+          )}
+
+          <Link href="/pricing" onClick={() => setMobileOpen(false)} className="block">Pricing</Link>
+          <Link href="/careers" onClick={() => setMobileOpen(false)} className="block">Careers</Link>
+          <Link href="/contact" onClick={() => setMobileOpen(false)} className="block">Contact</Link>
         </div>
       )}
     </header>
