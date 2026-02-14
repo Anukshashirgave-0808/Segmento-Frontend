@@ -26,9 +26,11 @@ interface ArticleDetailViewProps {
     };
     isModal?: boolean; // If true, disables view tracking and back button
     onClose?: () => void;
+    backLink?: string;
+    backLabel?: string;
 }
 
-export default function ArticleDetailView({ article, isModal = false, onClose }: ArticleDetailViewProps) {
+export default function ArticleDetailView({ article, isModal = false, onClose, ...props }: ArticleDetailViewProps) {
     const hasIncrementedRef = useRef(false);
 
     useEffect(() => {
@@ -50,11 +52,11 @@ export default function ArticleDetailView({ article, isModal = false, onClose }:
             {/* Back Button - Only show if NOT a modal */}
             {!isModal && (
                 <Link
-                    href="/pulse/news"
+                    href={props.backLink || "/pulse/news"}
                     className="inline-flex items-center gap-2 text-gray-500 hover:text-blue-600 mb-8 transition-colors"
                 >
                     <ArrowLeft className="w-4 h-4" />
-                    <span>Back to News</span>
+                    <span>{props.backLabel || "Back to News"}</span>
                 </Link>
             )}
 

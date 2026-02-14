@@ -50,7 +50,8 @@ async function fetchWithTimeout(url: string, timeout = 15000): Promise<Response>
  */
 export async function getArticleStats(
     articleUrl: string,
-    articleId?: string
+    articleId?: string,
+    category?: string
 ): Promise<ArticleStats> {
     try {
         // Use provided ID or generate from URL
@@ -62,7 +63,8 @@ export async function getArticleStats(
             return cached.data;
         }
 
-        const response = await fetchWithTimeout(`${API_BASE_URL}/api/engagement/articles/${id}/stats`);
+        const queryParams = category ? `?category=${encodeURIComponent(category)}` : '';
+        const response = await fetchWithTimeout(`${API_BASE_URL}/api/engagement/articles/${id}/stats${queryParams}`);
 
         if (!response.ok) {
             throw new Error('Failed to fetch stats');

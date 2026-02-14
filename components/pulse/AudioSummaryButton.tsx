@@ -60,6 +60,9 @@ export default function AudioSummaryButton({
     const noteIdCounter = useRef(0);
     const spawnInterval = useRef<NodeJS.Timeout | null>(null);
 
+    // If it's a research paper (category starts with 'research-'), disable and show "Coming Soon"
+    const isResearch = category?.toLowerCase().startsWith('research') || false;
+
     // Initialize audio element
     useEffect(() => {
         if (!audioRef.current) {
@@ -191,6 +194,10 @@ export default function AudioSummaryButton({
         e.preventDefault();
         e.stopPropagation();
 
+        if (isResearch) {
+            return;
+        }
+
         if (isLoading) return;
 
         // Show pulse ring
@@ -261,7 +268,7 @@ export default function AudioSummaryButton({
     return (
         <div className={cn("flex flex-col items-center gap-2 py-6", className)}>
             {/* Main Button Container */}
-            <div className="relative">
+            <div className="relative group">
                 {/* Rotating Message Bubble - Now Top Right */}
                 <div className="absolute -top-14 -right-12 hidden md:block z-20"> {/* Hidden on mobile, top-right position */}
                     <div
@@ -309,13 +316,15 @@ export default function AudioSummaryButton({
                     onClick={handleClick}
                     onMouseEnter={() => setIsHovered(true)}
                     onMouseLeave={() => setIsHovered(false)}
+                    disabled={isResearch}
                     className={cn(
                         "relative px-7 py-3.5 rounded-2xl font-semibold text-gray-800 border border-purple-200/50",
                         "transition-all duration-300 ease-out",
                         "hover:scale-105 hover:-translate-y-0.5",
                         "active:scale-100 active:translate-y-0",
                         "focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2",
-                        "animate-button-breathe flex items-center gap-3"
+                        "animate-button-breathe flex items-center gap-3",
+                        isResearch ? "opacity-70 cursor-not-allowed" : ""
                     )}
                     style={{ background: 'var(--gradient-audio)' }}
                     aria-label="Play Audio Summary"
@@ -354,6 +363,13 @@ export default function AudioSummaryButton({
                         </div>
                     )}
                 </button>
+
+                {/* Tooltip for Research Papers */}
+                {isResearch && (
+                    <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-black/80 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none z-50">
+                        Coming Soon
+                    </div>
+                )}
             </div>
 
             {/* Bottom Sub-label */}
