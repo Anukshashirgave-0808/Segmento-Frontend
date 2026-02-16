@@ -71,13 +71,13 @@ export default function PulsePage() {
         href={`/pulse/news?category=${category}`}
         className={`${colSpan} ${height} relative group overflow-hidden rounded-2xl transition-all duration-500 transform hover:scale-[1.01] shadow-lg hover:shadow-2xl border border-white/10`}
       >
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
           style={{ backgroundImage: `url(${bgImage})` }}
         ></div>
-        
+
         <div className={`absolute inset-0 bg-linear-to-br ${gradient} opacity-85 group-hover:opacity-75 transition-opacity`}></div>
-        
+
         <div className="absolute inset-0 opacity-20 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
 
         <div className="relative z-10 h-full flex flex-col justify-between p-6 text-left">
@@ -86,7 +86,7 @@ export default function PulsePage() {
               <Icon className="w-8 h-8 text-white drop-shadow-md" />
               <h3 className="text-xl font-bold text-white tracking-tight drop-shadow-md">{title}</h3>
             </div>
-            
+
             <div className="mt-4 border-t border-white/20 pt-4">
               <p className="text-lg font-bold text-white leading-tight line-clamp-2 drop-shadow-lg">
                 {loading ? (
@@ -130,7 +130,7 @@ export default function PulsePage() {
       `}</style>
 
       <div className="container mx-auto px-4 py-12 max-w-6xl">
-        
+
         {/* --- SMALLER HEADER WITH GIF EFFECT --- */}
         <div className="text-center mb-10">
           <div className="relative inline-block overflow-hidden px-2 py-1">
@@ -147,78 +147,78 @@ export default function PulsePage() {
 
         {/* --- GRID LAYOUT --- */}
         <div className="grid grid-cols-12 gap-5">
-          <CategoryBox 
-            category="ai" title="Artificial Intelligence" icon={Brain} 
-            colSpan="col-span-12 md:col-span-5" height="h-[360px]" 
+          <CategoryBox
+            category="ai" title="Artificial Intelligence" icon={Brain}
+            colSpan="col-span-12 md:col-span-5" height="h-[360px]"
             staticLabel="AI Breakthrough in Healthcare Innovations"
-            gradient="from-purple-600 to-indigo-900" 
+            gradient="from-purple-600 to-indigo-900"
             bgImage="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80"
           />
 
           <div className="col-span-12 md:col-span-7 grid grid-cols-2 gap-5">
-            <CategoryBox 
-              category="data-engineering" title="Data Engineering" icon={Workflow} 
-              colSpan="col-span-1" height="h-[170px]" 
+            <CategoryBox
+              category="data-engineering" title="Data Engineering" icon={Workflow}
+              colSpan="col-span-1" height="h-[170px]"
               staticLabel="Building Scalable Data Pipelines"
               gradient="from-blue-600 to-blue-800"
               bgImage="https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80"
             />
-            <CategoryBox 
-              category="data-governance" title="Data Governance" icon={Database} 
-              colSpan="col-span-1" height="h-[170px]" 
+            <CategoryBox
+              category="data-governance" title="Data Governance" icon={Database}
+              colSpan="col-span-1" height="h-[170px]"
               staticLabel="New Compliance Frameworks"
               gradient="from-green-600 to-emerald-900"
               bgImage="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80"
             />
-            <CategoryBox 
-              category="data-privacy" title="Data Privacy" icon={Lock} 
-              colSpan="col-span-2" height="h-[166px]" 
+            <CategoryBox
+              category="data-privacy" title="Data Privacy" icon={Lock}
+              colSpan="col-span-2" height="h-[166px]"
               staticLabel="Navigating Global Privacy Laws"
               gradient="from-orange-500 to-amber-600"
               bgImage="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80"
             />
           </div>
 
-          <CategoryBox 
-            category="business-intelligence" title="Business Intelligence" icon={TrendingUp} 
-            colSpan="col-span-12 md:col-span-3" height="h-[280px]" 
+          <CategoryBox
+            category="business-intelligence" title="Business Intelligence" icon={TrendingUp}
+            colSpan="col-span-12 md:col-span-3" height="h-[280px]"
             staticLabel="Top BI Trends 2024"
             gradient="from-blue-400 to-blue-600"
             bgImage="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80"
           />
 
           <div className="col-span-12 md:col-span-4 h-70p rounded-2xl overflow-hidden shadow-lg relative">
-             <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80" className="w-full h-full object-cover" alt="City Background" />
-             <div className="absolute inset-0 bg-black/20"></div>
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80" className="w-full h-full object-cover" alt="City Background" />
+            <div className="absolute inset-0 bg-black/20"></div>
           </div>
 
-          <CategoryBox 
-            category="data-security" title="Data Security" icon={Shield} 
-            colSpan="col-span-12 md:col-span-5" height="h-[280px]" 
+          <CategoryBox
+            category="data-security" title="Data Security" icon={Shield}
+            colSpan="col-span-12 md:col-span-5" height="h-[280px]"
             staticLabel="Protecting Sensitive Data"
             gradient="from-red-700/80 to-black/90"
             bgImage="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80"
           />
 
-          <CategoryBox 
-            category="magazines" title="Tech Magazines" icon={BookOpen} 
-            colSpan="col-span-12 md:col-span-4" height="h-[220px]" 
+          <CategoryBox
+            category="magazines" title="Tech Magazines" icon={BookOpen}
+            colSpan="col-span-12 md:col-span-4" height="h-[220px]"
             staticLabel="Top Reads This Month"
             gradient="from-stone-700/60 to-stone-900/90"
             bgImage="https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&q=80"
           />
 
-          <CategoryBox 
-            category="data-management" title="Data Management" icon={Database} 
-            colSpan="col-span-12 md:col-span-4" height="h-[220px]" 
+          <CategoryBox
+            category="data-management" title="Data Management" icon={Database}
+            colSpan="col-span-12 md:col-span-4" height="h-[220px]"
             staticLabel="Mastering Data Integration"
             gradient="from-emerald-600 to-green-800"
             bgImage="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&q=80"
           />
 
-          <CategoryBox 
-            category="cloud-computing" title="Cloud Computing" icon={Cloud} 
-            colSpan="col-span-12 md:col-span-4" height="h-[220px]" 
+          <CategoryBox
+            category="cloud-computing" title="Cloud Computing" icon={Cloud}
+            colSpan="col-span-12 md:col-span-4" height="h-[220px]"
             staticLabel="The Future of Cloud Services"
             gradient="from-sky-600 to-indigo-900"
             bgImage="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80"

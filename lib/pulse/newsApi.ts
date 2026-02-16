@@ -5,10 +5,18 @@ export interface Article {
     title: string;
     description: string;
     url: string;
-    image: string;
-    publishedAt: string;
+    image_url: string;
+    published_at: string;
     source: string;
     author?: string;
+    likes?: number;
+    dislikes?: number;
+    views?: number;
+    audio_url?: string;
+    text_summary?: string;
+    category?: string;
+    $id?: string;
+    id?: string; // Compatibility with standardized backend model
 }
 
 export async function fetchNewsByCategory(
@@ -55,5 +63,26 @@ export async function searchNews(query: string): Promise<Article[]> {
     } catch (error) {
         console.error('Error searching news:', error);
         return [];
+    }
+}
+
+// Fetch single research paper by ID
+export async function fetchResearchPaperById(paperId: string): Promise<Article | null> {
+    try {
+        const response = await fetch(`${API_BASE}/api/research/${paperId}`, {
+            cache: 'no-store',
+        });
+
+        if (!response.ok) {
+            if (response.status === 404) return null;
+            console.error('Failed to fetch research paper:', response.statusText);
+            return null;
+        }
+
+        const data = await response.json();
+        return data.paper;
+    } catch (error) {
+        console.error("Error fetching research paper:", error);
+        return null;
     }
 }
